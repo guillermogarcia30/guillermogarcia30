@@ -8,7 +8,7 @@
     <form class="synapse__form-register-a" method="POST" action="{{ route('password.email') }}">
         @csrf
         <div class="form__data-container">
-            <label for="email">Correo electronico</label>
+            <label for="email">Correo electrónico</label>
             <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
             @error('email')
                 <span class="invalid-feedback" role="alert">

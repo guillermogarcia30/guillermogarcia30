@@ -17,7 +17,7 @@
         @enderror
     </div>
     <div class="form__data-container">
-        <label for="email">Correo electronico</label>
+        <label for="email">Correo electrónico</label>
         <input required id="email" id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
         @error('email')
             <span class="invalid-feedback" role="alert">
