@@ -1,0 +1,7 @@
+Personal access client created successfully.
+Client ID: 965e5a50-2adb-4bd6-af29-bc6de3de6323
+Client secret: QftCuyDrZ306PU9xe2OPPvSVoWCF5TIwHwlQJQGA
+
+Password grant client created successfully.
+Client ID: 965e5a50-300a-403b-9f76-979aa4d15c6f
+Client secret: 1owmPPP6bLdoAbeulH3foek9wDWF3izvkpCv8qtk
