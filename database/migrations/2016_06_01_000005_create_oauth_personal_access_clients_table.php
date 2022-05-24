@@ -31,7 +31,7 @@ return new class extends Migration
     public function up()
     {
         $this->schema->create('oauth_personal_access_clients', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->uuid('id');
             $table->uuid('client_id');
             $table->timestamps();
         });
