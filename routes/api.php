@@ -18,9 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::post('/signup', [App\Http\Controllers\UserController::class,'signup']);
 Route::post('/signin', [App\Http\Controllers\UserController::class,'signin']);
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('users/list', [App\Http\Controllers\UserController::class,'users']);
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('/user/me', [App\Http\Controllers\UserController::class,'user_me']);
+    Route::post('/signout', [App\Http\Controllers\UserController::class,'signout']);
 });
