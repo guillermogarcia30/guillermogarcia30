@@ -1,7 +1,8 @@
 Personal access client created successfully.
-Client ID: 965f0b8a-2a4c-4e22-816a-76f76cfd7dea
-Client secret: mSdkPttvfluo9tc98wJ6Mki71aSo6lixzaCjAQ4W
+Client ID: 965f2512-1b13-4e69-8bab-707d5f372248
+Client secret: p0KAjHhUzGt73ns3oI0cDklR1fyz9x5bhqxsENto
 
 Password grant client created successfully.
-Client ID: 965f0b8a-f225-48cf-87cd-ee7e04da5843
-Client secret: apWXqUaCphmLA77pmwJ3fI7KwLazkW8ywXvdZUvL
+Client ID: 965f2514-09fe-497b-abba-b6de507ef101
+Client secret: Cuoxmk62af9HgjKcPu00bHfwyN1L4xuOd77anQo9
+

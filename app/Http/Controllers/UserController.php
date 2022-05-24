@@ -4,22 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function login(){ 
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-            $user = Auth::user(); 
-            $success['token'] = $user->createToken('MyApp')-> accessToken; 
-            return response()->json(['success' => $success], 200); 
-        }else{ 
-            return response()->json(['error'=>'Unauthorised'], 401); 
-        } 
+    public function signin(Request $request){
+
+        $data = $request->validate([
+            'email' => 'email|required',
+            'password' => 'required'
+        ]);
+
+        if (!auth()->attempt($data)) {
+            return response(
+                ['error_message' => 'Incorrect Details. Please try again']
+            );
+        }
+
+        $token = auth()->user()->createToken('API Token')->accessToken;
+
+        return response(['user' => auth()->user(), 'token' => $token]);
+    }
+
+    public function signup(Request $request)
+    {
+        $user = new User;
+        $user->id = Str::uuid()->toString();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        $token = $user->createToken('API Token')->accessToken;
+
+        return response([ 'user' => $user, 'token' => $token]);
     }
 
     public function users()
     {
-        $users = User::get();
-        return response()->json($users);
+        try {
+            $users = User::get();
+            return response()->json($users);
+        } catch (\Exception $e) {
+            return "sdsdsd";
+        }
     }
 }
