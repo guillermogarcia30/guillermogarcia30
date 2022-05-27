@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function validate_token(){
+        return ['data' => 'Token is valid'];
+    }
+
     public function signup(Request $request)
     {
         $request->validate([

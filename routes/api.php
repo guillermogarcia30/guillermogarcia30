@@ -19,10 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/signup', [App\Http\Controllers\UserController::class,'signup']);
-Route::post('/signin', [App\Http\Controllers\UserController::class,'signin']);
+Route::post('/signup', [App\Http\Controllers\UserController::class,'signup'])->name('signup');
+Route::post('/signin', [App\Http\Controllers\UserController::class,'signin'])->name('signin');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('/user/me', [App\Http\Controllers\UserController::class,'user_me']);
-    Route::post('/signout', [App\Http\Controllers\UserController::class,'signout']);
+    Route::get('/user/me', [App\Http\Controllers\UserController::class,'user_me'])->name('user.me');
+    Route::post('/signout', [App\Http\Controllers\UserController::class,'signout'])->name('signout');
+    Route::get('/validate/token', [App\Http\Controllers\UserController::class,'validate_token'])->name('validate.token');
 });

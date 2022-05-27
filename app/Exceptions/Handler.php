@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -47,4 +48,18 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    //funcion para sobreescribir la repuesta por defecto { "message": "Unauthenticated" }
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        //$error = [ 'message' => $exception->getMessage() ];
+        $error = [
+            'error' => true,
+            'data' => 'Token is Expired'
+        ];
+        return $request->expectsJson()
+                    ? response()->json($error, 401)
+                    : redirect()->guest(route('login'));
+    }
+    //fin
 }
