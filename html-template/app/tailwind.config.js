@@ -16,13 +16,13 @@ module.exports = {
       'white': '#ffffff',
       'blue': '#1fb6ff',
       'purple': '#7e5bef',
-      'pink': '#ff49db',
+      'pink': '#FF2B44',
       'orange': '#ff7849',
       'green': '#06c706',
       'green-light': '#b8ffb8',
       'red': '#ff0000',
       'red-light':'#fbbdbd',
-      'yellow': '#ffc82c',
+      'yellow': '#F4C018',
       'gray-dark': '#273444',
       'gray': '#8492a6',
       'gray-light': '#9d9d9d',
@@ -34,6 +34,8 @@ module.exports = {
       'darkmode-black-01': '#121212',
       'darkmode-black-02': '#21262E',
       'darkmode-blue-01': '#3A9CFF',
+      'darkmode-green-toggle':'#34C38F',
+      'transparent': 'transparent'
     },
     fontFamily: {
       robot: ['"Roboto"', 'sans-serif']
