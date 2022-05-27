@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
     //funcion para sobreescribir la repuesta por defecto { "message": "Unauthenticated" }
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        //$error = ['message' => $exception->getMessage()];
+        //$error = [ 'message' => $exception->getMessage() ];
         $error = [
             'error' => true,
             'data' => 'Token is Expired'
