@@ -1,39 +1,14 @@
 import React, {useState} from 'react'
-import { DasboardItem } from '../components/dasboard-item'
+import { useSelector } from 'react-redux';
 
+import { DasboardItem } from '../components/dasboard-item'
 import { ModalAPlicaciones } from '../components/ModalAPlicaciones'
 import { Modal } from '../components/modal'
+import { appsSubscribed } from '../store/appsSlice';
 
 export const Dashboard = () => {
 
-    const items =[{
-        logo: 'https://www.pngmart.com/files/16/official-Google-Logo-PNG-Image.png',
-        title: 'Google',
-        token: '8965tegr451f2w62',
-        secret: '********5488',
-        status: true,
-    },
-    {
-        logo: 'https://logodownload.org/wp-content/uploads/2014/09/facebook-logo-3-1.png',
-        title: 'Facebook',
-        token: '2894fw5a6f45132',
-        secret: '********4564',
-        status: true,
-    },
-    {
-        logo: 'https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-3.png',
-        title: 'Twitter',
-        token: '48541csaacdv32546',
-        secret: '*********7984',
-        status: false,
-    },
-    {
-        logo: 'https://logodownload.org/wp-content/uploads/2020/07/tesla-logo-8.png',
-        title: 'Tesla',
-        token: '78941014fscdsedf520',
-        secret: '********8952',
-        status: true,
-    }]
+    const apps = useSelector(appsSubscribed)
 
     const [show, setShow] = useState(false)
     const [ add, setAdd] = useState(false)
@@ -57,7 +32,14 @@ export const Dashboard = () => {
             <h2 className='text-[2rem] dark:text-white font-semibold' >Aplicaciones</h2>
             <button onClick={handleShowModal} className='bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
         </div>
-        {items.map( el => { return( <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.token} /> ) })}
+        <div className='w-full min-h-[36rem]' >
+            {apps.map( (el, i) => {
+                 if(i === 0) {
+                    return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} first={true} />
+                 } else {
+                  return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} />
+                 }})}
+        </div>
         <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
         <Modal view={add} hide={handleShowAddedModal} />
     </div>

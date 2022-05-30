@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import { AiOutlinePlus, AiFillEye } from 'react-icons/ai'
 import { MdOutlineFileCopy } from 'react-icons/md'
 
 export const ModalAPlicaciones = ({view, hide, add,id = "189da1-gfsaf-1561f-gfh1561"}) => {
+
+    const handleForm = (e) => {
+    }
 
   return (
     <div style={view ?{display: 'flex'}:{display: 'none'}} className='justify-end bg-black-transparent z-50 absolute top-0 bottom-0 left-0 right-0 m-[0 auto]' >
@@ -19,32 +24,51 @@ export const ModalAPlicaciones = ({view, hide, add,id = "189da1-gfsaf-1561f-gfh1
                     <p className='text-dark-blue dark:text-darkmode-blue-01 font-medium' >{id}</p>
                 </div>
             </div>
-            <form className='py-12' action="">
-                <div className='flex flex-col w-full' >
-                    <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="fabricante" >Fabricante</label>
-                    <input className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 mb-8 border-2 border-gray-light' id='fabricante' type="text" />
-                </div>
-                <div className='flex flex-col w-full' >
-                    <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="sitioweb" >Sitio web</label>
-                    <input className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 mb-8 border-2 border-gray-light' id='sitioweb' type="text" />
-                </div>
-                <div className='relative flex flex-col w-full' >
-                    <div className='flex justify-between' >
-                        <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="secret" >Secret</label>
-                        <button className='text-pink' >Regenerar</button>
+            <Formik
+            initialValues={{ fabricante: '', website: '', appurl: '' }}
+             validate={values => {
+                    const errors = {};
+                    if (!values.fabricante) {
+                    errors.fabricante = 'El fabricante es obligatorio';
+                    }
+                    if (!values.appurl) {
+                    errors.appurl = 'La aplicacion debe tener una URL';
+                    }
+                    if (!values.website) {
+                    errors.website = 'El website es obligatorio';
+                    }
+                    return errors;
+                }} >
+                <Form  onInput={handleForm} className='py-12' >
+                    <div className='flex flex-col w-full' >
+                        <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="fabricante" >Fabricante</label>
+                        <Field name='fabricante' className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 mb-8 border-2 border-gray-light' id='fabricante' type="text" />
                     </div>
-                    <input className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 mb-8 border-2 border-gray-light' id='secret' type="text" />
-                    <div className='w-12 flex justify-between absolute right-[1.25rem] bottom-[2.75rem]' >
-                        <button className='text-gray-light text-[1.2rem]' ><MdOutlineFileCopy/></button>
-                        <button className='text-gray-light text-[1.2rem]' ><AiFillEye/></button>
+                    <div className='flex flex-col w-full' >
+                        <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="sitioweb" >Sitio web</label>
+                        <Field name='website' className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 mb-8 border-2 border-gray-light' id='sitioweb' type="text" />
                     </div>
-                </div>
-                <div className='flex flex-col w-full' >
-                    <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="appurl" >App url</label>
-                    <input className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 border-2 border-gray-light' id='appurl' type="text" />
-                    <button className='text-pink mb-8 text-right' >+ Agregar</button>
-                </div>
-            </form>
+                    <div className='relative flex flex-col w-full' >
+                        <div className='flex justify-between' >
+                            <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="secret" >Secret</label>
+                            <button className='text-pink' >Regenerar</button>
+                        </div>
+                        <Field name='secret' className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 mb-8 border-2 border-gray-light' id='secret' type="password" />
+                        <div className='w-12 flex justify-between absolute right-[1.25rem] bottom-[2.75rem]' >
+                            <button className='text-gray-light text-[1.2rem]' ><MdOutlineFileCopy/></button>
+                            <button className='text-gray-light text-[1.2rem]' ><AiFillEye/></button>
+                        </div>
+                    </div>
+                    <div className='flex flex-col w-full' >
+                        <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="appurl" >App url</label>
+                        <Field name='appurl' className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-white rounded px-3 py-2 border-2 border-gray-light' id='appurl' type="text" />
+                        <button className='text-pink mb-8 text-right' >+ Agregar</button>
+                    </div>
+                    <ErrorMessage className='text-red' name='fabricante' component='p' />
+                    <ErrorMessage className='text-red' name='website' component='p' />
+                    <ErrorMessage className='text-red' name='appurl' component='p' />
+                </Form>
+            </Formik>
         <div className='flex justify-between' >
             <button className='w-[45%] bg-white border border-solid rounded-[10px] font-semibold px-3 py-2 dark:bg-darkmode-black-02 dark:text-white dark:border-pink ' onClick={hide} >Volver</button>
             <button className='w-[45%] bg-pink text-white rounded-[10px] font-semibold px-3 py-2' onClick={add} >Guardar</button>
