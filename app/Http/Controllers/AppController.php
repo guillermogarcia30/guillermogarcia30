@@ -59,7 +59,7 @@ class AppController extends Controller
             'redirect' => $redirect,
             'personal_access_client' => 0,
             'password_client' => 0,
-            'revoked' => 1,
+            'revoked' => 0,
         ]);
         return redirect()->route('app.index');
     }

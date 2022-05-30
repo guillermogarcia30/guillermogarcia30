@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use DB;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -67,6 +68,7 @@ class UserController extends Controller
 
         return response()->json([
             'access_token' => $tokenResult->accessToken,
+            'tenant_id' => $tenant_id,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()
         ]);
@@ -87,6 +89,29 @@ class UserController extends Controller
     public function user_me(Request $request)
     {
         $user = $request->user();
-        return response()->json($user);
+        
+        $campos = array(
+            DB::raw("
+                DISTINCT
+                oauth_clients.id AS id,
+                oauth_clients.name AS name,
+                oauth_clients.secret AS secret,
+                oauth_clients.redirect AS redirect
+            ")
+        );
+        
+        $authorized_apps = DB::table('oauth_access_tokens')
+                             ->join('oauth_clients','oauth_clients.id','=','oauth_access_tokens.client_id')
+                             ->where('oauth_access_tokens.user_id','=',$user->id)
+                             ->select($campos)
+                             ->orderBy('oauth_clients.name','ASC')
+                             ->get();
+
+        $data = [
+            'user' => $user,
+            'authorized_apps' => $authorized_apps
+        ];
+
+        return response()->json($data);
     }
 }
