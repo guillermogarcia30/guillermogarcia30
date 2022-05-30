@@ -1,5 +1,6 @@
 import './App.css';
 import { Header } from './components/Header'
+import { Copyright } from './components/copyright'
 import { Route, Routes } from 'react-router-dom'
 import { Dashboard } from './views/dashboard';
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Dashboard/>} />
       </Routes>
+      <Copyright/>
     </div>
   );
 }

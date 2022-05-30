@@ -28,8 +28,8 @@ export const Header = () => {
                 { links.map( el => { return <CustomLink key={el.id} to={el.src}> {el.name} </CustomLink>})}
             </div>
             <div className='w-40 justify-between flex items-center' >
-              <CgProfile className='w-12 h-12 dark:text-white cursor-pointer' /> 
               <Toggle/>
+              <CgProfile className='w-12 h-12 dark:text-white cursor-pointer' /> 
             </div>
         </nav>
     </header>

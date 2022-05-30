@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { DasboardItem } from '../components/dasboard-item'
 
 import { ModalAPlicaciones } from '../components/ModalAPlicaciones'
+import { Modal } from '../components/modal'
 
 export const Dashboard = () => {
 
@@ -35,18 +36,30 @@ export const Dashboard = () => {
     }]
 
     const [show, setShow] = useState(false)
+    const [ add, setAdd] = useState(false)
     const handleShowModal = () => {
         setShow( !show )
     }
 
+    const handleShowAndCLoseModal = () => {
+        setAdd( !add )
+        setShow( !show )
+
+    }
+
+    const handleShowAddedModal = () => {
+        setAdd( !add )
+    }
+
   return (
-    <div className=' min-h-[100vh] items-center px-40 flex justify-center flex-col' >
+    <div className=' min-h-[95vh] items-center px-40 flex justify-center flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
             <h2 className='text-[2rem] dark:text-white font-semibold' >Aplicaciones</h2>
-            <ModalAPlicaciones view={show} hide={handleShowModal} />
             <button onClick={handleShowModal} className='bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
         </div>
         {items.map( el => { return( <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.token} /> ) })}
+        <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
+        <Modal view={add} hide={handleShowAddedModal} />
     </div>
   )
 }

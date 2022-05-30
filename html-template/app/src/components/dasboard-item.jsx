@@ -21,7 +21,7 @@ export const DasboardItem = ({logo, title, token, secret, status, }) => {
             {status ? (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-green-light text-green font-medium' >Activo</p>) : (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-red-light text-red font-medium'>Inactivo</p>)}
         </div>
         <div>
-            <button className='bg-red px-2 py-2 rounded-[10px] mr-12'><BiTrash className='text-white' /></button>
+            <button className='bg-pink px-2 py-2 rounded-[10px] mr-12'><BiTrash className='text-white' /></button>
             <button className='bg-blue px-2 py-2 rounded-[10px]' ><FiEdit className='text-white'/></button>
             
         </div>
