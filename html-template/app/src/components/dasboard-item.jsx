@@ -7,31 +7,23 @@ import { FiEdit } from 'react-icons/fi'
 
 import { removeApp } from '../store/appsSlice'
 
-export const DasboardItem = ({logo, title, token, secret, status, id, first = false}) => {
+export const DasboardItem = ({logo, title, token, secret, status, id}) => {
 
     const dispatch = useDispatch()
     const ref = useRef()
     const onAppRemove = useCallback(
         (appId) => {
-            if(first){
-                ref.current.classList.add('translate-x-[-100rem]')
-                return setTimeout(()=>{
-                    dispatch(removeApp({ id: appId }))
-                }, 700)
-            }
-            else {
                 ref.current.classList.replace('z-10', 'z-[5]')
                 ref.current.classList.add('translate-y-[-170px]')
                 return setTimeout(()=>{
                     dispatch(removeApp({ id: appId }))
-                }, 700)
-            }
+                }, 400)
         },
         [dispatch]
       )
 
   return (
-    <div ref={ref} className='z-10 duration-700 px-16 mb-10 shadow-lg rounded-[10px] py-[2.5rem] w-full bg-white dark:bg-darkmode-black-02 flex justify-between items-center' >
+    <div ref={ref} className='z-10 duration-500 px-16 mb-10 shadow-lg rounded-[10px] py-[2.5rem] w-full bg-white dark:bg-darkmode-black-02 flex justify-between items-center' >
         <div className='min-w-[20rem] pr-12 border-r-2 border-solid border-r-gray-border w-fit flex items-center' >
             <div className='w-12 h-12' >
                 <img className='w-full h-full' src={logo} alt={title} />
