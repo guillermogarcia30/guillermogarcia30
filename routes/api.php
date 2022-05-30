@@ -26,4 +26,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/user/me', [App\Http\Controllers\UserController::class,'user_me'])->name('user.me');
     Route::post('/signout', [App\Http\Controllers\UserController::class,'signout'])->name('signout');
     Route::get('/validate/token', [App\Http\Controllers\UserController::class,'validate_token'])->name('validate.token');
+
+    Route::resource('/apps',App\Http\Controllers\API\AppController::class);
 });
