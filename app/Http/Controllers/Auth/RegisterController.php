@@ -67,6 +67,7 @@ class RegisterController extends Controller
     {
         $user = new User;
         $user->id = Str::uuid()->toString();
+        $user->tenant_id = '';
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
