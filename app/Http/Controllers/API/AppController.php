@@ -16,6 +16,10 @@ class AppController extends Controller
      */
     public function index()
     {
+        set_time_limit(0);
+        header('Content-Type: application/json; charset=utf-8');
+        header('Accept: application/json');
+        
         $apps_count = DB::table('oauth_clients')->count();
         if($apps_count == 0){
             return response([
@@ -130,6 +134,10 @@ class AppController extends Controller
      */
     public function show($id)
     {
+        set_time_limit(0);
+        header('Content-Type: application/json; charset=utf-8');
+        header('Accept: application/json');
+
         $apps_count = DB::table('oauth_clients')->where('id','=',$id)->count();
         if($apps_count == 0){
             return response([
