@@ -25,6 +25,7 @@ class UserController extends Controller
 
         $user = new User;
         $user->id = Str::uuid()->toString();
+        $user->tenant_id = '';
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
