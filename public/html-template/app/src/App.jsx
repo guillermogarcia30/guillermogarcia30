@@ -22,7 +22,7 @@ function App() {
     <div className='bg-soft-gray dark:bg-darkmode-black-01 relative' >
       <Header/>
       <Routes>
-        <Route path='/' element={<Dashboard/>} />
+        <Route path='/home' element={<Dashboard/>} />
       </Routes>
       <Copyright/>
     </div>

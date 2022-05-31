@@ -7,7 +7,7 @@ import { Toggle } from './Toggle'
 
 export const Header = () => {
   const links = [{
-                  id: 1, src: '/', name: 'Dashboard'
+                  id: 1, src: '/home', name: 'Dashboard'
                 }, 
                 {
                   id: 2, src: '/team', name: 'Team'
