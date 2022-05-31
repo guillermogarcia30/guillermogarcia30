@@ -23,16 +23,16 @@ export const DasboardItem = ({logo, title, token, secret, status, id}) => {
       )
 
   return (
-    <div ref={ref} className='z-10 duration-500 px-16 mb-10 shadow-lg rounded-[10px] py-[2.5rem] w-full bg-white dark:bg-darkmode-black-02 flex justify-between items-center' >
+    <div ref={ref} className='z-10 duration-500 px-16 mb-10 shadow-lg rounded-[10px] py-[2.5rem] w-full bg-[#ffffff] dark:bg-darkmode-black-02 flex justify-between items-center' >
         <div className='min-w-[20rem] pr-12 border-r-2 border-solid border-r-gray-border w-fit flex items-center' >
             <div className='w-12 h-12' >
                 <img className='w-full h-full' src={logo} alt={title} />
             </div>
-                <h3 className='dark:text-white ml-16 max-w-[12rem]' >{title}</h3>
+                <h3 className='dark:text-[#ffffff] ml-16 max-w-[12rem]' >{title}</h3>
         </div>
         <div className='min-w-[15rem] pr-12 border-r-2 border-solid border-r-gray-border' >
             <h4 className='text-dark-blue dark:text-darkmode-blue-01 font-semibold' >{token}</h4>
-            <p className='dark:text-white' >Secret: {secret}</p>
+            <p className='dark:text-[#ffffff]' >Secret: {secret}</p>
         </div>
         <div>
             {status ? (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-green-light text-green font-medium' >Activo</p>) : (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-red-light text-red font-medium'>Inactivo</p>)}

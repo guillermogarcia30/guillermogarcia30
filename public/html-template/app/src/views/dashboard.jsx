@@ -29,7 +29,7 @@ export const Dashboard = () => {
   return (
     <div className='pt-24 min-h-[95vh] items-center px-40 flex justify-center flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
-            <h2 className='text-[2rem] dark:text-white font-semibold' >Aplicaciones</h2>
+            <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Aplicaciones</h2>
             <button onClick={handleShowModal} className='bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
         </div>
         <div className=' overflow-hidden duration-700 w-full min-h-[36.5rem]' >
