@@ -61,5 +61,6 @@ module.exports = {
         '4xl': '2rem',
       }
     }
-  }
+  },
+  plugins: [require('tailwind-scrollbar')]
 }
