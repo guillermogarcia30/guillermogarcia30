@@ -20,14 +20,16 @@ class AppController extends Controller
         header('Content-Type: application/json; charset=utf-8');
         header('Accept: application/json');
         
-        $apps_count = DB::table('oauth_clients')->count();
+        $user_id = auth()->user()->id;
+
+        $apps_count = DB::table('oauth_clients')->where('user_id','=',$user_id)->count();
         if($apps_count == 0){
             return response([
                 'error' => true,
                 'description' => 'Not Found Resource'
             ],404);
         }else{
-            $apps = DB::table('oauth_clients')->get();
+            $apps = DB::table('oauth_clients')->where('user_id','=',$user_id)->get();
             return response([
                 'error' => false,
                 'data' => $apps
@@ -80,6 +82,12 @@ class AppController extends Controller
         //fin
 
         $error_array = array();
+        if (!isset($decode->client_id)) {
+            array_push($error_array,"Parameter client_id required");
+        }
+        if (!isset($decode->secret)) {
+            array_push($error_array,"Parameter secret required");
+        }
         if (!isset($decode->name)) {
             array_push($error_array,"Parameter name required");
         }
@@ -101,34 +109,42 @@ class AppController extends Controller
             return response($response,500);
         }
 
-        $id = Str::uuid()->toString();
+        $id = $request->client_id;
         $user_id = auth()->user()->id;
-        $secret = Str::random(40);
+        $secret = $request->secret;
         $name = $request->name;
         $redirect = strtolower(trim($request->redirect));
         $maker = ucwords(strtolower($request->maker));
         $website = strtolower(trim($request->website));
 
         try {
-            $app =  DB::table('oauth_clients')->insert([
-                'id' => $id,	
-                'user_id' => $user_id,
-                'name' => $name,
-                'maker' => $maker,
-                'website' => $website,
-                'secret' => $secret,
-                'provider' => null,
-                'redirect' => $redirect,
-                'personal_access_client' => 0,
-                'password_client' => 0,
-                'revoked' => 0,
-                'created_at' => DB::raw("NOW()"),
-                'updated_at' => DB::raw("NOW()")
-            ]);
-            return response([
-                'error' => false,
-                'id' => $id,
-            ],200);
+            $exists = DB::table('oauth_clients')->where('id','=',$id)->exists();
+            if($exists == 1){
+                return response([
+                    'error' => true,
+                    'description' => 'There is already an application with the client_id '.$id,
+                ],500);
+            }else{
+                $app =  DB::table('oauth_clients')->insert([
+                    'id' => $id,	
+                    'user_id' => $user_id,
+                    'name' => $name,
+                    'maker' => $maker,
+                    'website' => $website,
+                    'secret' => $secret,
+                    'provider' => null,
+                    'redirect' => $redirect,
+                    'personal_access_client' => 0,
+                    'password_client' => 0,
+                    'revoked' => 0,
+                    'created_at' => DB::raw("NOW()"),
+                    'updated_at' => DB::raw("NOW()")
+                ]);
+                return response([
+                    'error' => false,
+                    'id' => $id,
+                ],200);
+            }
         } catch (\Exception $e) {
             return response([
                 'error' => true,
