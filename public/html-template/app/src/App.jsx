@@ -3,7 +3,10 @@ import { Header } from './components/Header'
 import { Copyright } from './components/copyright'
 import { Route, Routes } from 'react-router-dom'
 import { Dashboard } from './views/dashboard';
+import {Helmet} from "react-helmet"
 import { useEffect } from 'react';
+
+
 function App() {
   const appTheme = () => {
     const theme = localStorage.getItem('theme')
@@ -20,6 +23,10 @@ function App() {
   }, [])
   return (
     <div className='bg-soft-gray dark:bg-darkmode-black-01 relative' >
+      <Helmet>
+                <meta charSet="utf-8" />
+                <title>Synapse</title>
+      </Helmet>
       <Header/>
       <Routes>
         <Route path='/home' element={<Dashboard/>} />

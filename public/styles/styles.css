@@ -212,10 +212,10 @@ img{
 }
 
 .error{
-    border: #ee0808 2px solid !important;
+    border: #ee0808 2px solid ;
 }
 .ok{
-    border: #1bee08 2px solid !important;
+    border: #1bee08 2px solid ;
 }
 
 @media screen and (max-width: 1500px) {

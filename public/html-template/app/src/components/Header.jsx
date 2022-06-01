@@ -19,7 +19,7 @@ export const Header = () => {
                   id: 4,src: '/calendario', name: 'Calendario'
                 }]
   return (
-    <header className='fixed w-[100vw] px-11 bg-white dark:bg-darkmode-black-02 pt-4 shadow-md'>
+    <header className='fixed w-[100vw] px-11 bg-[#ffffff] dark:bg-darkmode-black-02 pt-4 shadow-md'>
         <nav className='flex  items-center justify-between' >
             <div className='flex items-center' >
               <Logo/>
@@ -29,7 +29,7 @@ export const Header = () => {
             </div>
             <div className='w-40 justify-between flex items-center' >
               <Toggle/>
-              <CgProfile className='w-12 h-12 dark:text-white cursor-pointer' /> 
+              <CgProfile className='w-12 h-12 dark:text-[#ffffff] cursor-pointer' /> 
             </div>
         </nav>
     </header>
