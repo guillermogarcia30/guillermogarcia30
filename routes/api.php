@@ -18,14 +18,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post('/signup', [App\Http\Controllers\UserController::class,'signup'])->name('signup');
-Route::post('/signin', [App\Http\Controllers\UserController::class,'signin'])->name('signin');
+//APIS DE REGISTRO E INICIO DE SESION
+Route::post('/signup', [App\Http\Controllers\API\UserController::class,'signup']);
+Route::post('/signin', [App\Http\Controllers\API\UserController::class,'signin']);
+//FIN
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('/user/me', [App\Http\Controllers\UserController::class,'user_me'])->name('user.me');
-    Route::post('/signout', [App\Http\Controllers\UserController::class,'signout'])->name('signout');
-    Route::get('/validate/token', [App\Http\Controllers\UserController::class,'validate_token'])->name('validate.token');
 
+    //APIS DE PERFIL Y CERRAR SESION
+    Route::get('/user/me', [App\Http\Controllers\API\UserController::class,'user_me']);
+    Route::post('/signout', [App\Http\Controllers\API\UserController::class,'signout']);
+    Route::get('/validate/token', [App\Http\Controllers\API\UserController::class,'validate_token']);
+    //FIN
+
+    //APIS DE APLICACIONES
     Route::resource('/apps',App\Http\Controllers\API\AppController::class);
+    //FIN
+
+    //APIS DE PERFIL Y CERRAR SESION
+    Route::get('/generator/client-id', [App\Http\Controllers\API\GeneratorController::class,'client_id']);
+    Route::get('/generator/secret', [App\Http\Controllers\API\GeneratorController::class,'secret']);
+    //FIN
+    
 });
