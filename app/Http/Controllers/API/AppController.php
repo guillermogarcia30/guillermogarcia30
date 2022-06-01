@@ -80,6 +80,12 @@ class AppController extends Controller
         //fin
 
         $error_array = array();
+        if (!isset($decode->client_id)) {
+            array_push($error_array,"Parameter client_id required");
+        }
+        if (!isset($decode->secret)) {
+            array_push($error_array,"Parameter secret required");
+        }
         if (!isset($decode->name)) {
             array_push($error_array,"Parameter name required");
         }
@@ -101,9 +107,9 @@ class AppController extends Controller
             return response($response,500);
         }
 
-        $id = Str::uuid()->toString();
+        $id = $request->client_id;
         $user_id = auth()->user()->id;
-        $secret = Str::random(40);
+        $secret = $request->secret;
         $name = $request->name;
         $redirect = strtolower(trim($request->redirect));
         $maker = ucwords(strtolower($request->maker));
