@@ -1,6 +1,6 @@
 
 let url = 'https://auth.synapse-crm.com/api/apps/'
-export const createApp = ({applicationName, appurls, fabricante, secret, website, client_id}) => {
+export const createApp = async({applicationName, appurls, fabricante, secret, website, client_id}) => {
     let appsLinks = ''
     let token = await window.cookieStore.get('access_token').then( res => {return res.value})
     for (let i = 0; i < appurls.length; i++) {
