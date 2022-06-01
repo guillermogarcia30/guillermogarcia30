@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { Formik, Form, Field, FieldArray, ErrorMessage, useFormikContext } from 'formik'
 
 import { AiOutlinePlus, AiFillEye } from 'react-icons/ai'
 import { MdOutlineFileCopy } from 'react-icons/md'
+
+import { createApp } from '../helpers/createApp'
 
 const CustomInput = () => {
     return (
@@ -62,7 +64,7 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
             innerRef={formikRef}
             initialValues={{ fabricante: '', website: '', secret: '' , appurls, applicationName: '' }}
             onSubmit={ (values) => {
-                console.log(values.appurls[0].appurl.length)
+                createApp({ client_id: clientId, ...values })
             }}
              validate={values => {
                     const errors = {};
