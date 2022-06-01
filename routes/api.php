@@ -33,11 +33,10 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     //APIS DE APLICACIONES
     Route::resource('/apps',App\Http\Controllers\API\AppController::class);
-    //FIN
-
-    //APIS DE PERFIL Y CERRAR SESION
-    Route::get('/generator/client-id', [App\Http\Controllers\API\GeneratorController::class,'client_id']);
-    Route::get('/generator/secret', [App\Http\Controllers\API\GeneratorController::class,'secret']);
-    //FIN
-    
+    //FIN    
 });
+
+//APIS DE CLIENT_ID Y SECRET
+Route::get('/generator/client-id', [App\Http\Controllers\API\GeneratorController::class,'client_id']);
+Route::get('/generator/secret', [App\Http\Controllers\API\GeneratorController::class,'secret']);
+//FIN
