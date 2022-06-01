@@ -118,25 +118,33 @@ class AppController extends Controller
         $website = strtolower(trim($request->website));
 
         try {
-            $app =  DB::table('oauth_clients')->insert([
-                'id' => $id,	
-                'user_id' => $user_id,
-                'name' => $name,
-                'maker' => $maker,
-                'website' => $website,
-                'secret' => $secret,
-                'provider' => null,
-                'redirect' => $redirect,
-                'personal_access_client' => 0,
-                'password_client' => 0,
-                'revoked' => 0,
-                'created_at' => DB::raw("NOW()"),
-                'updated_at' => DB::raw("NOW()")
-            ]);
-            return response([
-                'error' => false,
-                'id' => $id,
-            ],200);
+            $exists = DB::table('oauth_clients')->where('id','=',$id)->exists();
+            if($exists == 1){
+                return response([
+                    'error' => true,
+                    'description' => 'There is already an application with the client_id '.$id,
+                ],500);
+            }else{
+                $app =  DB::table('oauth_clients')->insert([
+                    'id' => $id,	
+                    'user_id' => $user_id,
+                    'name' => $name,
+                    'maker' => $maker,
+                    'website' => $website,
+                    'secret' => $secret,
+                    'provider' => null,
+                    'redirect' => $redirect,
+                    'personal_access_client' => 0,
+                    'password_client' => 0,
+                    'revoked' => 0,
+                    'created_at' => DB::raw("NOW()"),
+                    'updated_at' => DB::raw("NOW()")
+                ]);
+                return response([
+                    'error' => false,
+                    'id' => $id,
+                ],200);
+            }
         } catch (\Exception $e) {
             return response([
                 'error' => true,
