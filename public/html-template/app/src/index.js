@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter } from "react-router-dom"
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import App from './App';
+import { store } from './store/store';
 import './index.css';
 
 const container = document.getElementById('root');
@@ -13,7 +14,13 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
     <BrowserRouter>
-      <App />
+    <HelmetProvider>
+      <App>
+      <Helmet>
+        <title>Synapse</title>
+      </Helmet>
+      </App>
+    </HelmetProvider>
     </BrowserRouter>
     </Provider>
   </React.StrictMode>
