@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,6 +29,7 @@ class HomeController extends Controller
             $user = auth()->user();
             $tokenResult = $user->createToken('Personal Access Token');
             $token = $tokenResult->token;
+            $token->expires_at = Carbon::now()->addDays(1);
             $token->save();
     
             $access_token = $tokenResult->accessToken;

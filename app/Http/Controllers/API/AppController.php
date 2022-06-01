@@ -122,7 +122,7 @@ class AppController extends Controller
             if($exists == 1){
                 return response([
                     'error' => true,
-                    'description' => 'There is already an application with the client_id '.$id,
+                    'description' => 'There is already an APP with the client_id '.$id,
                 ],500);
             }else{
                 $app =  DB::table('oauth_clients')->insert([
