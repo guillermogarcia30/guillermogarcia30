@@ -44,6 +44,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id')->nullable()->index();
             $table->string('name');
+            $table->string('maker',50)->nullable();
+            $table->string('website',300)->nullable();
             $table->string('secret', 100)->nullable();
             $table->string('provider')->nullable();
             $table->text('redirect');

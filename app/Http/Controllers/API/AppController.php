@@ -86,6 +86,12 @@ class AppController extends Controller
         if (!isset($decode->redirect)) {
             array_push($error_array,"Parameter redirect required");
         }
+        if (!isset($decode->maker)) {
+            array_push($error_array,"Parameter maker required");
+        }
+        if (!isset($decode->website)) {
+            array_push($error_array,"Parameter website required");
+        }
 
         if (count($error_array) > 0) {
             $response = [
@@ -100,18 +106,24 @@ class AppController extends Controller
         $secret = Str::random(40);
         $name = $request->name;
         $redirect = strtolower(trim($request->redirect));
+        $maker = ucwords(strtolower($request->maker));
+        $website = strtolower(trim($request->website));
 
         try {
             $app =  DB::table('oauth_clients')->insert([
                 'id' => $id,	
                 'user_id' => $user_id,
                 'name' => $name,
+                'maker' => $maker,
+                'website' => $website,
                 'secret' => $secret,
                 'provider' => null,
                 'redirect' => $redirect,
                 'personal_access_client' => 0,
                 'password_client' => 0,
                 'revoked' => 0,
+                'created_at' => DB::raw("NOW()"),
+                'updated_at' => DB::raw("NOW()")
             ]);
             return response([
                 'error' => false,
@@ -206,6 +218,12 @@ class AppController extends Controller
         if (!isset($decode->redirect)) {
             array_push($error_array,"Parameter redirect required");
         }
+        if (!isset($decode->maker)) {
+            array_push($error_array,"Parameter maker required");
+        }
+        if (!isset($decode->website)) {
+            array_push($error_array,"Parameter website required");
+        }
 
         if (count($error_array) > 0) {
             $response = [
@@ -225,11 +243,16 @@ class AppController extends Controller
 
         $name = $request->name;
         $redirect = strtolower(trim($request->redirect));
+        $maker = ucwords(strtolower($request->maker));
+        $website = strtolower(trim($request->website));
 
         try {
             $app =  DB::table('oauth_clients')->where('id','=',$id)->update([
                 'name' => $name,
                 'redirect' => $redirect,
+                'maker' => $maker,
+                'website' => $website,
+                'updated_at' => DB::raw("NOW()")
             ]);
             return response([
                 'error' => false,
