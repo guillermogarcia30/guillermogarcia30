@@ -24,17 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(!isset( $_COOKIE['access_token']) )
-        {
-            $user = auth()->user();
-            $tokenResult = $user->createToken('Personal Access Token');
-            $token = $tokenResult->token;
-            $token->expires_at = Carbon::now()->addDays(1);
-            $token->save();
-    
-            $access_token = $tokenResult->accessToken;
-            setcookie("access_token", $access_token, time()+3600);
-        }
+        $user = auth()->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        $token->expires_at = Carbon::now()->addDays(1);
+        $token->save();
+
+        $access_token = $tokenResult->accessToken;
+        setcookie("access_token", $access_token, time()+3600);
 
         return view('home');
     }
