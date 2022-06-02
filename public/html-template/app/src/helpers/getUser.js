@@ -21,6 +21,9 @@ export async function getUser() {
              if (!res.error) {
                return res.authorized_apps
              }
+             else{
+               console.log('Algo salio mal', res)
+             }
            })
            .catch( err => console.error(err) )
     })
