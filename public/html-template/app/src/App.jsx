@@ -25,17 +25,14 @@ function App() {
   useEffect(function(){
     appTheme();
     getUser().then( res => {
-      console.log(res.authorized_apps)
-      console.log(res?.authorized_apps)
-
-    res?.authorized_apps.map( el => {
+    res?.authorized_apps.map( (el, i) => {
           dispatch(addApp({
             logo: el.image || '',
             title: el.name, 
             token: el.id,
             secret: el.secret, 
             status: el.status === 0 ? true : false, 
-            id: el.id
+            id: i
            }))
         } )
     })
