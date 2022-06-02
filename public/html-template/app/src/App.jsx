@@ -24,24 +24,19 @@ function App() {
 
   useEffect(function(){
     appTheme();
-    getUser().then( res => {
-      console.log(res.authorized_apps)
-      console.log(res.authorized_apps.authorized_apps)
-      console.log('Esta es la version')
-      if (res.authorized_apps) {
-        res.map( el => {
-          dispatch(addApp({
-            logo: el.image || '',
-            title: el.name, 
-            token: el.id,
-            secret: el.secret, 
-            status: el.status === 0 ? true : false, 
-            id: el.token
-           }))
-        } )
-      }
+    getUser().then( res => console.log(res))
+    //     // res.map( el => {
+    //     //   dispatch(addApp({
+    //     //     logo: el.image || '',
+    //     //     title: el.name, 
+    //     //     token: el.id,
+    //     //     secret: el.secret, 
+    //     //     status: el.status === 0 ? true : false, 
+    //     //     id: el.token
+    //     //    }))
+    //     // } )
        
-    })
+    // })
     
   }, [])
 
