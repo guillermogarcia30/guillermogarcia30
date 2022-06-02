@@ -1,4 +1,8 @@
+import { useDispatch } from 'react-redux'
+import { addApp } from '../store/appsSlice' 
+
 const url = 'https://auth.synapse-crm.com/api/user/me'
+
 
 export async function getUser() {
     window.cookieStore.get('access_token').then( res => {
@@ -8,14 +12,25 @@ export async function getUser() {
             "Authorization": `Bearer ${res.value}`
            }
            
-           fetch("https://auth.synapse-crm.com/api/user/me", { 
+           fetch(url, { 
              method: "GET",
              headers: headersList
-           }).then(function(response) {
-             return response.json();
-           }).then(function(data) {
+           }).then((res) => {
+             return res.json();
+           }).then((res) => {
              window.cookieStore.delete('access_token')
-             console.log(data);
+             if (!res.error) {
+               res.authorized_apps.map( el => {
+                 useDispatch(addApp({
+                  logo: el.image || '',
+                  title: el.name, 
+                  token: el.id,
+                  secret: el.secret, 
+                  status: el.status === 0 ? true : false, 
+                  id: el.token
+                 }))
+               })
+             }
            })
     })
 

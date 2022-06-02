@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 // import { useDispatch } from 'react-redux'
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik'
 
-import { AiOutlinePlus, AiFillEye } from 'react-icons/ai'
+import {  AiFillEye } from 'react-icons/ai'
 import { MdOutlineFileCopy } from 'react-icons/md'
 
 import { createApp } from '../helpers/createApp'
+import FileDragAndDropField from './FormikHelper' 
 
 
 
@@ -59,10 +60,10 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
             
             <Formik
             innerRef={formikRef}
-            initialValues={{ fabricante: '', website: '', secret: '' , appurls, applicationName: '' }}
-            onSubmit={ (values, { resetForm }) => {
-                createApp({ client_id: clientId, ...values })
-
+            initialValues={{  image: '', fabricante: '', website: '', secret: '' , appurls, applicationName: '' }}
+            onSubmit={ async(values, { resetForm }) => {
+                
+                await createApp({ client_id: clientId, ...values })
                 add()
                 resetForm()
             }}
@@ -91,9 +92,14 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
                 {({values, ...props}) => (
                     
                     <Form className='py-12' >
-                        <div className=' mb-7 flex' >
-                            <div className='p-4 bg-pink rounded-full mr-3' >
-                                <AiOutlinePlus className=' text-white text-[3rem] ' />
+                        <div className='max-h-20 mb-7 flex' >
+                            <div className='p-4 w-20 bg-pink rounded-full mr-3' >
+
+                                <Field
+                                    name="image"
+                                    component={FileDragAndDropField}
+                                    accept="image/*"
+                                />
                             </div>
                             <div>
                                 <Field name='applicationName' className='dark:focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-[#ffffff] focus-visible:outline-none mb-[.4rem] border-b border-b-gray-border' type="text" placeholder='Nombre de la app' />
