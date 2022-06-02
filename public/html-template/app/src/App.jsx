@@ -35,7 +35,7 @@ function App() {
             token: el.id,
             secret: el.secret, 
             status: el.status === 0 ? true : false, 
-            id: el.token
+            id: el.id
            }))
         } )
     })

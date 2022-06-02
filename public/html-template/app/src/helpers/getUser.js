@@ -16,7 +16,6 @@ export async function getUser() {
              headers: headersList
            }).then( res => res.json())
             .then( res => {
-             window.cookieStore.delete('access_token')
              if (!res.error) {
                console.log('pasa la prueba')
                return res
