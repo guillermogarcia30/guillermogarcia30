@@ -25,6 +25,7 @@ function App() {
   useEffect(function(){
     appTheme();
     getUser().then( res => {
+      console.log(typeof res)
       if (typeof res !== 'undefined') {
         res.map( el => {
           dispatch(addApp({
