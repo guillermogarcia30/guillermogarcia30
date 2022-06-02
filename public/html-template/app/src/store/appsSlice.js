@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  apps: [{
-    id: 756415435
-  }]
+  apps: []
 };
 
 
