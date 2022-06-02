@@ -25,7 +25,8 @@ function App() {
   useEffect(function(){
     appTheme();
     getUser().then( res => {
-      console.log(res)
+      console.log(res.authorized_apps)
+      console.log(res.authorized_apps.authorized_apps)
       if (res.authorized_apps) {
         res.map( el => {
           dispatch(addApp({
