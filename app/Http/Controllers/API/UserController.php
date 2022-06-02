@@ -99,7 +99,7 @@ class UserController extends Controller
                 oauth_clients.name AS name,
                 oauth_clients.secret AS secret,
                 oauth_clients.redirect AS redirect,
-                oauth_clients.revoked AS status,
+                oauth_clients.revoked AS status
             ")
         );
         
