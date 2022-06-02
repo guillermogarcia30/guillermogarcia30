@@ -18,6 +18,7 @@ export async function getUser() {
              res.json();
            }).then((res) => {
              window.cookieStore.delete('access_token')
+             console.log(res)
              if (!res.error) {
                return res.authorized_apps
              }
