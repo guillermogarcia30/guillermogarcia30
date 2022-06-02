@@ -27,6 +27,7 @@ function App() {
     getUser().then( res => {
       console.log(res.authorized_apps)
       console.log(res.authorized_apps.authorized_apps)
+      console.log('Esta es la version')
       if (res.authorized_apps) {
         res.map( el => {
           dispatch(addApp({
