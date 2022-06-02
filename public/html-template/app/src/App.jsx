@@ -8,7 +8,7 @@ import { Copyright } from './components/copyright'
 import { getUser } from './helpers/getUser'
 
 import { useDispatch } from 'react-redux'
-import { addApp } from './store/appsSlice' 
+import { addApp, clearApps } from './store/appsSlice' 
 
 function App() {
   const appTheme = () => {
@@ -25,6 +25,7 @@ function App() {
   useEffect(function(){
     appTheme();
     getUser().then( res => {
+      dispatch(clearApps)
     res?.authorized_apps.map( (el, i) => {
           dispatch(addApp({
             logo: el.image || '',
@@ -35,9 +36,7 @@ function App() {
             id: i
            }))
         } )
-    })
-    
-    
+    });
   }, [])
 
     

@@ -9,6 +9,10 @@ export const appSlice = createSlice({
   name: 'apps',
   initialState,
   reducers: {
+    clearApps: (state) => {
+      console.log('borrado')
+      state.apps = []
+    },
     addApp: (state, action) => {
       state.apps = [...state.apps, action.payload]
     },
@@ -18,7 +22,7 @@ export const appSlice = createSlice({
   },
 });
 
-export const { addApp, removeApp } = appSlice.actions;
+export const { addApp, removeApp, clearApps } = appSlice.actions;
 
 
 export const appsSubscribed = (state) => state.apps.apps;
