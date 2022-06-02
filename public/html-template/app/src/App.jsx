@@ -25,18 +25,20 @@ function App() {
   useEffect(function(){
     appTheme();
     getUser().then( res => {
-      res.map( el => {
-        dispatch(addApp({
-          logo: el.image || '',
-          title: el.name, 
-          token: el.id,
-          secret: el.secret, 
-          status: el.status === 0 ? true : false, 
-          id: el.token
-         }))
-      } ) 
+      if (typeof res !== 'undefined') {
+        res.map( el => {
+          dispatch(addApp({
+            logo: el.image || '',
+            title: el.name, 
+            token: el.id,
+            secret: el.secret, 
+            status: el.status === 0 ? true : false, 
+            id: el.token
+           }))
+        } )
+      }
+       
     })
-    .catch( console.log('algo salió mal'))
     
   }, [])
 
