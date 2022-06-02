@@ -50,6 +50,7 @@ class Handler extends ExceptionHandler
     }
 
     //funcion para sobreescribir la repuesta por defecto { "message": "Unauthenticated" }
+    /*
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         //$error = [ 'message' => $exception->getMessage() ];
@@ -61,5 +62,6 @@ class Handler extends ExceptionHandler
                     ? response()->json($error, 401)
                     : redirect()->guest(route('login'));
     }
+    */
     //fin
 }
