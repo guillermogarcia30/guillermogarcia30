@@ -25,6 +25,8 @@ export const Dashboard = () => {
     const handleShowAddedModal = () => {
         setAdd( !add )
     }
+
+    console.log(apps)
   return (
     <div className='pt-24 min-h-[95vh] items-center px-40 flex justify-center flex-col' >
         <div className='flex items-center justify-between w-full my-4'>

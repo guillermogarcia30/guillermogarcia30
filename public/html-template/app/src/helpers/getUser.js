@@ -19,12 +19,10 @@ export async function getUser() {
            }).then((res) => {
              window.cookieStore.delete('access_token')
              if (!res.error) {
-               console.log('logrado')
                return res.authorized_apps
              }
-             console.log('Fallo')
-             return false
            })
+           .catch( err => console.error(err) )
     })
 
     

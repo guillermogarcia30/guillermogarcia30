@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  apps: []
+  apps: [{
+    id: 756415435
+  }]
 };
 
 
@@ -10,7 +12,7 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     addApp: (state, action) => {
-      state.apps = action.payload
+      state.apps = [...state.apps, action.payload]
     },
     removeApp: (state, action) => {
       state.apps = state.apps.filter((b) => b.id !== action.payload.id)

@@ -21,15 +21,20 @@ function App() {
       return document.documentElement.classList.add(theme.toString())
     }
   }
-  const [userApps, setUserApss] = useState([])
+const [userApps, setUserApss] = useState([{id: 2, payl: 'dadfasdas', si:'dasdsad',  i: 'ers'}, {id: 3, payl: 'dadfasdas', si:'dasdsad',  i: 'ers'}])
+  const dispatch = useDispatch()
+
   useEffect(function(){
     appTheme();
-    apps = getUser();
-    setUserApss(apps)
+    getUser().then( res => {
+      dispatch(addApp(res))
+    })
+    .catch( console.log('algo salió mal'))
+    
   }, [])
-  if (userApps.length || userApps ) {
-    useDispatch(addApp(userApps))
-  }
+
+    
+
 
   return (
     <div className='bg-soft-gray dark:bg-darkmode-black-01 relative' >
