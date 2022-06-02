@@ -7,6 +7,7 @@
     </div>
     <form class="synapse__form-register-a" action="{{ route('login') }}" method="POST" >
         @csrf
+        <input type="hidden" name="app" value="{{env('APP_URL')}}">
         <div class="form__data-container">
             <label for="email">Correo electrónico</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus class="@error('email') is-invalid @enderror">

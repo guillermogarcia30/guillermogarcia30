@@ -47,6 +47,7 @@ return new class extends Migration
             $table->string('maker',50)->nullable();
             $table->string('website',300)->nullable();
             $table->string('secret', 100)->nullable();
+            $table->string('image', 500)->nullable();
             $table->string('provider')->nullable();
             $table->text('redirect');
             $table->boolean('personal_access_client');

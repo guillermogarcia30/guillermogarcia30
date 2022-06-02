@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     //APIS DE APLICACIONES
     Route::resource('/apps',App\Http\Controllers\API\AppController::class);
+    Route::post('/apps/image/{id}', [App\Http\Controllers\API\AppController::class,'image']);
     //FIN    
 });
 

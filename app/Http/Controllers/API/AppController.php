@@ -154,6 +154,43 @@ class AppController extends Controller
 
     }
 
+    public function image(Request $request,$id)
+    {
+        set_time_limit(0);
+        header('Content-Type: application/json; charset=utf-8');
+        header('Accept: application/json');
+
+        try{
+            $apps_count = DB::table('oauth_clients')->where('id','=',$id)->count();
+            if($apps_count == 0){
+                return response([
+                    'error' => true,
+                    'description' => 'Not Found Resource'
+                ],404);
+            }else{
+                $image = $request->file('image');
+                $format = $image->getClientOriginalExtension();
+                $path = env('APP_URL').'/images-apps/'.$id.'.'.$format;
+                $folder = public_path('/images-apps/');
+                $image->move($folder, $path);
+    
+                $app =  DB::table('oauth_clients')->where('id','=',$id)->update([
+                    'image' => $path,
+                ]);
+    
+                return response([
+                    'error' => false,
+                    'id' => $id,
+                ],200);
+            }
+        }catch(\Execption $e){
+            return response([
+                'error' => true,
+                'description' => $e->getMessage(),
+            ],500);
+        }        
+    }
+
     /**
      * Display the specified resource.
      *
