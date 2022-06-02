@@ -14,9 +14,8 @@ export async function getUser() {
         fetch(url, { 
              method: "GET",
              headers: headersList
-           }).then((res) => {
-             res.json();
-           }).then((res) => {
+           }).then( res => res.json())
+            .then((res) => {
              window.cookieStore.delete('access_token')
              console.log(res)
              if (!res.error) {
