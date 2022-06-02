@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Dashboard } from './views/dashboard';
 import { Header } from './components/Header'
@@ -7,7 +7,11 @@ import { Copyright } from './components/copyright'
 
 import { getUser } from './helpers/getUser'
 
+import { useDispatch } from 'react-redux'
+import { addApp } from './store/appsSlice' 
+
 function App() {
+  var apps;
   const appTheme = () => {
     const theme = localStorage.getItem('theme')
     if (!theme) {
@@ -17,23 +21,15 @@ function App() {
       return document.documentElement.classList.add(theme.toString())
     }
   }
-
-  useEffect(()=>{
-    appTheme()
-    const setApps = getUser()
-    if (setApps) {
-      setApps.map( el => {
-        useDispatch(addApp({
-          logo: el.image || '',
-          title: el.name, 
-          token: el.id,
-          secret: el.secret, 
-          status: el.status === 0 ? true : false, 
-          id: el.token
-         }))
-      })
-    }
+  const [userApps, setUserApss] = useState([])
+  useEffect(function(){
+    appTheme();
+    apps = getUser();
   }, [])
+  if (userApps.length) {
+    addApp(userApps)
+  }
+
   return (
     <div className='bg-soft-gray dark:bg-darkmode-black-01 relative' >
       <Header/>

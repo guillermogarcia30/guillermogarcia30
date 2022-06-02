@@ -10,7 +10,7 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     addApp: (state, action) => {
-      state.apps = [...state.apps, action.payload]
+      state.apps = action.payload
     },
     removeApp: (state, action) => {
       state.apps = state.apps.filter((b) => b.id !== action.payload.id)

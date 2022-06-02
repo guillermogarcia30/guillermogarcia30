@@ -1,5 +1,4 @@
-import { useDispatch } from 'react-redux'
-import { addApp } from '../store/appsSlice' 
+
 
 const url = 'https://auth.synapse-crm.com/api/user/me'
 
