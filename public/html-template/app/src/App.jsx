@@ -25,6 +25,7 @@ function App() {
   useEffect(function(){
     appTheme();
     apps = getUser();
+    setUserApss(apps)
   }, [])
   if (userApps.length) {
     addApp(userApps)
