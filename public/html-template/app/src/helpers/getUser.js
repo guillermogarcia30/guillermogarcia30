@@ -1,8 +1,24 @@
 const url = 'https://auth.synapse-crm.com/api/user/me'
 
 export async function getUser() {
-    let token = await window.cookieStore.get('access_token').then( res => {return res.value})
-    console.log(`${token}`)
+    window.cookieStore.get('access_token').then( res => {
+        let headersList = {
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Accept": "application/json",
+            "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjcyNTc1OS03M2M0LTQ1YmUtYjFiYi0xNzk4M2ZlOTA1ODAiLCJqdGkiOiJiMjBiNWY5YzA0YzUzMDAxZmI5MjI4NDUzZmNjZDNlYWVhM2M4OWNmN2YzOWIyYWEyMTBmYTI1YWY2MDRjNTFlMzI3MDA0OTMzMTI0MDE5MiIsImlhdCI6MTY1NDE3OTI5Ny40NTQ3MzUsIm5iZiI6MTY1NDE3OTI5Ny40NTQ3MzgsImV4cCI6MTY2OTk5MDQ5Ny40NTE1MzEsInN1YiI6ImUzNWY2NmI4LWUyZTQtNDQyNy05OGZiLTdmNjI3MDViN2Q4NCIsInNjb3BlcyI6W119.GGGDD7xC7og43LEwVe0yuuLPP5PZNfRSqp3JntivEy9lqUU1O1kTX_3P5lMKbbK6-BIQvgZ3HSFnFWzdY_Q99ZEGT1qBgl_p57UYclwRKcE5dfSDGS2v54nftJotDpB865slEB_DyujIC_3_4PtOT7gi_yb6iaqIfk3SI7F4H7nrrkYetPRL3HGI_shfYggLg-qEVfXNJeNTXRnT9oVH-MfMN0l4oO3mteqLOytV-Nar_ZbLWbM4zKq1yaF2_Z6NP9we89GBRl6LLL5iVCKz85Qu41Kxl1KMeNYztCxmIri9eWHZNEHvTAoiv4B_-Z1c0bRsVcghT-lEoS2VGask3LQ7tlNEWqgWzBaI0Of8SRrGeT8BurVz10JhsEH29BLpDV9IYqF-AA-rKm9v2E4nU3dB80691JipoowJesn2JuKaDsSWnH6gjKL7Kd1ma6_px681xXxqbP13OaGShl1MOlOarMMgx3adFh6jZ6qawZ7X6fcbKF_lraeaqMoVA-AyZai8q8o1FzMTVpdxNZmxPluI1KXjGSFrd4EJygukHtpr0sRmaFDGwj7mI1CCar__3dommsTdifnVBW8gNvdJINJFQPmWW31qoGIlvM7d-a7x1_IC-gbm-U663wGRSRqCDy1nvKPcI7YkQ1rrlel9lhZsaFzvoTTD03bNE846aZM`
+           }
+           
+           fetch("https://auth.synapse-crm.com/api/user/me", { 
+             method: "GET",
+             headers: headersList
+           }).then(function(response) {
+             return response.text();
+           }).then(function(data) {
+            //  window.cookieStore.delete('access_token')
+             console.log(data);
+           })
+    })
+    // 
     // fetch(url, {
     //     method: 'GET',
     //     headers: {
@@ -13,18 +29,5 @@ export async function getUser() {
     //     .then(res => res.json())
     //     .then( res => console.log(res) )
 
-    let headersList = {
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Accept": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjcyNGExMy01ZjdiLTQ1OTAtYjNiNi1hZmM2ZjkxZjEwYzEiLCJqdGkiOiI2MTdiNjk0MDQwYmJjZDllMzI1YjM2Y2M3M2VjZWFmZTcwNWQ3N2MwYTAxY2NkOTI1MmUyOTY0MjE5NzM3YjQ3MjI0YjU5ODg1YmY4Y2FiNSIsImlhdCI6MTY1NDE3NzQzMy41NzEyNDMsIm5iZiI6MTY1NDE3NzQzMy41NzEyNDUsImV4cCI6MTY2OTk4ODYzMy41NjQzMDksInN1YiI6IjY5ZTUyYmRjLTRlY2YtNDI3MC1hM2ZiLTZkNGVjZDJlNTVkMCIsInNjb3BlcyI6W119.OOQv_alY945kjyXcdijC2npZczTJ1CeZHTOJ9UkYzJey2xcKBAHfDv850iFZsvuJIoUKf3lu8A7x1UuWt2sjb1jtS8aOHKnj8xzP079S_CHb0AdSlyyjdkKgcvo5LJD4eI220VN1ujFYc69gKo4Bv2nIBATLJpL0HUtfzbLanOkH78PtGwbZlf3ge-nmpaZj1vATJsa47K-oOLBt1qh2MPT4OX0B41Stif1PtEJ0iRD7xO2NO47wRV_sjE1c7vQdTag9gydT7T9QukAgQpaWzNDVquF8ZfM6LN8erVpKp1PQ8j_mNoWyrfFSOZ5n1pxD4HNMJb_39mU7YGs2VqQ6tcD7e40mNpdJe77ZYSaiZPQgXVvPvkvjAs-Hic49fm5qkSJ5BcTxfsuQLUqdlaw6Gxbtggj9_KdjeA2BeUVPXHRxX1UzNiyYxMvuVtY5XdEP5a4y-RJcNgu4QVjtxUpAzdxm-34pZwwwsDryaIab1rvmci0vKkqYX-U9r3_ISB1s8p701n2PajvY95dlDGGVaqH6LXgG6FuT_epzYHUJMTbwHp_gyw1p_QVklM40N8ZHO0A_UMyI9ECOoMfLww8wSBPbBxysJMxYqevv2zNvwMkF9yGC1tVKo17Vc33vWmFAf1pm6DEm_UFRNwUUJXL_cCTZ4Hu1HCxXGfHUXChZtpo"
-       }
-       
-       fetch("https://auth.synapse-crm.com/api/user/me", { 
-         method: "GET",
-         headers: headersList
-       }).then(function(response) {
-         return response.text();
-       }).then(function(data) {
-         console.log(data);
-       })
+    
 }
