@@ -1,19 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 // import { useDispatch } from 'react-redux'
-import { Formik, Form, Field, FieldArray, ErrorMessage, useFormikContext } from 'formik'
+import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik'
 
 import { AiOutlinePlus, AiFillEye } from 'react-icons/ai'
 import { MdOutlineFileCopy } from 'react-icons/md'
 
 import { createApp } from '../helpers/createApp'
 
-const CustomInput = () => {
-    return (
-    <>
-        <input/>
-    </>
-    )
-}
+
 
 export const ModalAPlicaciones = ({view, hide, add }) => {
 
@@ -32,7 +26,8 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
     const SECRET_URL = 'https://auth.synapse-crm.com/api/generator/secret'
 
     useEffect(()=> {
-        fetch(SECRET_URL)
+        if (view) {
+            fetch(SECRET_URL)
                 .then( res => res.json() )
                 .then( res => {
                     if (formikRef.current) {
@@ -48,8 +43,10 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
                 .then( res => res.json() )
                 .then( res => setCLientId(res.data) )
                 .catch( err => console.log(err) )
+        }
+
         
-    }, [])
+    }, [view])
 
     const changeType = () => {
         type === 'password'? setInputType('text'): setInputType('password') 
@@ -63,8 +60,11 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
             <Formik
             innerRef={formikRef}
             initialValues={{ fabricante: '', website: '', secret: '' , appurls, applicationName: '' }}
-            onSubmit={ (values) => {
+            onSubmit={ (values, { resetForm }) => {
                 createApp({ client_id: clientId, ...values })
+
+                add()
+                resetForm()
             }}
              validate={values => {
                     const errors = {};

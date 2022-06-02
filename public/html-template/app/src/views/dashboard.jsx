@@ -32,7 +32,7 @@ export const Dashboard = () => {
             <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Aplicaciones</h2>
             <button onClick={handleShowModal} className='bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
         </div>
-        <div className=' overflow-y-hidden duration-700 w-full min-h-[36.5rem]' >
+        <div className=' overflow-x-hidden duration-700 w-full min-h-[36.5rem]' >
             {apps.map( (el, i) => {
                  if(i === 0) {
                     return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} first={true} />
