@@ -20,7 +20,19 @@ function App() {
 
   useEffect(()=>{
     appTheme()
-    getUser()
+    const setApps = getUser()
+    if (setApps) {
+      setApps.map( el => {
+        useDispatch(addApp({
+          logo: el.image || '',
+          title: el.name, 
+          token: el.id,
+          secret: el.secret, 
+          status: el.status === 0 ? true : false, 
+          id: el.token
+         }))
+      })
+    }
   }, [])
   return (
     <div className='bg-soft-gray dark:bg-darkmode-black-01 relative' >
