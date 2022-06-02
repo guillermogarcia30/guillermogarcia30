@@ -27,7 +27,7 @@ function App() {
     apps = getUser();
     setUserApss(apps)
   }, [])
-  if (userApps.length) {
+  if (userApps.length || userApps ) {
     useDispatch(addApp(userApps))
   }
 
