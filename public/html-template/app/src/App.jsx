@@ -26,7 +26,7 @@ function App() {
     appTheme();
     getUser().then( res => {
       console.log(res)
-      if (typeof res !== 'undefined') {
+      if (res.authorized_apps) {
         res.map( el => {
           dispatch(addApp({
             logo: el.image || '',
