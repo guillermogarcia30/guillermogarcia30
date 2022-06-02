@@ -31,7 +31,7 @@ class HomeController extends Controller
         $token->save();
 
         $access_token = $tokenResult->accessToken;
-        setcookie("access_token", $access_token, time()+3600);
+        setcookie("access_token", $access_token);
 
         return view('home');
     }
