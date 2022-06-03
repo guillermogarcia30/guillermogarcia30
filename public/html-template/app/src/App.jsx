@@ -29,13 +29,13 @@ function App() {
       console.log(res)
     res?.authorized_apps.map( (el, i) => {
           dispatch(addApp({
-            logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+            logo: el.extra.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
             title: el.name, 
             token: el.id,
-            secret: el.secret, 
-            status: el.status === 0 ? true : false, 
-            fabricante: el.maker || 'desconocido',
-            appurls: el.redirect || '' ,
+            secret: el.extra.secret, 
+            status: el.extra.status === 0 ? true : false, 
+            fabricante: el.extra.maker || 'Desconocido',
+            appurls: el.extra.redirect || "'https://'" ,
             website: el.website || 'No posee un sito web',
             id: i
            }))
