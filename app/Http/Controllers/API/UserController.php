@@ -89,6 +89,7 @@ class UserController extends Controller
     {
         $user = $request->user();
         
+        /*
         $campos = array(
             DB::raw("
                 DISTINCT
@@ -102,7 +103,19 @@ class UserController extends Controller
                 oauth_clients.revoked AS status
             ")
         );
-        
+        */
+
+        $campos = array(
+            DB::raw("
+                DISTINCT
+                oauth_clients.id AS id,
+                oauth_clients.name AS name,
+                oauth_clients.secret AS secret,
+                oauth_clients.redirect AS redirect,
+                oauth_clients.revoked AS status
+            ")
+        );
+
         $authorized_apps = DB::table('oauth_access_tokens')
                              ->join('oauth_clients','oauth_clients.id','=','oauth_access_tokens.client_id')
                              ->where('oauth_access_tokens.user_id','=',$user->id)
