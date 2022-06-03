@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { DasboardItem } from '../components/dasboard-item'
 import { ModalAPlicaciones } from '../components/ModalAPlicaciones'
+import { ModalAPlicacionesEdit } from '../components/ModalAplicaionesEdit'
 import { Modal } from '../components/modal'
 import { appsSubscribed } from '../store/appsSlice';
 
@@ -34,12 +35,13 @@ export const Dashboard = () => {
         <div className=' overflow-x-hidden duration-700 w-full min-h-[36.5rem]' >
             { apps.length? (apps.map( (el, i) => {
                  if(i === 0) {
-                    return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} first={true} />
+                    return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} first={true}  appurls={el.appurls} fabricante={el.fabricante} website={el.website} />
                  } else {
-                  return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} />
+                  return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id}  appurls={el.appurls} fabricante={el.fabricante} website={el.website} />
                  }})): <h3 className='text-center' >Aun no has añadido Aplicaciones, empieza ahora!!</h3>}
         </div>
         <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
+        <ModalAPlicacionesEdit add={add} />
         <Modal view={add} hide={handleShowAddedModal} />
     </div>
   )

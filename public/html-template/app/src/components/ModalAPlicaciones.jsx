@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-// import { useDispatch } from 'react-redux'
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik'
 
 import {  AiFillEye } from 'react-icons/ai'
@@ -138,7 +137,7 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
                         <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="appurls" >App url</label>
                         <FieldArray  name='appurls' className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-[#ffffff] rounded px-3 py-2 focus:dark:bg-darkmode-black-02  border-2 border-gray-light' id='appurl' type="text" >
                         {({ insert, remove, push }) => (
-                        <div className='overflow-scroll overflow-x-hidden max-h-[11rem] scrollbar-thin scrollbar-thumb-pink px-4 scrollbar-track-black-transparent dark:scrollbar-track-gray-border ' >
+                        <div className='overflow-scroll overflow-x-hidden max-h-[11rem] scrollbar-thin scrollbar-thumb-pink pr-4 scrollbar-track-black-transparent dark:scrollbar-track-gray-border ' >
                             {values.appurls.length > 0 &&
                             values.appurls.map((appurls, index) => (
                                 <div className="mb-2" key={index}>
@@ -168,7 +167,7 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
                     <ErrorMessage className='text-red' name='secret' component='p' />
                     <ErrorMessage className='text-red' name='appurls' component='p' />
                     <div className='mt-4 flex justify-between' >
-                        <button className='w-[45%] bg-[#ffffff] border border-solid rounded-[10px] font-semibold px-3 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink ' onClick={hide} >Volver</button>
+                        <button type='reset' className='w-[45%] bg-[#ffffff] border border-solid rounded-[10px] font-semibold px-3 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink ' onClick={hide} >Volver</button>
                         <button type='submit' className='w-[45%] bg-pink text-white rounded-[10px] font-semibold px-3 py-2'  >Guardar</button>
                     </div>
                 </Form>
