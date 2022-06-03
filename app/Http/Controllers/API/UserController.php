@@ -111,7 +111,6 @@ class UserController extends Controller
             $campos_extra = array(
                 DB::raw("
                     DISTINCT
-                    oauth_clients.id AS id,
                     oauth_clients.image AS image,
                     oauth_clients.maker AS maker,
                     oauth_clients.website AS website,
