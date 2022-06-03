@@ -17,7 +17,6 @@ export async function getUser() {
            }).then( res => res.json())
             .then( res => {
              if (!res.error) {
-               console.log('pasa la prueba')
                return res
              }
              else{
