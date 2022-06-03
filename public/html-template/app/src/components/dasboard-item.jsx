@@ -15,7 +15,7 @@ import { showModal } from '../store/modalEditSlice'
 export const DasboardItem = ({logo, title, token, secret = '', status, id, fabricante, website, appurls}) => {
 
     let a = secret.slice(0, secret.length - 4)
-    let b = a.replaceAll(/[a-zA-Z]/g, '*')
+    let b = a.replaceAll(/[a-zA-Z0-9]/g, '*')
     let c = secret.slice(secret.length - 4, secret.length)
     let decodeSecret = `${b}${c}`
 
