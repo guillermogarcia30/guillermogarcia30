@@ -1,7 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  apps: []
+  apps: [
+    {
+      logo: 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+      title: 'mi papa', 
+      token: 'vasadsaccvv ejgfh',
+      secret: '1156465465', 
+      status: true, 
+      id: 1
+    }
+  ]
 };
 
 
