@@ -2,17 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   apps: [
-  //   {
-  //   logo:  'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
-  //   title: 'Perrito', 
-  //   token: 'TOKENSITOPAPAPA',
-  //   secret: 'secretosecretoso', 
-  //   status: true  ,
-  //   id: 3,
-  //   fabricante: 'Betabox',
-  //   appurls: '"http://localhost"',
-  //   website: 'https://www.betabox.com'
-  // }
+    {
+    logo:  'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+    title: 'Perrito', 
+    token: 'TOKENSITOPAPAPA',
+    secret: 'secretosecretoso', 
+    status: true  ,
+    id: 3,
+    fabricante: 'Betabox',
+    appurls: 'http://localhost',
+    website: 'https://www.betabox.com'
+  }
 ]
 };
 
