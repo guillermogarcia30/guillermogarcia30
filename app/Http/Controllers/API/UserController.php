@@ -93,7 +93,6 @@ class UserController extends Controller
             DB::raw("
                 DISTINCT
                 oauth_clients.id AS id,
-                oauth_clients.name AS name,
                 '' AS extra
             ")
         );
