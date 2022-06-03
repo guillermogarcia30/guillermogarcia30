@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateApp } from '../helpers/updateApp'
 
 
-export const ModalAPlicacionesEdit = ({add}) => {
+export const ModalAPlicacionesEdit = () => {
 
     const appurls = [
         {
@@ -95,10 +95,9 @@ export const ModalAPlicacionesEdit = ({add}) => {
             innerRef={formikRef}
             initialValues={{  image: '', fabricanteEdit: '', websiteEdit: '', secretEdit: '' , appurls, applicationName: '' }}
             onSubmit={ async(values, { resetForm }) => {
-                console.log(values)
                 await updateApp({ client_id: appId, ...values })
-                add()
                 resetForm()
+                closeModal()
             }}
              validate={values => {
                     const errors = {};
