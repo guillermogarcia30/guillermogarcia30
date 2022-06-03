@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $user = auth()->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
