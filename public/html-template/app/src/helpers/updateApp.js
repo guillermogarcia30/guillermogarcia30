@@ -24,35 +24,33 @@ export const updateApp = async({applicationName, appurls, fabricanteEdit, secret
         redirect: appsLinks
     }
 
-    console.log(JSON.stringify(body))
 
+   await window.cookieStore.get('access_token').then( res => {
 
-//    await window.cookieStore.get('access_token').then( res => {
+        let headersList = {
+            "Accept": "application/json",
+            "Authorization": `Bearer ${res.value}`
+           }
 
-//         let headersList = {
-//             "Accept": "application/json",
-//             "Authorization": `Bearer ${res.value}`
-//            }
+        fetch(`${url}${client_id}`, {
+            method: 'put',
+            headers: headersList,
+            body: JSON.stringify(body)
+        }).then( res => res.json() )
+            .then( res => console.log(res) )
 
-//         fetch(`${url}${client_id}`, {
-//             method: 'put',
-//             headers: headersList,
-//             body: JSON.stringify(body)
-//         }).then( res => res.json() )
-//             .then( res => console.log(res) )
-
-//         if (image) {
-//             const formData = new FormData()
-//             formData.append("image", image)
-//             fetch(`${imgurl}${client_id}`, {
-//                 method: 'POST',
-//                 headers: {
-//                     'Authorization': `Bearer ${res.value}`,
-//                     'Accept':'application/json'
-//                 },
-//                 body: formData
-//             }).then( res => res.json() )
-//               .then(res => console.log(res))
-//         }
-//     } )
+        if (image) {
+            const formData = new FormData()
+            formData.append("image", image)
+            fetch(`${imgurl}${client_id}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${res.value}`,
+                    'Accept':'application/json'
+                },
+                body: formData
+            }).then( res => res.json() )
+              .then(res => console.log(res))
+        }
+    } )
 }
