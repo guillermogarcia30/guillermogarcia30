@@ -89,7 +89,6 @@ class UserController extends Controller
     {
         $user = $request->user();
         
-        /*
         $campos = array(
             DB::raw("
                 DISTINCT
@@ -97,19 +96,6 @@ class UserController extends Controller
                 oauth_clients.image AS image,
                 oauth_clients.maker AS maker,
                 oauth_clients.website AS website,
-                oauth_clients.name AS name,
-                oauth_clients.secret AS secret,
-                oauth_clients.redirect AS redirect,
-                oauth_clients.revoked AS status
-            ")
-        );
-        */
-
-        $campos = array(
-            DB::raw("
-                DISTINCT
-                oauth_clients.id AS id,
-                oauth_clients.name AS name,
                 oauth_clients.secret AS secret,
                 oauth_clients.redirect AS redirect,
                 oauth_clients.revoked AS status
