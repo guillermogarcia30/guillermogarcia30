@@ -62,9 +62,9 @@ export const ModalAPlicacionesEdit = ({add}) => {
             let arr = JSON.parse(`[${modalstate.appurls}]`)
             if (arr.length > 1) {
                 let newArr = []
-                arr.forEach( (el, i) => {
+                arr.forEach( el => {
                     newArr.push({
-                        appurl: el[i]
+                        appurl: el
                     })
                 })
                 formikRef.current.initialValues.appurls = newArr

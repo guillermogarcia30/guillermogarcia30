@@ -26,6 +26,7 @@ function App() {
     appTheme();
     getUser().then( res => {
       dispatch(clearApps())
+      console.log(res)
     res?.authorized_apps.map( (el, i) => {
           dispatch(addApp({
             logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
