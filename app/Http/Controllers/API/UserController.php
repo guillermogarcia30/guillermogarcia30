@@ -92,7 +92,7 @@ class UserController extends Controller
         $campos = array(
             DB::raw("
                 DISTINCT
-                oauth_clients.image AS name
+                oauth_clients.name AS name
             ")
         );
 
