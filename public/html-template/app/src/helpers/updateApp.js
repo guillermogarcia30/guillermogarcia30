@@ -1,26 +1,26 @@
 const url = 'https://auth.synapse-crm.com/api/apps/'
 const imgurl = 'https://auth.synapse-crm.com/apps/image/'
 
-export const updateApp = async({applicationName, appurls, fabricante, secret, website, client_id, image}) => {
+export const updateApp = async({applicationName, appurls, fabricanteEdit, secretEdit, websiteEdit, client_id, image}) => {
 
     let appsLinks = ''
     for (let i = 0; i < appurls.length; i++) {
         if (i === 0) {
             
-            appsLinks = `'${appurls[i].appurl}'`
+            appsLinks = `${appurls[i].appurl}`
         }
         else{
-            appsLinks = appsLinks.concat(`,'${appurls[i].appurl}'`)
+            appsLinks = appsLinks.concat(`,${appurls[i].appurl}`)
         }
         
     }
 
     const body = {
         name: applicationName,
-        maker: fabricante,
-        website,
+        maker: fabricanteEdit,
+        website: websiteEdit,
         client_id,
-        secret,
+        secret: secretEdit,
         redirect: appsLinks
     }
 
