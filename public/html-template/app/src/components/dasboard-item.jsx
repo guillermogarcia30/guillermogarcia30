@@ -12,8 +12,12 @@ import { showModal } from '../store/modalEditSlice'
 
 
 
-export const DasboardItem = ({logo, title, token, secret, status, id, fabricante, website, appurls}) => {
+export const DasboardItem = ({logo, title, token, secret = '', status, id, fabricante, website, appurls}) => {
 
+    let a = secret.slice(0, secret.length - 4)
+    let b = a.replaceAll(/[a-zA-Z]/g, '*')
+    let c = secret.slice(secret.length - 4, secret.length)
+    let decodeSecret = `${b}${c}`
 
     const dispatch = useDispatch()
     const ref = useRef()
@@ -45,7 +49,7 @@ export const DasboardItem = ({logo, title, token, secret, status, id, fabricante
         </div>
         <div className='min-w-[15rem] pr-12 border-r-2 border-solid border-r-gray-border' >
             <h4 className='text-dark-blue dark:text-darkmode-blue-01 font-semibold' >{token}</h4>
-            <p className='dark:text-[#ffffff]' >Secret: {secret}</p>
+            <p className='dark:text-[#ffffff]' >Secret: {decodeSecret}</p>
         </div>
         <div>
             {status ? (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-green-light text-green font-medium' >Activo</p>) : (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-red-light text-red font-medium'>Inactivo</p>)}
