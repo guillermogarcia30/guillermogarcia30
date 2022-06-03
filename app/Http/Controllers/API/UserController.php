@@ -92,6 +92,7 @@ class UserController extends Controller
         $campos = array(
             DB::raw("
                 DISTINCT
+                oauth_clients.id AS id,
                 oauth_clients.name AS name,
                 '' AS extra
             ")
@@ -106,7 +107,6 @@ class UserController extends Controller
 
 
         $extra = [];
-        /*
         foreach ($authorized_apps as $key => $row) {
             $campos_extra = array(
                 DB::raw("
@@ -126,8 +126,7 @@ class UserController extends Controller
                             ->select($campos_extra)
                             ->first();
         }
-        */
-        
+
         $data = [
             'user' => $user,
             'authorized_apps' => $authorized_apps
