@@ -28,7 +28,7 @@ function App() {
       dispatch(clearApps)
     res?.authorized_apps.map( (el, i) => {
           dispatch(addApp({
-            logo: el.image || '',
+            logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
             title: el.name, 
             token: el.id,
             secret: el.secret, 
