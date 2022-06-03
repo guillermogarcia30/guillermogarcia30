@@ -26,7 +26,12 @@ class CountryController extends Controller
                 'description' => 'Not Found Resource'
             ],404);
         }else{
-            $country = Country::orderBy('country_name','ASC')->get();
+            $campos = array(
+                "id AS id",
+                "phone_code AS phone_code",
+                "country_name AS name",
+            );
+            $country = Country::orderBy('country_name','ASC')->select($campos)->get();
             return response([
                 'error' => false,
                 'data' => $country
@@ -74,7 +79,12 @@ class CountryController extends Controller
                 'description' => 'Not Found Resource'
             ],404);
         }else{
-            $country = Country::where('id','=',$id)->first();
+            $campos = array(
+                "id AS id",
+                "phone_code AS phone_code",
+                "country_name AS name",
+            );
+            $country = Country::where('id','=',$id)->select($campos)->first();
             return response([
                 'error' => false,
                 'data' => $country
