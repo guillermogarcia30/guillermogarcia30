@@ -37,7 +37,7 @@ export const DasboardItem = ({logo, title, token, secret, status, id, fabricante
     )
   return (
     <div ref={ref} className='z-10 duration-500 px-16 mb-10 shadow-lg rounded-[10px] py-[2.5rem] w-full bg-[#ffffff] dark:bg-darkmode-black-02 flex justify-between items-center' >
-        <div className='min-w-[20rem] md:min-w-[15rem] semi-l:min-w-[15rem] pr-12 border-r-2 border-solid border-r-gray-border w-fit flex items-center' >
+        <div className='xl:min-w-[20rem] md:min-w-[9rem] lg:min-w-[12rem]  semi-l:min-w-[15rem] pr-12 border-r-2 border-solid border-r-gray-border w-fit flex items-center' >
             <div className='w-12 h-12' >
                 <img className='w-full h-full' src={logo} alt={title} />
             </div>
