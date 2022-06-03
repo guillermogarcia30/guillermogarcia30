@@ -10,7 +10,7 @@ const initialState = {
   //   status: true  ,
   //   id: 3,
   //   fabricante: 'Betabox',
-  //   appurls: '"https://www.synapse.com", "esto.com", "lootro.com", "yasi.com"',
+  //   appurls: '"http://localhost"',
   //   website: 'https://www.betabox.com'
   // }
 ]

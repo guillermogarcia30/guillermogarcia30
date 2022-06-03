@@ -8,10 +8,10 @@ export const createApp = async({applicationName, appurls, fabricante, secret, we
     for (let i = 0; i < appurls.length; i++) {
         if (i === 0) {
             
-            appsLinks = `'${appurls[i].appurl}'`
+            appsLinks = `${appurls[i].appurl}`
         }
         else{
-            appsLinks = appsLinks.concat(`,'${appurls[i].appurl}'`)
+            appsLinks = appsLinks.concat(`,${appurls[i].appurl}`)
         }
         
     }
