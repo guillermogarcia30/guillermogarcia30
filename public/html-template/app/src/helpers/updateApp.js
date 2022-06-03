@@ -19,7 +19,6 @@ export const updateApp = async({applicationName, appurls, fabricanteEdit, secret
         name: applicationName,
         maker: fabricanteEdit,
         website: websiteEdit,
-        client_id,
         secret: secretEdit,
         redirect: appsLinks
     }
@@ -31,9 +30,9 @@ export const updateApp = async({applicationName, appurls, fabricanteEdit, secret
             "Accept": "application/json",
             "Authorization": `Bearer ${res.value}`
            }
-
+           console.log(JSON.stringify(body))
         fetch(`${url}${client_id}`, {
-            method: 'put',
+            method: 'PUT',
             headers: headersList,
             body: JSON.stringify(body)
         }).then( res => res.json() )

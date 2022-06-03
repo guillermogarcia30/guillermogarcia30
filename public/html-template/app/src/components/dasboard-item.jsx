@@ -37,7 +37,7 @@ export const DasboardItem = ({logo, title, token, secret, status, id, fabricante
     )
   return (
     <div ref={ref} className='z-10 duration-500 px-16 mb-10 shadow-lg rounded-[10px] py-[2.5rem] w-full bg-[#ffffff] dark:bg-darkmode-black-02 flex justify-between items-center' >
-        <div className='min-w-[20rem] pr-12 border-r-2 border-solid border-r-gray-border w-fit flex items-center' >
+        <div className='xl:min-w-[20rem] md:min-w-[9rem] lg:min-w-[12rem]  semi-l:min-w-[15rem] pr-12 border-r-2 border-solid border-r-gray-border w-fit flex items-center' >
             <div className='w-12 h-12' >
                 <img className='w-full h-full' src={logo} alt={title} />
             </div>
@@ -51,7 +51,7 @@ export const DasboardItem = ({logo, title, token, secret, status, id, fabricante
             {status ? (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-green-light text-green font-medium' >Activo</p>) : (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-red-light text-red font-medium'>Inactivo</p>)}
         </div>
         <div>
-            <button onClick={() => dispatch(onAppRemove(id))} className='bg-pink px-2 py-2 rounded-[10px] mr-12'><BiTrash className='text-white' /></button>
+            <button onClick={() => dispatch(onAppRemove(id))} className='bg-pink px-2 py-2 rounded-[10px] mr-12 md:mr-2 '><BiTrash className='text-white' /></button>
             <button onClick={() => onAppEdit(title, token, fabricante, website, appurls, secret) } className='bg-blue px-2 py-2 rounded-[10px]' ><FiEdit className='text-white'/></button>
             
         </div>
