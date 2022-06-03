@@ -113,7 +113,7 @@ class AppController extends Controller
         $user_id = auth()->user()->id;
         $secret = $request->secret;
         $name = $request->name;
-        $redirect = strtolower(trim($request->redirect));
+        $redirect = str_replace("'","",strtolower(trim($request->redirect)));
         $maker = ucwords(strtolower($request->maker));
         $website = strtolower(trim($request->website));
 
@@ -295,7 +295,7 @@ class AppController extends Controller
         }
 
         $name = $request->name;
-        $redirect = strtolower(trim($request->redirect));
+        $redirect = str_replace("'","",strtolower(trim($request->redirect)));
         $maker = ucwords(strtolower($request->maker));
         $website = strtolower(trim($request->website));
 
