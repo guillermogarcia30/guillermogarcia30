@@ -42,3 +42,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::get('/generator/client-id', [App\Http\Controllers\API\GeneratorController::class,'client_id']);
 Route::get('/generator/secret', [App\Http\Controllers\API\GeneratorController::class,'secret']);
 //FIN
+
+//APIS DE APLICACIONES
+Route::resource('/countries',App\Http\Controllers\API\CountryController::class);
+//FIN
