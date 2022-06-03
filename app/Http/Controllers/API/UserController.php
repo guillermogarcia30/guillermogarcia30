@@ -124,7 +124,6 @@ class UserController extends Controller
                             ->join('oauth_clients','oauth_clients.id','=','oauth_access_tokens.client_id')
                             ->where('oauth_clients.id','=',$row->id)
                             ->select($campos_extra)
-                            ->orderBy('oauth_clients.name','ASC')
                             ->first();
         }
 
