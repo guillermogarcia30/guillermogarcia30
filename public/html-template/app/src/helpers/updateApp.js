@@ -28,13 +28,14 @@ export const updateApp = async({applicationName, appurls, fabricanteEdit, secret
 
         let headersList = {
             "Accept": "application/json",
-            "Authorization": `Bearer ${res.value}`
+            "Authorization": `Bearer ${res.value}`,
+            "Content-Type": "application/json"
            }
            console.log(JSON.stringify(body))
         fetch(`${url}${client_id}`, {
             method: 'PUT',
             headers: headersList,
-            body: body
+            body: JSON.stringify(body)
         }).then( res => res.json() )
             .then( res => console.log(res) )
 
