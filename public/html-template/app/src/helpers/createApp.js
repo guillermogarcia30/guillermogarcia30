@@ -32,7 +32,8 @@ export const createApp = async({applicationName, appurls, fabricante, secret, we
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
-            'Accept':'application/json'
+            'Accept':'application/json',
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(body)
     }).then( res => res.json() )
@@ -43,7 +44,7 @@ export const createApp = async({applicationName, appurls, fabricante, secret, we
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Accept':'application/json'
+                'Accept':'application/json',
             },
             body: formData
         }).then( res => res.json() )

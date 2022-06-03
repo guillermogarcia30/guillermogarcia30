@@ -5,7 +5,8 @@ export const deleteApp = (id) => {
 
         let headersList = {
             "Accept": "application/json",
-            "Authorization": `Bearer ${res.value}`
+            "Authorization": `Bearer ${res.value}`,
+            "Content-Type": "application/json"
            }
 
         fetch(`${url}${id}`, {
