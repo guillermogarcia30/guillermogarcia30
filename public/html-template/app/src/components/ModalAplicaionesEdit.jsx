@@ -59,7 +59,7 @@ export const ModalAPlicacionesEdit = ({add}) => {
                 modalstate.website
             )
                                         
-            let arr = JSON.parse(`[${modalstate.appurls}]`)
+            let arr = modalstate.appurls.split(',')
             if (arr.length > 1) {
                 let newArr = []
                 arr.forEach( el => {

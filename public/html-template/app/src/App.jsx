@@ -28,8 +28,6 @@ function App() {
       dispatch(clearApps())
       console.log(res)
     res?.authorized_apps.map( (el, i) => {
-      el.appurls = ''
-          const str = el.appurls.indexOf("'") !== -1 ? el.appurls : `'${el.appurls}'`
           dispatch(addApp({
             logo: el.extra.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
             title: el.name, 
@@ -37,7 +35,7 @@ function App() {
             secret: el.extra.secret, 
             status: el.extra.status === 0 ? true : false, 
             fabricante: el.extra.maker || 'Desconocido',
-            appurls: str || "'https://'" ,
+            appurls: el.extra.redirect || "https://" ,
             website: el.website || 'No posee un sito web',
             id: i
            }))
