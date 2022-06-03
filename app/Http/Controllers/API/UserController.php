@@ -52,7 +52,7 @@ class UserController extends Controller
         $credentials = request(['email', 'password']);
 
         if (!Auth::attempt($credentials)){
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Access denied, check your email and password'], 401);
         }
 
         $user = $request->user();
@@ -92,16 +92,42 @@ class UserController extends Controller
         $campos = array(
             DB::raw("
                 DISTINCT
+                '' AS extra,
+                oauth_clients.id AS id,
                 oauth_clients.name AS name
             ")
         );
-
+        
         $authorized_apps = DB::table('oauth_access_tokens')
                              ->join('oauth_clients','oauth_clients.id','=','oauth_access_tokens.client_id')
                              ->where('oauth_access_tokens.user_id','=',$user->id)
                              ->select($campos)
                              ->orderBy('oauth_clients.name','ASC')
                              ->get();
+
+
+        $extra = [];
+        foreach ($authorized_apps as $key => $row) {
+            $campos_extra = array(
+                DB::raw("
+                    DISTINCT
+                    oauth_clients.id AS id,
+                    oauth_clients.image AS image,
+                    oauth_clients.maker AS maker,
+                    oauth_clients.website AS website,
+                    oauth_clients.secret AS secret,
+                    oauth_clients.redirect AS redirect,
+                    oauth_clients.revoked AS status
+                ")
+            );
+
+            $row->extra = DB::table('oauth_access_tokens')
+                            ->join('oauth_clients','oauth_clients.id','=','oauth_access_tokens.client_id')
+                            ->where('oauth_clients.id','=',$row->id)
+                            ->select($campos_extra)
+                            ->orderBy('oauth_clients.name','ASC')
+                            ->first();
+        }
 
         $data = [
             'user' => $user,
