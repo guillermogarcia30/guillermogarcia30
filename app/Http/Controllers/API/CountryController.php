@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use DB;
 use App\Models\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class CountryController extends Controller
         }else{
             $campos = array(
                 "id AS id",
-                "phone_code AS phone_code",
+                DB::raw("CONCAT('+',phone_code) AS phone_code"),
                 "country_name AS name",
             );
             $country = Country::orderBy('country_name','ASC')->select($campos)->get();
@@ -81,7 +82,7 @@ class CountryController extends Controller
         }else{
             $campos = array(
                 "id AS id",
-                "phone_code AS phone_code",
+                DB::raw("CONCAT('+',phone_code) AS phone_code"),
                 "country_name AS name",
             );
             $country = Country::where('id','=',$id)->select($campos)->first();
