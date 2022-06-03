@@ -33,6 +33,9 @@ function App() {
             token: el.id,
             secret: el.secret, 
             status: el.status === 0 ? true : false, 
+            fabricante: el.maker || 'desconocido',
+            appurls: el.redirect || '' ,
+            website: el.website || 'No posee un sito web',
             id: i
            }))
         } )

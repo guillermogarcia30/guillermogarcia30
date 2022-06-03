@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import PropTypes from "prop-types";
 
 import Page from "./page";
 
@@ -10,7 +9,8 @@ function FileDragAndDropField({
   accept,
   className,
   form,
-  field
+  field,
+  edit = false
 }) {
   const input = useRef();
   const [url, setUrl] = useState("");
@@ -88,17 +88,10 @@ function FileDragAndDropField({
       onDragOver={handleOnDragOver}
       onDeleteValue={handleDeleteValue}
       onChangeInput={handleChange}
+      edit={edit}
     />
   );
 }
 
-FileDragAndDropField.propTypes = {
-  margin: PropTypes.string,
-  placeholder: PropTypes.string,
-  accept: PropTypes.string,
-  className: PropTypes.string,
-  form: PropTypes.object.isRequired,
-  field: PropTypes.object.isRequired
-};
 
 export default FileDragAndDropField;

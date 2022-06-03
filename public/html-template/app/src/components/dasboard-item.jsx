@@ -8,8 +8,12 @@ import { deleteApp } from '../helpers/deleteApp'
 
 
 import { removeApp } from '../store/appsSlice'
+import { showModal } from '../store/modalEditSlice'
 
-export const DasboardItem = ({logo, title, token, secret, status, id}) => {
+
+
+export const DasboardItem = ({logo, title, token, secret, status, id, fabricante, website, appurls}) => {
+
 
     const dispatch = useDispatch()
     const ref = useRef()
@@ -24,7 +28,13 @@ export const DasboardItem = ({logo, title, token, secret, status, id}) => {
         },
         [dispatch]
       )
+    const onAppEdit = useCallback(
+        (nombre, id_client, s_fabricante, s_website, s_appurls, s_secret) => {
 
+            dispatch(showModal({ title: nombre, id: id_client, fabricante: s_fabricante, website: s_website, appurls: s_appurls, secret: s_secret }))
+        },
+        [dispatch]
+    )
   return (
     <div ref={ref} className='z-10 duration-500 px-16 mb-10 shadow-lg rounded-[10px] py-[2.5rem] w-full bg-[#ffffff] dark:bg-darkmode-black-02 flex justify-between items-center' >
         <div className='min-w-[20rem] pr-12 border-r-2 border-solid border-r-gray-border w-fit flex items-center' >
@@ -42,7 +52,7 @@ export const DasboardItem = ({logo, title, token, secret, status, id}) => {
         </div>
         <div>
             <button onClick={() => dispatch(onAppRemove(id))} className='bg-pink px-2 py-2 rounded-[10px] mr-12'><BiTrash className='text-white' /></button>
-            <button className='bg-blue px-2 py-2 rounded-[10px]' ><FiEdit className='text-white'/></button>
+            <button onClick={() => onAppEdit(title, token, fabricante, website, appurls, secret) } className='bg-blue px-2 py-2 rounded-[10px]' ><FiEdit className='text-white'/></button>
             
         </div>
     </div>
