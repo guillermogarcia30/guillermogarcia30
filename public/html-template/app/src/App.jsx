@@ -7,6 +7,9 @@ import { Copyright } from './components/copyright'
 
 import { getUser } from './helpers/getUser'
 
+import { useDispatch } from 'react-redux'
+import { addApp, clearApps } from './store/appsSlice' 
+
 function App() {
   const appTheme = () => {
     const theme = localStorage.getItem('theme')
@@ -17,11 +20,28 @@ function App() {
       return document.documentElement.classList.add(theme.toString())
     }
   }
+  const dispatch = useDispatch()
 
-  useEffect(()=>{
-    appTheme()
-    getUser()
-  }, [])
+  useEffect(function(){
+    appTheme();
+    getUser().then( res => {
+      dispatch(clearApps())
+    res?.authorized_apps.map( (el, i) => {
+          dispatch(addApp({
+            logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+            title: el.name, 
+            token: el.id,
+            secret: el.secret, 
+            status: el.status === 0 ? true : false, 
+            id: i
+           }))
+        } )
+    });
+  }, [dispatch])
+
+    
+
+
   return (
     <div className='bg-soft-gray dark:bg-darkmode-black-01 relative' >
       <Header/>

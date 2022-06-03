@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { BiTrash } from 'react-icons/bi'
 import { FiEdit } from 'react-icons/fi'
 
+import { deleteApp } from '../helpers/deleteApp'
+
 
 import { removeApp } from '../store/appsSlice'
 
@@ -16,6 +18,7 @@ export const DasboardItem = ({logo, title, token, secret, status, id}) => {
                 ref.current.classList.replace('z-10', 'z-[5]')
                 ref.current.classList.add('translate-y-[-170px]')
                 return setTimeout(()=>{
+                    deleteApp(appId)
                     dispatch(removeApp({ id: appId }))
                 }, 400)
         },

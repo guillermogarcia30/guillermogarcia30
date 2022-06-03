@@ -25,7 +25,6 @@ export const Dashboard = () => {
     const handleShowAddedModal = () => {
         setAdd( !add )
     }
-
   return (
     <div className='pt-24 min-h-[95vh] items-center px-40 flex justify-center flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
@@ -33,12 +32,12 @@ export const Dashboard = () => {
             <button onClick={handleShowModal} className='bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
         </div>
         <div className=' overflow-x-hidden duration-700 w-full min-h-[36.5rem]' >
-            {apps.map( (el, i) => {
+            { apps.length? (apps.map( (el, i) => {
                  if(i === 0) {
                     return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} first={true} />
                  } else {
                   return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} />
-                 }})}
+                 }})): <h3 className='text-center' >Aun no has añadido Aplicaciones, empieza ahora!!</h3>}
         </div>
         <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
         <Modal view={add} hide={handleShowAddedModal} />
