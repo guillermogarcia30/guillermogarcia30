@@ -56,13 +56,18 @@ class LoginController extends Controller
         if ($this->guard()->validate($this->credentials($request))) {
             $user = $this->guard()->getLastAttempted();
 
-            $tokenResult = $user->createToken('Personal Access Token');
-            $token = $tokenResult->token;
-            $token->expires_at = Carbon::now()->addWeeks(1);
-            $token->save();
+            // Make sure the user is active
+            if ($this->attemptLogin($request)) {
+                // Send the normal successful login response
+                $tokenResult = $user->createToken('Personal Access Token');
+                $token = $tokenResult->token;
+                $token->expires_at = Carbon::now()->addWeeks(1);
+                $token->save();
 
-            $access_token = $tokenResult->accessToken;
-            setcookie("access_token", $access_token);
+                $access_token = $tokenResult->accessToken;
+                setcookie("access_token", $access_token);
+                return $this->sendLoginResponse($request);
+            }
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
