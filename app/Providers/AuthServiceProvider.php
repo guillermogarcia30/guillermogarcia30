@@ -34,16 +34,5 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(Carbon::now()->addWeeks(1));
         Passport::refreshTokensExpireIn(Carbon::now()->addWeeks(1));
         Passport::personalAccessTokensExpireIn(Carbon::now()->addWeeks(1));
-
-        //if ($this->app->environment !== 'production') {
-            /*
-            $this->loadMigrationsFrom(base_path('vendor/laravel/passport/database/migrations'));
-
-            $this->commands([
-                InstallCommand::class,
-                ClientCommand::class,
-                KeysCommand::class,
-            ]);*/
-        //}
     }
 }

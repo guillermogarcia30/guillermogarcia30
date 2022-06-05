@@ -39,43 +39,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    //El usuario solo puede acceder si su status es 1 o 2
-    public function login(Request $request) {
-        $this->validateLogin($request);
-
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-            return $this->sendLockoutResponse($request);
-        }
-
-        // This section is the only change
-        if ($this->guard()->validate($this->credentials($request))) {
-            $user = $this->guard()->getLastAttempted();
-
-            // Make sure the user is active
-            if ($this->attemptLogin($request)) {
-                // Send the normal successful login response
-                $tokenResult = $user->createToken('Personal Access Token');
-                $token = $tokenResult->token;
-                $token->expires_at = Carbon::now()->addWeeks(1);
-                $token->save();
-
-                $access_token = $tokenResult->accessToken;
-                setcookie("access_token", $access_token);
-                return $this->sendLoginResponse($request);
-            }
-        }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
-    }
-    //fin
 }
