@@ -63,8 +63,6 @@ class LoginController extends Controller
 
             $access_token = $tokenResult->accessToken;
             setcookie("access_token", $access_token);
-
-            return view('home');
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
