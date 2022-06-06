@@ -6,10 +6,10 @@ import { MdOutlineFileCopy } from 'react-icons/md'
 
 import FileDragAndDropField from './FormikHelper' 
 
-import { modalSubscribed, hideModal } from '../store/modalEditSlice'
+import { modalSubscribed, hideModal } from '../store/modals/modalEditSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { updateApp } from '../helpers/updateApp'
+import { updateAppAsync } from '../store/apps/thunks'
 
 
 export const ModalAPlicacionesEdit = () => {
@@ -21,7 +21,7 @@ export const ModalAPlicacionesEdit = () => {
     ]
 
     const modalstate = useSelector(modalSubscribed)
-
+    const B_token = useSelector(state => state.user.token)
     const dispatch = useDispatch()
 
     const closeModal = useCallback(
@@ -94,10 +94,10 @@ export const ModalAPlicacionesEdit = () => {
             <Formik
             innerRef={formikRef}
             initialValues={{  image: '', fabricanteEdit: '', websiteEdit: '', secretEdit: '' , appurls, applicationName: '' }}
-            onSubmit={ async(values, { resetForm }) => {
-                await updateApp({ client_id: appId, ...values })
+            onSubmit={ (values, { resetForm }) => {
+                dispatch(updateAppAsync({ client_id: appId, token: B_token ,...values }))
                 resetForm()
-                closeModal()
+                dispatch(hideModal())
             }}
              validate={values => {
                     const errors = {};

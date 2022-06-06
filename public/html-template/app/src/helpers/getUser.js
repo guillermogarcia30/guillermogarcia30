@@ -16,6 +16,7 @@ export async function getUser() {
            }).then( res => res.json())
             .then( res => {
              if (!res.error) {
+               res.token = res.value
                return res
              }
              else{

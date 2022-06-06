@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import { DasboardItem } from '../components/dasboard-item'
 import { ModalAPlicaciones } from '../components/ModalAPlicaciones'
 import { ModalAPlicacionesEdit } from '../components/ModalAplicaionesEdit'
-import { Modal } from '../components/modal'
-import { appsSubscribed } from '../store/appsSlice';
+import { ModalPetitionOk } from '../components/modalPetitionOk'
+import { ModalPetitionWrong } from '../components/modalPetitionWrong'
+import { appsSubscribed } from '../store/apps/appsSlice';
 
 export const Dashboard = () => {
 
@@ -23,9 +24,6 @@ export const Dashboard = () => {
 
     }
 
-    const handleShowAddedModal = () => {
-        setAdd( !add )
-    }
   return (
     <div className='pt-24 min-h-[95vh] items-center px-40 flex justify-center flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
@@ -42,7 +40,8 @@ export const Dashboard = () => {
         </div>
         <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
         <ModalAPlicacionesEdit add={add} />
-        <Modal view={add} hide={handleShowAddedModal} />
+        <ModalPetitionOk  />
+        <ModalPetitionWrong/>
     </div>
   )
 }

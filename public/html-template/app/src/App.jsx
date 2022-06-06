@@ -8,7 +8,8 @@ import { Copyright } from './components/copyright'
 import { getUser } from './helpers/getUser'
 
 import { useDispatch } from 'react-redux'
-import { addApp, clearApps } from './store/appsSlice' 
+import { addApp, clearApps } from './store/apps/appsSlice' 
+import { seTtoken } from './store/user/userSlice'
 
 function App() {
   const appTheme = () => {
@@ -25,9 +26,14 @@ function App() {
   useEffect(function(){
     appTheme();
     getUser().then( res => {
+      if(res){
+        
       dispatch(clearApps())
       console.log(res)
-    res?.authorized_apps.map( (el, i) => {
+      
+      dispatch(seTtoken({ token: res.token }))
+
+      res?.authorized_apps.map( (el) => {
           dispatch(addApp({
             logo: el.extra.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
             title: el.name, 
@@ -37,9 +43,10 @@ function App() {
             fabricante: el.extra.maker || 'Desconocido',
             appurls: el.extra.redirect || "https://" ,
             website: el.website || 'No posee un sito web',
-            id: i
+            id: el.id
            }))
         } )
+      }
     });
   }, [dispatch])
 

@@ -4,11 +4,10 @@ import { useDispatch } from 'react-redux'
 import { BiTrash } from 'react-icons/bi'
 import { FiEdit } from 'react-icons/fi'
 
-import { deleteApp } from '../helpers/deleteApp'
 
+import { deleteAppAsync } from '../store/apps/thunks'
 
-import { removeApp } from '../store/appsSlice'
-import { showModal } from '../store/modalEditSlice'
+import { showModal } from '../store/modals/modalEditSlice'
 
 
 
@@ -21,17 +20,20 @@ export const DasboardItem = ({logo, title, token, secret = '', status, id, fabri
 
     const dispatch = useDispatch()
     const ref = useRef()
+    // Delete application
     const onAppRemove = useCallback(
         (appId) => {
                 ref.current.classList.replace('z-10', 'z-[5]')
                 ref.current.classList.add('translate-y-[-170px]')
                 return setTimeout(()=>{
-                    deleteApp(appId)
-                    dispatch(removeApp({ id: appId }))
+                    console.log(appId)
+                    dispatch(deleteAppAsync(appId))
                 }, 400)
         },
         [dispatch]
       )
+
+    //   Edit application
     const onAppEdit = useCallback(
         (nombre, id_client, s_fabricante, s_website, s_appurls, s_secret) => {
 
@@ -55,7 +57,7 @@ export const DasboardItem = ({logo, title, token, secret = '', status, id, fabri
             {status ? (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-green-light text-green font-medium' >Activo</p>) : (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-red-light text-red font-medium'>Inactivo</p>)}
         </div>
         <div>
-            <button onClick={() => dispatch(onAppRemove(id))} className='bg-pink px-2 py-2 rounded-[10px] mr-12 md:mr-2 '><BiTrash className='text-white' /></button>
+            <button onClick={() => onAppRemove(id)} className='bg-pink px-2 py-2 rounded-[10px] mr-12 md:mr-2 '><BiTrash className='text-white' /></button>
             <button onClick={() => onAppEdit(title, token, fabricante, website, appurls, secret) } className='bg-blue px-2 py-2 rounded-[10px]' ><FiEdit className='text-white'/></button>
             
         </div>

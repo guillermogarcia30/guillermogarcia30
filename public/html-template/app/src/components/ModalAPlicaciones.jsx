@@ -4,13 +4,17 @@ import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik'
 import {  AiFillEye } from 'react-icons/ai'
 import { MdOutlineFileCopy } from 'react-icons/md'
 
-import { createApp } from '../helpers/createApp'
+// import { createApp } from '../helpers/createApp'
+import { createAppAsync } from '../store/apps/thunks'
+
 import FileDragAndDropField from './FormikHelper' 
+import { useDispatch, useSelector } from 'react-redux'
 
 
 
-export const ModalAPlicaciones = ({view, hide, add }) => {
-
+export const ModalAPlicaciones = ({view, hide }) => {
+    const B_token = useSelector(state => state.user.token)
+    const dispatch = useDispatch()
     const appurls = [
         {
             appurl: ''
@@ -60,10 +64,10 @@ export const ModalAPlicaciones = ({view, hide, add }) => {
             <Formik
             innerRef={formikRef}
             initialValues={{  image: '', fabricante: '', website: '', secret: '' , appurls, applicationName: '' }}
-            onSubmit={ async(values, { resetForm }) => {
+            onSubmit={ (values, { resetForm }) => {
                 
-                await createApp({ client_id: clientId, ...values })
-                add()
+                dispatch(createAppAsync({ client_id: clientId, token: B_token,...values }))
+                hide()
                 resetForm()
             }}
              validate={values => {
