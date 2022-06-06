@@ -5,6 +5,11 @@
         <p>Bienvenido nuevamente</p>
         <h2>Recupera tu contraseña</h2>
     </div>
+    @if (session('status'))
+        <div style="font-weight: bold;">
+            {{ session('status') }}
+        </div>
+    @endif
     <form class="synapse__form-register-a" method="POST" action="{{ route('password.email') }}">
         @csrf
         <div class="form__data-container">
