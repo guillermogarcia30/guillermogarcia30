@@ -10,13 +10,13 @@ const imgurl = 'https://auth.synapse-crm.com/apps/image/'
 
 // Eliminar aplicacion
 export const deleteAppAsync = (id, token) => {
-    console.log('primer')
+    console.log(token)
     return async(dispatch, getState) => {
         fetch(`${urlDelete}${id}`, {
             method: 'DELETE',
             headers: {
                 "Accept": "application/json",
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Bearer ${ token}`,
                 "Content-Type": "application/json"
             }
         })
