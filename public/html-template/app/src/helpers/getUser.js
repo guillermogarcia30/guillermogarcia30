@@ -8,7 +8,8 @@ export async function getUser() {
     const auth = res.value
         let headersList = {
             "Accept": "application/json",
-            "Authorization": `Bearer ${res.value}`
+            "Authorization": `Bearer ${res.value}`,
+            "Content-Type":"application/json"
            }
            
       let result = fetch(url, { 

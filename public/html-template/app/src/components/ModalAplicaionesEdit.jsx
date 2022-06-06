@@ -125,7 +125,7 @@ export const ModalAPlicacionesEdit = () => {
                     
                     <Form className='py-12' >
                         <div className='max-h-20 mb-7 flex' >
-                            <div className='p-4 w-20 bg-pink rounded-full mr-3' >
+                            <div>
 
                                 <Field
                                     name="image"

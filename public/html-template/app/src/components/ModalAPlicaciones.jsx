@@ -96,7 +96,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
                     
                     <Form className='py-12' >
                         <div className='max-h-20 mb-7 flex' >
-                            <div  >
+                            <div>
 
                                 <Field
                                     name="image"

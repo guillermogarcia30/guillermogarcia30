@@ -1,5 +1,6 @@
 import { removeApp } from "./appsSlice"
 import { onSuccesOpen, onErrorOpen } from '../modals/modalEditSlice'
+import { addApp, clearApps } from '../apps/appsSlice'
 
 
 const urlDelete = 'https://auth.synapse-crm.com/api/apps/'
@@ -67,6 +68,19 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 
                 if(!res.error){
                     if(!image){
+                        res.data.map( el => {
+                            dispatch( addApp({
+                              logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+                              title: el.name, 
+                              token: el.id,
+                              secret: el.secret, 
+                              status: el.revoked === 0 ? true : false, 
+                              fabricante: el.maker || 'Desconocido',
+                              appurls: el.redirect || "https://" ,
+                              website: el.website || 'No posee un sito web',
+                              id: el.id
+                            }) )
+                          })
                     dispatch(onSuccesOpen())
                 }
                 }
@@ -75,13 +89,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                     dispatch(onErrorOpen())
                 }
                 }
-            })
-        .catch( res => { 
-            
-            
-            dispatch(onErrorOpen())
-
-         } );
+            });
 
         if (image) {
             const formData = new FormData()
@@ -97,13 +105,25 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
               .then(res => { 
                    
                   if(!res.error){
+                    res.data.map( el => {
+                        dispatch( addApp({
+                          logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+                          title: el.name, 
+                          token: el.id,
+                          secret: el.secret, 
+                          status: el.revoked === 0 ? true : false, 
+                          fabricante: el.maker || 'Desconocido',
+                          appurls: el.redirect || "https://" ,
+                          website: el.website || 'No posee un sito web',
+                          id: el.id
+                        }) )
+                      })
                       dispatch(onSuccesOpen())
                   }
                   else {
                       dispatch(onErrorOpen())
                   }
-                })
-                .catch(onErrorOpen());
+                });
         }
     }
 }
@@ -147,6 +167,19 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 
                 if(!res.error){
                     if(!image){
+                        res.data.map( el => {
+                            dispatch( addApp({
+                              logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+                              title: el.name, 
+                              token: el.id,
+                              secret: el.secret, 
+                              status: el.revoked === 0 ? true : false, 
+                              fabricante: el.maker || 'Desconocido',
+                              appurls: el.redirect || "https://" ,
+                              website: el.website || 'No posee un sito web',
+                              id: el.id
+                            }) )
+                          })
                     dispatch(onSuccesOpen())
                 }
                 }
@@ -155,12 +188,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                     dispatch(onErrorOpen())
                 }
                 }
-            })
-            .catch( res => { 
-
-                dispatch(onErrorOpen())
-
-            } );
+            });
 
         if (image) {
             const formData = new FormData()
@@ -176,13 +204,25 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
               .then(res => { 
                  
                 if(!res.error){
+                    res.data.map( el => {
+                        dispatch( addApp({
+                          logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+                          title: el.name, 
+                          token: el.id,
+                          secret: el.secret, 
+                          status: el.revoked === 0 ? true : false, 
+                          fabricante: el.maker || 'Desconocido',
+                          appurls: el.redirect || "https://" ,
+                          website: el.website || 'No posee un sito web',
+                          id: el.id
+                        }) )
+                      })
                     dispatch(onSuccesOpen())
                 }
                 else {
                     dispatch(onErrorOpen())
                 }
-              })
-              .catch(onErrorOpen());
+              });
         }
     }
 }
