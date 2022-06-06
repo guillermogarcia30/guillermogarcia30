@@ -135,97 +135,35 @@ class UserController extends Controller
         return response()->json($data);
     }
 
-    public function update(Request $request)
+    public function image(Request $request)
     {
         set_time_limit(0);
         header('Content-Type: application/json; charset=utf-8');
         header('Accept: application/json');
 
-        //verificamos si el json fue enviado o si tiene errores de tipeo
-        if ($request->json()->all()=="" || !$request->json()->all()) {
-            $response = array(
-                "error" => true,
-                "message" => "The JSON was not sent or has transcription errors"
-            );
-            return response($response,500);
-        }
-        //fin
-
-        //recibimos el json
-        $json = $request->json()->all();
-        //fin
-
-        //Codificamos a json a string
-        $string = json_encode($json);
-        //fin
-
-        //descodificamos el json a un objeto PHP
-        $decode = json_decode($string);
-        //fin
-
-        $error_array = array();
-        if (!isset($decode->country_id)) {
-            array_push($error_array,"Parameter country_id required");
-        }
-        if (!isset($decode->name)) {
-            array_push($error_array,"Parameter name required");
-        }
-        if (!isset($decode->email)) {
-            array_push($error_array,"Parameter email required");
-        }
-        if (!isset($decode->birth_date)) {
-            array_push($error_array,"Parameter birth_date required");
-        }
-        if (!isset($decode->address)) {
-            array_push($error_array,"Parameter address required");
-        }
-        if (!isset($decode->phone)) {
-            array_push($error_array,"Parameter phone required");
-        }
-        if (!isset($decode->position)) {
-            array_push($error_array,"Parameter position required");
-        }
-
-        if (count($error_array) > 0) {
-            $response = [
-                'error' => true,
-                'errors' => $error_array,
-            ];
-            return response($response,500);
-        }
-
-        $id = $request->user()->id;
-
-        $country_id = $decode->country_id;
-        $name = $decode->name;
-        $email = $decode->email;
-        $birth_date = $decode->birth_date;
-        $address = $decode->address;
-        $phone = $decode->phone;
-        $position = $decode->position;
-
         try {
-            $exists = User::where([['email','=',$email],['id','!=',$id]])->count();
-            if ($exists == 1) {
-                $response = [
-                    'error' => true,
-                    'description' => "There is already another user with email ".$email.", try another",
-                ];
-                return response($response,500);
-            } else {
-                $user = User::where('id','=',$id)->first();
-                $user->country_id = $country_id;
-                $user->name = ucwords(strtolower($name));
-                $user->email = trim(strtolower($email));
-                $user->birth_date = $decode->birth_date;
-                $user->address = ucwords(strtolower($address));
-                $user->phone = $phone;
-                $user->position = ucwords(strtolower($position));
-                $user->update();
+            $user = auth()->user();
+            $id = $user->id;
 
+            if (empty($request->file('profile_image'))) {
+                return response([
+                    'error' => true,
+                    'description' => 'Field profile_image is required',
+                ],500);
+            }else{
+                $image = $request->file('profile_image');
+                $format = $image->getClientOriginalExtension();
+                $path = env('APP_URL').'/images-profile/'.$id.'.'.$format;
+                $folder = public_path('/images-profile/');
+                $image->move($folder, $path);
+    
+                $app =  User::where('id','=',$id)->update([
+                    'profile_image' => $path,
+                ]);
+    
                 return response([
                     'error' => false,
-                    'data' => $id,
+                    'id' => $id,
                 ],200);
             }
         } catch (\Exception $e) {

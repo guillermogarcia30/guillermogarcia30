@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     //APIS DE PERFIL Y CERRAR SESION
     Route::get('/user/me', [App\Http\Controllers\API\UserController::class,'user_me']);
     Route::put('/user/me', [App\Http\Controllers\API\UserController::class,'update']);
+    Route::post('/user/me/image', [App\Http\Controllers\API\UserController::class,'image']);
     Route::post('/signout', [App\Http\Controllers\API\UserController::class,'signout']);
     Route::get('/validate/token', [App\Http\Controllers\API\UserController::class,'validate_token']);
     //FIN
