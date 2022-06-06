@@ -101,12 +101,12 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Accept':'application/json',
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "application/json"
                 },
                 body: formData
             }).then( res => res.json() )
               .then(res => { 
-                   
+                   console.log(res)
                   if(!res.error){
                       dispatch( clearApps() )
                     res.data.map( el => {
@@ -205,12 +205,12 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Accept':'application/json',
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "application/json"
                 },
                 body: formData
             }).then( res => res.json() )
               .then(res => { 
-                 
+                console.log(res)
                 if(!res.error){
                     dispatch( clearApps() )
                     res.data.map( el => {

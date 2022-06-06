@@ -76,7 +76,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/home' element={<Dashboard/>} />
-        <Route path='/' element={<Profile/>} />
+        <Route path='/profile' element={<Profile/>} />
       </Routes>
       <Copyright/>
     </div>
