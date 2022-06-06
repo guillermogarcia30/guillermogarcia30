@@ -16,13 +16,17 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+    {
+        return view('home');
+    }
+
+    public function profile()
     {
         $user = auth()->user();
         $tokenResult = $user->createToken('Personal Access Token');
@@ -31,13 +35,8 @@ class HomeController extends Controller
         $token->save();
 
         $access_token = $tokenResult->accessToken;
-        setcookie("access_token", $access_token);
-
-        return view('home');
-    }
-
-    public function profile()
-    {
+        setcookie("access_token", $access_token);   
+        
         return view('profile');
     }
 }
