@@ -22,7 +22,7 @@ class AppController extends Controller
 
     public function index()
     {
-        $apps = DB::table('oauth_clients')->where('user_id','=',Auth::user()->id)->get();
+        $apps = DB::table('oauth_clients')->get();
         return view('app.index',['apps' => $apps]);
     }
 

@@ -22,14 +22,20 @@ class AppController extends Controller
         
         $user_id = auth()->user()->id;
 
-        $apps_count = DB::table('oauth_clients')->where('user_id','=',$user_id)->count();
+        $apps_count = DB::table('oauth_clients')
+                        ->where('name','!=',env('APP_NAME').' Personal Access Client')
+                        ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                        ->count();
         if($apps_count == 0){
             return response([
                 'error' => true,
                 'description' => 'Not Found Resource'
             ],404);
         }else{
-            $apps = DB::table('oauth_clients')->where('user_id','=',$user_id)->get();
+            $apps = DB::table('oauth_clients')
+                        ->where('name','!=',env('APP_NAME').' Personal Access Client')
+                        ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                        ->get();
             return response([
                 'error' => false,
                 'data' => $apps
@@ -140,9 +146,15 @@ class AppController extends Controller
                     'created_at' => DB::raw("NOW()"),
                     'updated_at' => DB::raw("NOW()")
                 ]);
+
+                $apps = DB::table('oauth_clients')
+                            ->where('name','!=',env('APP_NAME').' Personal Access Client')
+                            ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                            ->get();
+
                 return response([
                     'error' => false,
-                    'id' => $id,
+                    'data' => $apps,
                 ],200);
             }
         } catch (\Exception $e) {
@@ -177,10 +189,15 @@ class AppController extends Controller
                 $app =  DB::table('oauth_clients')->where('id','=',$id)->update([
                     'image' => $path,
                 ]);
+
+                $apps = DB::table('oauth_clients')
+                            ->where('name','!=',env('APP_NAME').' Personal Access Client')
+                            ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                            ->get();
     
                 return response([
                     'error' => false,
-                    'id' => $id,
+                    'data' => $apps,
                 ],200);
             }
         }catch(\Execption $e){
@@ -307,9 +324,15 @@ class AppController extends Controller
                 'website' => $website,
                 'updated_at' => DB::raw("NOW()")
             ]);
+
+            $apps = DB::table('oauth_clients')
+                        ->where('name','!=',env('APP_NAME').' Personal Access Client')
+                        ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                        ->get();
+
             return response([
                 'error' => false,
-                'id' => $id,
+                'data' => $apps,
             ],200);
         } catch (\Exception $e) {
             return response([
