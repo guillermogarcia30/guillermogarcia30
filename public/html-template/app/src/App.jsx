@@ -24,8 +24,10 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(function(){
+    console.log('si')
     appTheme();
     getUser().then( res => {
+      console.log(res)
       if(res){
         
       dispatch(clearApps())
