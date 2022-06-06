@@ -120,6 +120,18 @@ class UserController extends Controller
                     ->where('users.id','=',$auth->id)
                     ->select($campos_user)
                     ->first();
+
+        $campos_role = array(
+            "roles.id AS id",
+            "roles.name AS name",
+            "roles.description AS description",
+        );
+        $role = DB::table('role_user')
+                    ->leftJoin('users','users.id','=','role_user.user_id')
+                    ->leftJoin('roles','roles.id','=','role_user.role_id')
+                    ->where('users.id','=',$auth->id)
+                    ->select($campos_role)
+                    ->first();
         
         $campos = array(
             DB::raw("
@@ -161,6 +173,7 @@ class UserController extends Controller
 
         $data = [
             'user' => $user,
+            'role' => $role,
             'authorized_apps' => $authorized_apps
         ];
 
