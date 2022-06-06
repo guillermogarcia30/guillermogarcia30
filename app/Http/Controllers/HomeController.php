@@ -37,9 +37,10 @@ class HomeController extends Controller
 
     public function profile()
     {
+        /*
         $user = auth()->user();
         $this->createToken($user);
-        
+        */
         return view('profile');
     }
 }
