@@ -36,7 +36,11 @@ export const Dashboard = () => {
                     return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} first={true}  appurls={el.appurls} fabricante={el.fabricante} website={el.website} />
                  } else {
                   return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id}  appurls={el.appurls} fabricante={el.fabricante} website={el.website} />
-                 }})): <h3 className='text-center' >Aun no has añadido Aplicaciones, empieza ahora!!</h3>}
+                 }})): (
+                     <div className=' flex justify-center items-center h-[5rem] w-full bg-white mt-16 dark:bg-darkmode-black-02 ' >
+                         <h3 className='text-center dark:text-white ' >Aun no has añadido Aplicaciones, empieza ahora!!</h3>
+                     </div>
+                 )}
         </div>
         <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
         <ModalAPlicacionesEdit add={add} />

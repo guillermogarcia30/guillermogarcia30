@@ -13,6 +13,7 @@ export const Header = () => {
   useEffect(() => {
     getUser().then( res => {
       setUSer({ image: res.image || 'https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png', name: res.name || 'John Doe' , position: res.position || 'la posicion no fue especificada' })
+      console.log(res)
     } )
 
   }, [])
