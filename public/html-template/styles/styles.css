@@ -8,8 +8,6 @@
 }
 
 :root{
-    /* Backgorund */
-    --bg-hero: url(../assets/background.png);
     /* colors */
     --main-color: #FF2B44;
     --light-green: #49C99A;
@@ -49,8 +47,8 @@ img{
 }
 /* synapse */
 .synapse{
-    width: 40vw;
     height: 100vh;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,9 +71,6 @@ img{
 .synapse__form{
     width: 100%;
     margin: 1rem 0; 
-}
-.synapse__form{
-    height: 26rem;
 }
 .synapse__form-register-a,
 .synapse__form-register{
@@ -202,14 +197,6 @@ img{
     background-color: var(--main-color);
 }
 
-/* Banner */
-.hero{
-    width: 60vw;
-    height: 100vh;
-    background-image: var(--bg-hero);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 .error{
     border: #ee0808 2px solid ;
@@ -220,7 +207,6 @@ img{
 
 @media screen and (max-width: 1500px) {
     .synapse {
-        width: 40vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -230,7 +216,6 @@ img{
 }
 @media screen and (max-width: 1285px) {
     .synapse {
-        width: 40vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -240,19 +225,11 @@ img{
 }
 @media screen and (max-width: 1170px) {
     .synapse {
-        width: 50vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 5rem 3rem;
-    }
-    .hero{
-        width: 50vw;
-        height: 100vh;
-        background-image: var(--bg-hero);
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 }
 @media screen and (max-width: 930px) {
@@ -263,13 +240,6 @@ img{
         flex-direction: column;
         align-items: center;
         padding: 5rem 3rem;
-    }
-    .hero{
-        width: 45vw;
-        height: 100vh;
-        background-image: var(--bg-hero);
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 }
 @media screen and (max-width: 680px) {
@@ -299,13 +269,7 @@ img{
         height: 25rem;
         overflow: scroll;
     }
-    .hero{
-        width: 100vw;
-        height: 110vh;
-        background-image: var(--bg-hero);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+
 }
 
 @media screen and (max-width: 400px) {
