@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { BiTrash } from 'react-icons/bi'
 import { FiEdit } from 'react-icons/fi'
 
@@ -19,15 +19,16 @@ export const DasboardItem = ({logo, title, token, secret = '', status, id, fabri
     let decodeSecret = `${b}${c}`
 
     const dispatch = useDispatch()
+    const B_token = useSelector(state => state.user.token)
     const ref = useRef()
     // Delete application
     const onAppRemove = useCallback(
-        (appId) => {
+        (appId, token) => {
                 ref.current.classList.replace('z-10', 'z-[5]')
                 ref.current.classList.add('translate-y-[-170px]')
                 return setTimeout(()=>{
                     console.log(appId)
-                    dispatch(deleteAppAsync(appId))
+                    dispatch(deleteAppAsync(appId, token))
                 }, 400)
         },
         [dispatch]
@@ -57,7 +58,7 @@ export const DasboardItem = ({logo, title, token, secret = '', status, id, fabri
             {status ? (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-green-light text-green font-medium' >Activo</p>) : (<p className='text-[.8rem] px-2 py-1 rounded-[20px] bg-red-light text-red font-medium'>Inactivo</p>)}
         </div>
         <div>
-            <button onClick={() => onAppRemove(id)} className='bg-pink px-2 py-2 rounded-[10px] mr-12 md:mr-2 '><BiTrash className='text-white' /></button>
+            <button onClick={() => onAppRemove(id, B_token)} className='bg-pink px-2 py-2 rounded-[10px] mr-12 md:mr-2 '><BiTrash className='text-white' /></button>
             <button onClick={() => onAppEdit(title, token, fabricante, website, appurls, secret) } className='bg-blue px-2 py-2 rounded-[10px]' ><FiEdit className='text-white'/></button>
             
         </div>
