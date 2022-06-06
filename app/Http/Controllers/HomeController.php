@@ -15,16 +15,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
-        $user = auth()->user();
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-        $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
-
-        $access_token = $tokenResult->accessToken;
-        setcookie("access_token", $access_token);       
-
     }
     /**
      * Show the application dashboard.
@@ -38,6 +28,15 @@ class HomeController extends Controller
 
     public function profile()
     {
+        $user = auth()->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        $token->expires_at = Carbon::now()->addWeeks(1);
+        $token->save();
+
+        $access_token = $tokenResult->accessToken;
+        setcookie("access_token", $access_token);   
+        
         return view('profile');
     }
 }
