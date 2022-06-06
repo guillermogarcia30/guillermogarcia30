@@ -100,8 +100,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Accept':'application/json',
-                    "Content-Type": "application/json"
+                    'Accept':'application/json'
                 },
                 body: formData
             }).then( res => res.json() )
@@ -204,8 +203,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Accept':'application/json',
-                    "Content-Type": "application/json"
+                    'Accept':'application/json'
                 },
                 body: formData
             }).then( res => res.json() )
