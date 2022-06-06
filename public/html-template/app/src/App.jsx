@@ -30,11 +30,8 @@ function App() {
         
       dispatch(clearApps())
       console.log(res)
-      window.cookieStore.get('access_token').then( res => {
-        console.log(res)
-        dispatch(seTtoken({ token: res.value }))
-
-      } )
+      
+      dispatch(seTtoken({ token: res.token }))
 
       res?.authorized_apps.map( (el) => {
           dispatch(addApp({
