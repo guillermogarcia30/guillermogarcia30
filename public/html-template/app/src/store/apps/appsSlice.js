@@ -23,7 +23,6 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     clearApps: (state) => {
-      console.log('borrado')
       state.apps = []
     },
     addApp: (state, action) => {
