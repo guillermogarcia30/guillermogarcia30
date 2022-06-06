@@ -15,6 +15,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $user = auth()->user();
+        $this->createToken($user);
     }
 
     public function createToken($user)
@@ -29,18 +31,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $this->createToken($user);
-
         return view('home');
     }
 
     public function profile()
     {
-        /*
-        $user = auth()->user();
-        $this->createToken($user);
-        */
         return view('profile');
     }
 }
