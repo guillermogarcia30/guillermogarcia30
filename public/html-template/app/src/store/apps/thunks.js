@@ -68,8 +68,9 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 
                 if(!res.error){
                     if(!image){
+                        dispatch( clearApps() )
                         res.data.map( el => {
-                            dispatch( clearApps() )
+                            
                             dispatch( addApp({
                               logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
                               title: el.name, 
@@ -106,8 +107,9 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
               .then(res => { 
                    
                   if(!res.error){
+                      dispatch( clearApps() )
                     res.data.map( el => {
-                        dispatch( clearApps() )
+                        
                         dispatch( addApp({
                           logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
                           title: el.name, 
@@ -169,8 +171,9 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 
                 if(!res.error){
                     if(!image){
+                        dispatch( clearApps() )
                         res.data.map( el => {
-                            dispatch( clearApps() )
+                            
                             dispatch( addApp({
                               logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
                               title: el.name, 
@@ -207,8 +210,9 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
               .then(res => { 
                  
                 if(!res.error){
+                    dispatch( clearApps() )
                     res.data.map( el => {
-                        dispatch( clearApps() )
+                        
                         dispatch( addApp({
                           logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
                           title: el.name, 
