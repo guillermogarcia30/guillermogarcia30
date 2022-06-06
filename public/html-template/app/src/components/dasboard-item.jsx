@@ -27,7 +27,6 @@ export const DasboardItem = ({logo, title, token, secret = '', status, id, fabri
                 ref.current.classList.replace('z-10', 'z-[5]')
                 ref.current.classList.add('translate-y-[-170px]')
                 return setTimeout(()=>{
-                    console.log(appId)
                     dispatch(deleteAppAsync(appId, token))
                 }, 400)
         },

@@ -1,15 +1,18 @@
 import { Route, Routes } from 'react-router-dom'
 import { useEffect } from 'react';
 
-import { Dashboard } from './views/dashboard';
-import { Header } from './components/Header'
-import { Copyright } from './components/copyright'
+
 
 import { getUser } from './helpers/getUser'
 
 import { useDispatch } from 'react-redux'
 import { addApp, clearApps } from './store/apps/appsSlice' 
-import { seTtoken } from './store/user/userSlice'
+import { seTtoken, setUserData } from './store/user/userSlice'
+
+import { Profile } from './views/Profile';
+import { Dashboard } from './views/dashboard';
+import { Header } from './components/Header'
+import { Copyright } from './components/copyright'
 
 function App() {
   const appTheme = () => {
@@ -26,13 +29,13 @@ function App() {
   useEffect(function(){
     appTheme();
     getUser().then( res => {
-      console.log(res)
-      if(res){
+
+      if(!res.error){
         
       dispatch(clearApps())
-      console.log(res)
       
       dispatch(seTtoken({ token: res.token }))
+      dispatch(setUserData({ email: res.email, tenant: res.tenant_id, name: res.name, birthDAte: res.birth_date, adress: res.adress, phone: res.phone, position: res.position, image: res.image, ciudad: res.city, pais: res.country_name }))
 
       res?.authorized_apps.map( (el) => {
           dispatch(addApp({
@@ -48,6 +51,7 @@ function App() {
            }))
         } )
       }
+      else console.log(res)
     });
   }, [dispatch])
 
@@ -59,6 +63,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/home' element={<Dashboard/>} />
+        <Route path='/' element={<Profile/>} />
       </Routes>
       <Copyright/>
     </div>
