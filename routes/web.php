@@ -22,5 +22,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/app',App\Http\Controllers\AppController::class);
 
-//Route::get('/artisan/migrate',[App\Http\Controllers\ArtisanController::class,'migrate']);
-//Route::get('/artisan/passport',[App\Http\Controllers\ArtisanController::class,'passport']);
+Route::get('/artisan/migrate',[App\Http\Controllers\ArtisanController::class,'migrate']);
+Route::get('/artisan/passport',[App\Http\Controllers\ArtisanController::class,'passport']);

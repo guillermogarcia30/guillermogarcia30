@@ -9,9 +9,9 @@ class ArtisanController extends Controller
 {
     public function migrate()
     {
-        \Artisan::call('migrate:fresh', [
-            '--seed' => true // <--- add this line
-        ]);
+        \Artisan::call('migrate:fresh');
+
+        \Artisan::call('db:seed');
 
         return 'Migrated all tables';
     }

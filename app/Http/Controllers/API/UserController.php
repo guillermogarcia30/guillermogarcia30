@@ -6,6 +6,8 @@ use Auth;
 use DB;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\RoleUser;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -25,13 +27,22 @@ class UserController extends Controller
             'password' => 'required|string'
         ]);
 
+        $id = Str::uuid()->toString();
+
         $user = new User;
-        $user->id = Str::uuid()->toString();
+        $user->id = $id;
         $user->tenant_id = '';
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
+
+        $role_user_id = Str::uuid()->toString();
+        $role_user = new RoleUser;
+        $role_user->id = $role_user_id;
+        $role_user->role_id = Role::where('name','=','admin')->first()->id;
+        $role_user->user_id = $id;
+        $role_user->save();
 
         return response()->json([
             'message' => 'Successfully created user!'
