@@ -150,6 +150,7 @@ class AppController extends Controller
                 $apps = DB::table('oauth_clients')
                             ->where('name','!=',env('APP_NAME').' Personal Access Client')
                             ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                            ->orderBy('created_at','DESC')
                             ->get();
 
                 return response([
@@ -193,6 +194,7 @@ class AppController extends Controller
                 $apps = DB::table('oauth_clients')
                             ->where('name','!=',env('APP_NAME').' Personal Access Client')
                             ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                            ->orderBy('created_at','DESC')
                             ->get();
     
                 return response([
@@ -328,6 +330,7 @@ class AppController extends Controller
             $apps = DB::table('oauth_clients')
                         ->where('name','!=',env('APP_NAME').' Personal Access Client')
                         ->where('name','!=',env('APP_NAME').' Password Grant Client')
+                        ->orderBy('created_at','DESC')
                         ->get();
 
             return response([
