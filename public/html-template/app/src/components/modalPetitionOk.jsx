@@ -9,7 +9,7 @@ export const ModalPetitionOk = () => {
   const view = useSelector( state => state.modal.onSucces )
   const dispatch = useDispatch()
   return (
-    <div style={view ?{display: 'flex'}:{display: 'none'}} className='px-[3.375rem] w-[26.825rem] h-[18.3125rem] rounded-[1.25rem] bg-[#ffffff] dark:bg-darkmode-black-02 z-50 absolute top-0 bottom-0 left-0 right-0 m-[auto]' >
+    <div style={view ?{display: 'flex'}:{display: 'none'}} className='px-[3.375rem] w-[26.825rem] h-[18.3125rem] rounded-[1.25rem] bg-[#ffffff] dark:bg-darkmode-black-02 z-50 fixed top-0 bottom-0 left-0 right-0 m-[auto]' >
         <div className='h-full w-full flex flex-col justify-center items-center' >
             <div className='flex items-center justify-center bg-green-light rounded-full w-[4.0625] h-[4.0625]' >
                 <AiOutlineCheck className='text-green text-4xl ' />
