@@ -10,7 +10,7 @@ const imgurl = 'https://auth.synapse-crm.com/apps/image/'
 
 // Eliminar aplicacion
 export const deleteAppAsync = (id, token) => {
-    return async(dispatch, getState) => {
+    return async(dispatch) => {
         fetch(`${urlDelete}${id}`, {
             method: 'DELETE',
             headers: {
@@ -57,7 +57,6 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
            }
-           console.log(JSON.stringify(body))
         fetch(`${urlUpdate}${client_id}`, {
             method: 'PUT',
             headers: headersList,
@@ -65,7 +64,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
         })
         .then( res => res.json() )
         .then( res => {
-                console.log(res.error)
+                
                 if(!res.error){
                     if(!image){
                     dispatch(onSuccesOpen())
@@ -79,7 +78,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
             })
         .catch( res => { 
             
-            console.log(res.error)
+            
             dispatch(onErrorOpen())
 
          } );
@@ -96,7 +95,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 body: formData
             }).then( res => res.json() )
               .then(res => { 
-                  console.log(res.error) 
+                   
                   if(!res.error){
                       dispatch(onSuccesOpen())
                   }
@@ -139,14 +138,13 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
            }
-           console.log(JSON.stringify(body))
-        fetch(`${urlCreate}${client_id}`, {
+        fetch(urlCreate, {
             method: 'POST',
             headers: headersList,
             body: JSON.stringify(body)
         }).then( res => res.json() )
             .then( res => {
-                console.log(res.error)
+                
                 if(!res.error){
                     if(!image){
                     dispatch(onSuccesOpen())
@@ -159,8 +157,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 }
             })
             .catch( res => { 
-                
-                console.log(res.error)
+
                 dispatch(onErrorOpen())
 
             } );
@@ -177,7 +174,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 body: formData
             }).then( res => res.json() )
               .then(res => { 
-                console.log(res.error) 
+                 
                 if(!res.error){
                     dispatch(onSuccesOpen())
                 }

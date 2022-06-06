@@ -22,7 +22,6 @@ export async function getUser() {
              }
              else{
                console.log('Algo salio mal', res)
-               res.token = auth
                return res
              }
            })
