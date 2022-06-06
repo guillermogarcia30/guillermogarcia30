@@ -6,7 +6,7 @@ import { addApp, clearApps } from '../apps/appsSlice'
 const urlDelete = 'https://auth.synapse-crm.com/api/apps/'
 const urlUpdate = 'https://auth.synapse-crm.com/api/apps/'
 const urlCreate = 'https://auth.synapse-crm.com/api/apps/'
-const imgurl = 'https://auth.synapse-crm.com/apps/image/'
+const imgurl = 'https://auth.synapse-crm.com/api/apps/image/'
 
 
 // Eliminar aplicacion
@@ -100,7 +100,8 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Accept':'application/json'
+                    'Accept':'application/json',
+                    "Content-Type": "multipart/form-data"
                 },
                 body: formData
             }).then( res => res.json() )
@@ -109,7 +110,6 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                   if(!res.error){
                       dispatch( clearApps() )
                     res.data.map( el => {
-                        
                         dispatch( addApp({
                           logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
                           title: el.name, 
@@ -125,6 +125,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                       dispatch(onSuccesOpen())
                   }
                   else {
+                      console.log(res)
                       dispatch(onErrorOpen())
                   }
                 });
@@ -203,7 +204,8 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Accept':'application/json'
+                    'Accept':'application/json',
+                    "Content-Type": "multipart/form-data"
                 },
                 body: formData
             }).then( res => res.json() )
@@ -228,6 +230,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                     dispatch(onSuccesOpen())
                 }
                 else {
+                    console.log(res)
                     dispatch(onErrorOpen())
                 }
               });
