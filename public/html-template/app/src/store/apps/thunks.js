@@ -106,7 +106,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 body: formData
             }).then( res => res.json() )
               .then(res => { 
-                   
+                   console.log(res)
                   if(!res.error){
                       dispatch( clearApps() )
                     res.data.map( el => {
@@ -210,7 +210,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 body: formData
             }).then( res => res.json() )
               .then(res => { 
-                 
+                console.log(res)
                 if(!res.error){
                     dispatch( clearApps() )
                     res.data.map( el => {
