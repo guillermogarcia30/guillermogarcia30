@@ -87,7 +87,28 @@ class UserController extends Controller
      */
     public function user_me(Request $request)
     {
-        $user = $request->user();
+        $auth = $request->user();
+
+        $campos_user = array(
+            "users.id AS id",
+            "users.name AS name",
+            "users.email AS email",
+            "users.birth_date AS birth_date",
+            "users.phone AS phone",
+            "users.address AS address",
+            "users.city AS city",
+            "users.position AS position",
+            "users.profile_image AS profile_image",
+            "countries.id AS country_id",
+            "countries.country_code AS country_code",
+            "countries.country_name AS country_name",
+            DB::raw("CONCAT('+',countries.phone_code) AS phone_code"),
+        );
+        $user = DB::table('users')
+                    ->leftJoin('countries','countries.id','=','users.country_id')
+                    ->where('users.id','=',$auth->id)
+                    ->select($campos_user)
+                    ->first();
         
         $campos = array(
             DB::raw("
@@ -164,6 +185,113 @@ class UserController extends Controller
                 return response([
                     'error' => false,
                     'id' => $id,
+                ],200);
+            }
+        } catch (\Exception $e) {
+            return response([
+                'error' => true,
+                'description' => $e->getMessage(),
+            ],500);
+        }
+
+    }
+
+    public function update(Request $request)
+    {
+        set_time_limit(0);
+        header('Content-Type: application/json; charset=utf-8');
+        header('Accept: application/json');
+
+        //verificamos si el json fue enviado o si tiene errores de tipeo
+        if ($request->json()->all()=="" || !$request->json()->all()) {
+            $response = array(
+                "error" => true,
+                "message" => "The JSON was not sent or has transcription errors"
+            );
+            return response($response,500);
+        }
+        //fin
+
+        //recibimos el json
+        $json = $request->json()->all();
+        //fin
+
+        //Codificamos a json a string
+        $string = json_encode($json);
+        //fin
+
+        //descodificamos el json a un objeto PHP
+        $decode = json_decode($string);
+        //fin
+
+        $error_array = array();
+        if (!isset($decode->country_id)) {
+            array_push($error_array,"Parameter country_id required");
+        }
+        if (!isset($decode->name)) {
+            array_push($error_array,"Parameter name required");
+        }
+        if (!isset($decode->email)) {
+            array_push($error_array,"Parameter email required");
+        }
+        if (!isset($decode->birth_date)) {
+            array_push($error_array,"Parameter birth_date required");
+        }
+        if (!isset($decode->address)) {
+            array_push($error_array,"Parameter address required");
+        }
+        if (!isset($decode->city)) {
+            array_push($error_array,"Parameter city required");
+        }
+        if (!isset($decode->phone)) {
+            array_push($error_array,"Parameter phone required");
+        }
+        if (!isset($decode->position)) {
+            array_push($error_array,"Parameter position required");
+        }
+
+        if (count($error_array) > 0) {
+            $response = [
+                'error' => true,
+                'errors' => $error_array,
+            ];
+            return response($response,500);
+        }
+
+        $id = $request->user()->id;
+
+        $country_id = $decode->country_id;
+        $name = $decode->name;
+        $email = $decode->email;
+        $birth_date = $decode->birth_date;
+        $address = $decode->address;
+        $city = $decode->city;
+        $phone = $decode->phone;
+        $position = $decode->position;
+
+        try {
+            $exists = User::where([['email','=',$email],['id','!=',$id]])->count();
+            if ($exists == 1) {
+                $response = [
+                    'error' => true,
+                    'description' => "There is already another user with email ".$email.", try another",
+                ];
+                return response($response,500);
+            } else {
+                $user = User::where('id','=',$id)->first();
+                $user->country_id = $country_id;
+                $user->name = ucwords(strtolower($name));
+                $user->email = trim(strtolower($email));
+                $user->birth_date = $decode->birth_date;
+                $user->address = ucwords(strtolower($address));
+                $user->city = ucwords(strtolower($city));
+                $user->phone = $phone;
+                $user->position = ucwords(strtolower($position));
+                $user->update();
+
+                return response([
+                    'error' => false,
+                    'data' => $id,
                 ],200);
             }
         } catch (\Exception $e) {

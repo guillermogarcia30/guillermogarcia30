@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->date('birth_date')->nullable();
             $table->string('address',100)->nullable();
+            $table->string('city',20)->nullable();
             $table->string('phone',15)->nullable();
             $table->string('position',30)->nullable();
             $table->string('profile_image',300)->nullable();
