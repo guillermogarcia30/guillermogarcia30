@@ -18,6 +18,11 @@
         <div class="form__data-container">
             <label for="email">Correo electrónico</label>
             <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+            @error('email')
+            <span style="color:red;" role="alert">
+                <strong>{{ str_replace("email","Correo Electrónico",$message) }}</strong>
+            </span>
+        @enderror
         </div>
         <button class="btn-recuperar">Enviar Correo</button>
     </form>

@@ -17,7 +17,7 @@
         <input id="email" type="hidden" class="@error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
         @error('email')
             <span style="color:red;" role="alert">
-                <strong>{{ $message }}</strong>
+                <strong>{{ str_replace("email","Correo Electrónico",$message) }}</strong>
             </span>
         @enderror
 
@@ -27,7 +27,7 @@
             <small class="dont__worry-s" >Tiene que tener mas de 8 caracteres</small>
             @error('password')
                 <span style="color:red;" role="alert">
-                    <strong>{{ $message }}</strong>
+                    <strong>{{ str_replace("password","Contraseña",$message) }}</strong>
                 </span>
             @enderror
         </div>

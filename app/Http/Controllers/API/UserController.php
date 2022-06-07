@@ -210,6 +210,7 @@ class UserController extends Controller
                 return response([
                     'error' => false,
                     'id' => $id,
+                    'image' => $path,
                 ],200);
             }
         } catch (\Exception $e) {
