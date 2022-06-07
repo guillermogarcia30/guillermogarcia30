@@ -13,6 +13,8 @@ import { Profile } from './views/Profile';
 import { Dashboard } from './views/dashboard';
 import { Header } from './components/Header'
 import { Copyright } from './components/copyright'
+import { ModalPetitionOk } from './components/modalPetitionOk'
+import { ModalPetitionWrong } from './components/modalPetitionWrong'
 
 function App() {
   const appTheme = () => {
@@ -79,6 +81,8 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
       </Routes>
       <Copyright/>
+      <ModalPetitionOk  />
+      <ModalPetitionWrong/>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FiBell } from 'react-icons/fi'
 import { BsTriangleFill } from 'react-icons/bs'
+import { BiLogOut } from 'react-icons/bi'
 import { getUser } from '../helpers/getUser'
 
 import { CustomLink } from './custom-link'
@@ -10,6 +11,7 @@ import { Toggle } from './Toggle'
 export const Header = () => {
 
   const [user, setUSer] = useState({ image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: '' , position: '' })
+  const [ dropdownView, setDropDownView] = useState(false)
 
   useEffect(() => {
     getUser().then( res => {
@@ -55,8 +57,22 @@ export const Header = () => {
                 <div className='w-10 h-10 rounded-full overflow-hidden '>
                   <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
                 </div>
-                <button className='rotate-[179deg] absolute text-[.7rem] right-[-15px] top-[7px]' ><BsTriangleFill/></button>
-                <div className='w-3 h-3 absolute top-0 right-[2px]  bg-green rounded-full' ></div>
+                <button onClick={() => setDropDownView(!dropdownView)} className='rotate-[179deg] absolute text-[.5rem] right-[-15px] top-0 bottom-0 margin-[auto]' ><BsTriangleFill/></button>
+                {/* Dropdown */}
+                {
+                  dropdownView && (
+                    <div  className="absolute w-36 bottom-[-55px] left-[-85px]  bg-white shadow dark:bg-darkmode-black-02">
+                    <div onClick={()=>{
+                      document.getElementById('logout-form').submit()
+                    }} className='flex items-center justify-between px-2 py-3 cursor-pointer' >
+                      <p>Cerrar sesión</p>
+                      <BiLogOut/>
+                    </div>
+                  </div>
+                  )
+                }
+                <div className='w-2 h-2 absolute top-0 right-[2px]  bg-green rounded-full' ></div>
+                
               </div>
               
             </div>

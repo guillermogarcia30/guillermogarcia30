@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 import { DasboardItem } from '../components/dasboard-item'
 import { ModalAPlicaciones } from '../components/ModalAPlicaciones'
 import { ModalAPlicacionesEdit } from '../components/ModalAplicaionesEdit'
-import { ModalPetitionOk } from '../components/modalPetitionOk'
-import { ModalPetitionWrong } from '../components/modalPetitionWrong'
 import { appsSubscribed } from '../store/apps/appsSlice';
 
 export const Dashboard = () => {
@@ -44,8 +42,7 @@ export const Dashboard = () => {
         </div>
         <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
         <ModalAPlicacionesEdit add={add} />
-        <ModalPetitionOk  />
-        <ModalPetitionWrong/>
+        
     </div>
   )
 }

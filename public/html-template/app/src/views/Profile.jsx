@@ -1,10 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { FiCamera } from 'react-icons/fi'
+import { ModalImg } from '../components/ModalImg'
+
+import { onProfilePicOpen } from '../store/modals/modalEditSlice'
 
 export const Profile = () => {
 
     const userData = useSelector( state => state.user )
+    const dispatch = useDispatch()
 
   return (
     <div className='pt-24 min-h-[95vh] items-center px-40 flex flex-col' >
@@ -15,8 +20,13 @@ export const Profile = () => {
             {/* Datos principales */}
             <div className='w-full bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
                 <div className='flex mb-4' >
-                    <div className='w-[4rem] h-[4rem] border rounded-full overflow-hidden' >
-                        <img className='w-full h-full' src={userData.image} alt="foto de perfil" />
+                    <div className='relative cursor-pointer' onClick={() => dispatch(onProfilePicOpen())} >
+                        <div className='w-[6rem] h-[6rem] rounded-full overflow-hidden' >
+                            <img className='w-full min-h-full' src={userData.image} alt="foto de perfil" />
+                        </div>
+                        <div className='absolute right-0 bottom-[-5px] bg-gray-light w-8 h-8 rounded-full flex justify-center items-center' >
+                            <FiCamera className='text-white text-[1.2rem]' />
+                        </div>
                     </div>
                     <div className="flex flex-col ml-4">
                         <h4 className='text-[#000000] dark:text-white font-bold text-[1.5rem]' >{userData.name}</h4>
@@ -56,6 +66,7 @@ export const Profile = () => {
                 </div>
             </div>
         </div>
+        <ModalImg />
     </div>
   )
 }

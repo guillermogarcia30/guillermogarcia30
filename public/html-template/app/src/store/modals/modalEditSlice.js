@@ -4,6 +4,7 @@ const initialState = {
   open: false,
   onError: false,
   onSucces: false,
+  changeProfilePic: false,
   id: '',
   appName: '',
   fabricante: '',
@@ -39,15 +40,22 @@ export const modalSlice = createSlice({
       state.onSucces = false
     },
     onErrorOpen: (state) => {
+      console.log(state.onError)
       state.onError = true
     },
     onErrorClose: (state) => {
       state.onError = false
     },
+    onProfilePicOpen: (state) => {
+      state.changeProfilePic = true
+    },
+    onProfilePicClose: (state) => {
+      state.changeProfilePic = false
+    }
   },
 });
 
-export const { showModal, hideModal, onErrorClose, onErrorOpen, onSuccesClose, onSuccesOpen } = modalSlice.actions;
+export const { showModal, hideModal, onErrorClose, onErrorOpen, onSuccesClose, onSuccesOpen, onProfilePicOpen, onProfilePicClose } = modalSlice.actions;
 
 
 export const modalSubscribed = (state) => state.modal;

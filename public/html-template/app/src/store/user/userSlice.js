@@ -11,7 +11,7 @@ const initialState = {
     address: '',
     phone: '',
     position: '',
-    image: ''
+    image: 'https://external-preview.redd.it/CgG0Niv1V1DUujXD7PfW5HfzgWCoXNcG0aklNvERYVw.jpg?width=640&crop=smart&auto=webp&s=51ef185c2a471324b7a6b3d18799926e11f6116d'
 }
 
 const userSlice = createSlice({
@@ -32,6 +32,9 @@ const userSlice = createSlice({
             state.image = action.payload.image ? action.payload.image : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
             state.ciudad = action.payload.ciudad ? action.payload.ciudad : 'Ciudad no especificada'
             state.pais = action.payload.pais ? action.payload.ciudad : 'Pais no especificado'
+        },
+        setUserImg: (state, action) => {
+            state.image = action.payload.image
         }
     }
 })
