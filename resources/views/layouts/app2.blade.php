@@ -16,5 +16,8 @@
     </head>
     <body>
         @yield('content')
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
     </body>
 </html>
