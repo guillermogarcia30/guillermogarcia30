@@ -22,21 +22,6 @@
                 </div>
                 @yield('content')
             </div>
-            <div class="hero"></div>
-            <div class="modal__sendemail" >
-                <div class="modal__card">
-                    <div class="top-side">
-                        <div class="icon__container">
-                            <img src="{{ asset('assets/bx-mail-send.svg') }}" alt="">
-                        </div>
-                    </div>
-                    <div class="bottom-side">
-                        <h3 class="msg">Exito</h3>
-                        <p class="msg__description">Se le envio un correo de verificacion de Synapse</p>
-                        <button class="btn__modal">Volver</button>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
 </body>
