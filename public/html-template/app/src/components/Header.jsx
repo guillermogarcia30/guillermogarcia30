@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FiBell } from 'react-icons/fi'
+import { BsTriangleFill } from 'react-icons/bs'
 import { getUser } from '../helpers/getUser'
 
 import { CustomLink } from './custom-link'
@@ -54,6 +55,7 @@ export const Header = () => {
                 <div className='w-10 h-10 rounded-full overflow-hidden '>
                   <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
                 </div>
+                <button className='rotate-[179deg] absolute text-[.7rem] right-[-15px] top-[7px]' ><BsTriangleFill/></button>
                 <div className='w-3 h-3 absolute top-0 right-[2px]  bg-green rounded-full' ></div>
               </div>
               
