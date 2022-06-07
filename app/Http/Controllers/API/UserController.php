@@ -102,6 +102,7 @@ class UserController extends Controller
 
         $campos_user = array(
             "users.id AS id",
+            "users.tenant_id AS tenant_id",
             "users.name AS name",
             "users.email AS email",
             "users.birth_date AS birth_date",
