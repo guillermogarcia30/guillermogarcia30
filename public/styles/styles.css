@@ -300,12 +300,9 @@ input[class="password__recovery"]{
 @media screen and (max-width: 900px) {
     .synapse {
         border-radius: 20px;
-        width: fit-content;
-        height: fit-content;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 3rem 2rem;
         position: absolute;
         background-color: var(--theme-color);
         top: 0;
