@@ -26,6 +26,6 @@
         <button class="btn-recuperar">Enviar Correo</button>
     </form>
     <footer class="synapse__footer" >
-         <p><a href="{{ route('login') }}"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver a iniciar sesion</a></p>
+         <p><a href="{{ route('login') }}"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver a iniciar sesión</a></p>
     </footer>
 @endsection

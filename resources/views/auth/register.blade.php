@@ -48,13 +48,13 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
-            <label class="pink" for="check">Acepto los terminos</label>
+            <label class="pink" for="check">Acepto los términos</label>
         </div>
     </div>
     <button class="btn" >Registrate</button>
 </form>
 
 <footer class="synapse__footer">
-    <p>Ya tienes cuenta? <a href="{{ route('login') }}">Inicia sesion</a></p>
+    <p>Ya tienes cuenta? <a href="{{ route('login') }}">Inicia sesión</a></p>
 </footer>
 @endsection

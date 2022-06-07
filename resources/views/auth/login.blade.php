@@ -5,7 +5,7 @@
 @section('content')
     <div class="synapse__introduce">
         <p>Bienvenido</p>
-        <h2>Inicia sesion con tu cuenta</h2>
+        <h2>Inicia sesión con tu cuenta</h2>
     </div>
     <form class="synapse__form" action="{{ route('login') }}" method="POST">
         @csrf
@@ -33,7 +33,7 @@
                 <label for="check">Recordar contraseña</label>
             </div>
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}">Se me olvido la contraseña</a>
+                <a href="{{ route('password.request') }}">Se me olvidó la contraseña</a>
             @endif
         </div>
         <button class="btn" >Iniciar sesion</button>
