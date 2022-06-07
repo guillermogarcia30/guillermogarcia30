@@ -70,23 +70,22 @@ i{
     margin-bottom: 3rem;
 }
 .synapse__introduce{
-    width: 100%;
+    width: 25rem;
     margin-bottom: 1rem; 
 }
 .synapse__introduce p{
     font-weight: 400;
 }
 .synapse__form{
-    width: 100%;
+    width: 25rem;
     margin: 1rem 0; 
 }
 .synapse__form-register-a,
 .synapse__form-register{
     display: flex;
     flex-direction: column;
-    height: 31rem;
-    width: 100%;
-    margin: 1rem 0; 
+    margin: 1rem 0;
+    width: 25rem; 
 }
 .synapse__form,
 .form__data-container{
@@ -118,10 +117,23 @@ i{
     color: var(--theme-color);
     background-color: var(--main-color);
 }
+.btn-fake{
+    display: block;
+    cursor: pointer;
+    padding: 1rem 1rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    margin: .8rem 0;
+    color: var(--theme-color);
+    background-color: var(--main-color);
+}
+
 .btn-recuperar{
     cursor: pointer;
     padding: 1rem .4rem;
     border: none;
+    width: 100%;
     border-radius: 5px;
     margin: 2rem 0;
     color: var(--theme-color);
@@ -134,6 +146,10 @@ i{
 }
 .synapse__footer > p > a{
     color: var(--main-color);
+}
+.synapse__footer-d{
+    text-align: center;
+    width: 100%;
 }
 .pink{
     color: var(--main-color);
@@ -235,6 +251,15 @@ input[class="password__recovery"]{
     border: #1bee08 2px solid ;
 }
 
+.bolder-black{
+    color: #000000;
+    font-weight: 700;
+}
+
+.span__blue{
+    color: var(--blue);
+}
+
 @media screen and (max-width: 1500px) {
     .synapse {
         height: 100vh;
@@ -272,7 +297,7 @@ input[class="password__recovery"]{
         padding: 5rem 3rem;
     }
 }
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 900px) {
     .synapse {
         border-radius: 20px;
         width: fit-content;
@@ -295,13 +320,25 @@ input[class="password__recovery"]{
     .form__options-container *{
         margin: .6rem 0;
     }
-    .synapse__form-register-a{
-        height: 25rem;
-        overflow: scroll;
-    }
+
 
 }
-
+@media screen and (max-width: 500px ) {
+    .synapse__form-register-a,
+    .synapse__form-register{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0;
+        width: 20rem; 
+    }
+    .synapse__form{
+        width: 20rem;
+    }
+    .synapse__introduce{
+        width: 20rem;
+        margin-bottom: 1rem; 
+    }
+}
 @media screen and (max-width: 400px) {
     :root{
         font-size: 14px;
