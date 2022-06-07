@@ -8,6 +8,7 @@
         <h2>Inicia sesion con tu cuenta</h2>
     </div>
     <form class="synapse__form" action="{{ route('login') }}" method="POST">
+        @csrf
         <div class="form__data-container">
             <label for="email">Correo electrónico</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus class="@error('email') is-invalid @enderror">
