@@ -101,4 +101,9 @@ class RegisterController extends Controller
     {
         return view('auth.registered');
     }
+
+    public function password_recovered()
+    {
+        return view('auth.password-recovered');
+    }
 }

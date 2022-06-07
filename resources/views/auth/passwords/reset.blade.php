@@ -7,8 +7,8 @@
         <img src="{{ asset('assets/llaves.svg') }}" alt="">
     </div>
     <div class="synapse__introduce">
-        <h2>Ingrese una nueva conraseña</h2>
-        <p class="dont__worry-d" >Su nueva contraseña debe ser diferente a la contraseña utilizada anteriormente</p>
+        <h2 align="center">Recuperar conraseña</h2>
+        <p class="dont__worry-d" >La nueva contraseña debe ser diferente a la contraseña utilizada anteriormente</p>
     </div>
     <form class="synapse__form" method="POST" action="{{ route('password.update') }}">
         @csrf
@@ -32,13 +32,13 @@
             @enderror
         </div>
         <div class="form__data-container">
-            <label for="password-confirm">Repite la contraseña</label>
+            <label for="password-confirm">Confirmar contraseña</label>
             <input class="password__recovery" id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
-            <small class="dont__worry-s" >Confirme otra vez la contraseña</small>
+            <small class="dont__worry-s" >Tiene que tener mas de 8 caracteres</small>
         </div>
         <button class="btn-recuperar" >Recuperar</button>
     </form>
     <footer class="synapse__footer" >
-        <p>Ya recuerdas tu contraseña? <a href="{{ route('login') }}">Inicia sesión</a></p>
+        <p>Ya recuerda su contraseña? <a href="{{ route('login') }}">Iniciar sesión</a></p>
     </footer>
 @endsection

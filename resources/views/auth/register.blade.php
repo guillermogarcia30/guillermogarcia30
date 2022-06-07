@@ -5,7 +5,7 @@
 @section('content')
 <div class="synapse__introduce">
     <p>Bienvenido</p>
-    <h2>Registrate</h2>
+    <h2>Registro</h2>
 </div>
 <form class="synapse__form-register-a" method="POST" action="{{ route('register') }}">
     @csrf
@@ -48,13 +48,13 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
-            <label class="pink" for="check">Acepto los términos</label>
+            <label class="pink" for="check">Aceptar los términos</label>
         </div>
     </div>
-    <button class="btn" >Registrate</button>
+    <button class="btn" >Registrarse</button>
 </form>
 
 <footer class="synapse__footer">
-    <p>Ya tienes cuenta? <a href="{{ route('login') }}">Inicia sesión</a></p>
+    <p>Ya posee una cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
 </footer>
 @endsection
