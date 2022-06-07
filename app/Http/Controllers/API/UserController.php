@@ -203,7 +203,7 @@ class UserController extends Controller
                 $folder = public_path('/images-profile/');
                 $image->move($folder, $path);
     
-                $app =  User::where('id','=',$id)->update([
+                $user =  User::where('id','=',$id)->update([
                     'profile_image' => $path,
                 ]);
     
