@@ -1,5 +1,7 @@
 @extends('layouts.login')
 
+@section('title', 'Registro de Usuario')
+
 @section('content')
 <div class="synapse__introduce">
     <p>Bienvenido</p>

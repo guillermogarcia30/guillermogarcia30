@@ -1,5 +1,7 @@
 @extends('layouts.login')
 
+@section('title', 'Recuperar Contraseña')
+
 @section('content')
     <div class="synapse__introduce">
         <p>Bienvenido nuevamente</p>
