@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/registered', [App\Http\Controllers\Auth\RegisterController::class, 'created'])->name('registered');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/app',App\Http\Controllers\AppController::class);
