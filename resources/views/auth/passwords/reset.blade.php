@@ -14,7 +14,7 @@
             <!--<label for="email">Correo electrónico</label>-->
             <input id="email" type="hidden" class="@error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
             @error('email')
-                <span class="invalid-feedback" role="alert">
+                <span style="color:red;" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -23,7 +23,7 @@
             <label for="password">Contraseña</label>
             <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
             @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span style="color:red;" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror

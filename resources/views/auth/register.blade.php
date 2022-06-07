@@ -13,7 +13,7 @@
         <label for="name">Nombre</label>
         <input required id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
         @error('name')
-            <span class="invalid-feedback" role="alert">
+            <span style="color:red;" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -22,7 +22,7 @@
         <label for="email">Correo electrónico</label>
         <input required id="email" id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
         @error('email')
-            <span class="invalid-feedback" role="alert">
+            <span style="color:red;" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -31,7 +31,7 @@
         <label for="password">Contraseña</label>
         <input required id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
         @error('password')
-            <span class="invalid-feedback" role="alert">
+            <span style="color:red;" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -42,7 +42,12 @@
     </div>
     <div class="form__options-container" >
         <div class="separador">
-            <input id="check" type="checkbox">
+            <input id="check" type="checkbox"  name="terms" class="@error('terms') is-invalid @enderror" required="required">
+            @error('terms')
+                <span style="color:red;" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             <label class="pink" for="check">Acepto los terminos</label>
         </div>
     </div>
