@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $access_token = $tokenResult->accessToken;
         setcookie("access_token", $access_token);   
-        
+
         return view('profile');
     }
 }

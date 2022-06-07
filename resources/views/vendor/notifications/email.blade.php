@@ -11,9 +11,9 @@
 @endif
 
 {{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
 
+@foreach ($introLines as $line)
+{{ $line }} 
 @endforeach
 
 {{-- Action Button --}}
@@ -29,7 +29,7 @@
     }
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
-{{ $actionText }}
+{{ $actionText }} 
 @endcomponent
 @endisset
 
@@ -51,7 +51,7 @@
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "Si tiene problemas para hacer clic en el \":actionText\" botón, copie y pegue la URL a continuación\n".
+    "Si tiene problemas para hacer clic en el botón \":actionText\", copie y pegue la URL a continuación\n".
     'en su navegador web:',
     [
         'actionText' => $actionText,

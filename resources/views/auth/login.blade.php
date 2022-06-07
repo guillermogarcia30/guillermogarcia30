@@ -5,9 +5,10 @@
 @section('content')
     <div class="synapse__introduce">
         <p>Bienvenido</p>
-        <h2>Inicia sesion con tu cuenta</h2>
+        <h2>Iniciar Sesión</h2>
     </div>
     <form class="synapse__form" action="{{ route('login') }}" method="POST">
+        @csrf
         <div class="form__data-container">
             <label for="email">Correo electrónico</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus class="@error('email') is-invalid @enderror">
@@ -32,12 +33,12 @@
                 <label for="check">Recordar contraseña</label>
             </div>
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}">Se me olvido la contraseña</a>
+                <a href="{{ route('password.request') }}">Olvidó su contraseña?</a>
             @endif
         </div>
         <button class="btn" >Iniciar sesion</button>
     </form>
     <footer class="synapse__footer" >
-        <p>No tienes cuenta? <a href="{{ route('register') }}">Registrate aquí</a></p>
+        <p>No posee una cuenta? <a href="{{ route('register') }}">Registrese aquí</a></p>
     </footer>
 @endsection
