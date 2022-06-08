@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     screens: {
       sm: '480px',
+      ms: '600px',
       md: '768px',
       lg: '976px',
       'semi-l': '1270px',
@@ -16,11 +17,12 @@ module.exports = {
       'black': '#000000',
       'black-transparent': '#00000030',
       'white': '#ffffff',
+      'white-b': '#FAFBFC',
       'blue': '#1fb6ff',
       'purple': '#7e5bef',
       'pink': '#FF2B44',
       'orange': '#ff7849',
-      'green': '#06c706',
+      'green': '#34C38F',
       'green-light': '#b8ffb8',
       'red': '#ff0000',
       'red-light':'#fbbdbd',
