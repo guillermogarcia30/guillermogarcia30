@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { FiBell } from 'react-icons/fi'
-import { BsTriangleFill } from 'react-icons/bs'
-import { BiLogOut } from 'react-icons/bi'
+import { Link } from "react-router-dom"
+
+
 import { getUser } from '../helpers/getUser'
 
 import { CustomLink } from './custom-link'
 import { Logo } from './icons/Logo'
+
 import { Toggle } from './Toggle'
+
+// Icons
+import { FiBell } from 'react-icons/fi'
+import { BsTriangleFill } from 'react-icons/bs'
+import { BiLogOut } from 'react-icons/bi'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { MenuAppIcon } from './icons/MenuAppIcon'
 
 export const Header = () => {
 
@@ -35,21 +43,60 @@ export const Header = () => {
                   id: 4,src: '/calendario', name: 'Calendario'
                 }]
   return (
-    <header className='fixed h-16 w-[100vw] px-11 bg-[#ffffff] dark:bg-darkmode-black-02 pt-4 shadow-md'>
+    <header className='fixed z-[100] h-16 w-[100vw] px-11 bg-[#ffffff] dark:bg-darkmode-black-02 pt-4 shadow-md'>
         <nav className='flex  items-center justify-between' >
-            <div className='flex items-center' >
+          
+            <div className='lg:flex hidden items-center' >
+              <button className='mr-3 focus-visible:outline-none focus-visible:border-none' ><MenuAppIcon/></button>
               <Logo/>
             </div>
-            <div className='flex items-center justify-between flex-grow-1/2' >
+            <div className='flex relative lg:hidden justify-between w-20' >
+              <button className='focus-visible:outline-none focus-visible:border-none' onClick={() => setDropDownView(!dropdownView)} ><GiHamburgerMenu className='text-[#8E8E8E] text-[1.2rem]' /></button>
+              
+              {
+                  dropdownView && (
+                    <div  className="lg:hidden fixed w-[100vw] top-[65px] left-[1px]  bg-white shadow dark:bg-darkmode-black-02">
+                      {
+                        links.map( el => { return (
+                          <div className='flex items-center justify-between px-2 py-3 cursor-pointer' >
+                              <CustomLink onClick={() => setDropDownView(!dropdownView)} to={el.src}>{el.name}</CustomLink>
+                          </div>
+                        ) } )
+                      }
+                      <div className='ml-3 relative border-t-2 border-solid border-t-gray-border pt-4' >
+                        <div className='w-10 h-10 rounded-full overflow-hidden mb-2'>
+                          <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
+                        </div>
+                        <Link onClick={() => setDropDownView(!dropdownView)} to={'/profile'} className='ml-2 lg:ml-0 font-medium focus-visible:outline-none text-gray-light' >Perfil</Link>
+                        <div className='w-2 h-2 absolute top-[15px] left-[29px]  bg-green rounded-full' ></div>
+                      </div>
+                      <div onClick={()=>{
+                        document.getElementById('logout-form').submit()
+                      }} className='flex items-center justify-between px-2 py-3 cursor-pointer' >
+                        <div className='flex justify-between w-[4rem] items-center ml-3'  >
+                          <p className='text-gray-light' >Salir</p>
+                          <BiLogOut className='text-gray-light' />
+                        </div>
+                      </div>
+                  </div>
+                  )
+                }
+              <div className='flex w-8  items-center' >
+                <img className='h-full' src="https://auth.synapse-crm.com/assets/favicon.png" alt="" />
+              </div>
+            </div>
+            
+            <div className='hidden lg:flex items-center justify-between flex-grow-1/2' >
                 { links.map( el => { return <CustomLink key={el.id} to={el.src}> {el.name} </CustomLink>})}
             </div>
             <div className='flex-grow-[0.2] justify-between flex items-center' >
+              <button className='mr-3 lg:hidden' ><MenuAppIcon/></button>
               <Toggle/>
               <button className='relative' >
                 <FiBell className='text-[1.5rem] dark:text-white' />
                 <div className='w-2 h-2 absolute top-0 right-[2px]  bg-red rounded-full' ></div>
               </button>
-              <div className='leading-[12px]' >
+              <div className='hidden lg:block leading-[12px]' >
                 <p className='text-black font-semibold dark:text-white' >{user.name}</p>
                 <small className='text-gray-light dark:text-soft-gray' > {user.position} </small>
               </div>
@@ -57,11 +104,11 @@ export const Header = () => {
                 <div className='w-10 h-10 rounded-full overflow-hidden '>
                   <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
                 </div>
-                <button onClick={() => setDropDownView(!dropdownView)} className='rotate-[179deg] absolute text-[.5rem] right-[-15px] top-0 bottom-0 margin-[auto]' ><BsTriangleFill/></button>
-                {/* Dropdown */}
+                <button onClick={() => setDropDownView(!dropdownView)} className='hidden lg:block rotate-[179deg] absolute text-[.5rem] right-[-15px] top-0 bottom-0 margin-[auto]' ><BsTriangleFill className='dark:text-white' /></button>
+                {/* Dropdown Desktop*/}
                 {
                   dropdownView && (
-                    <div  className="absolute w-36 bottom-[-55px] left-[-85px]  bg-white shadow dark:bg-darkmode-black-02">
+                    <div  className="hidden lg:block fixed w-36 top-[65px] right-[25px]  bg-white shadow dark:bg-darkmode-black-02">
                     <div onClick={()=>{
                       document.getElementById('logout-form').submit()
                     }} className='flex items-center justify-between px-2 py-3 cursor-pointer' >

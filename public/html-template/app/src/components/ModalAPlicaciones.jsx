@@ -4,7 +4,6 @@ import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik'
 import {  AiFillEye } from 'react-icons/ai'
 import { MdOutlineFileCopy } from 'react-icons/md'
 
-// import { createApp } from '../helpers/createApp'
 import { createAppAsync } from '../store/apps/thunks'
 
 import FileDragAndDropField from './FormikHelper' 
@@ -57,9 +56,9 @@ export const ModalAPlicaciones = ({view, hide }) => {
     }
 
   return (
-    <div style={view ?{display: 'flex'}:{display: 'none'}} className='justify-end bg-black-transparent z-50 absolute top-0 bottom-0 left-0 right-0 m-[0 auto]' >
-        <div className='bg-[#ffffff] dark:bg-darkmode-black-02 w-[40rem] h-full px-16 py-12' >
-            <h2 className='dark:text-[#ffffff] text-[2rem] font-semibold' >Crear una aplicacion</h2>
+    <div style={view ?{display: 'flex'}:{display: 'none'}} className='justify-end bg-black-transparent min-h-[100vh] z-[1000]  fixed top-0 bottom-0 left-0 right-0 m-[0 auto]' >
+        <div className='bg-[#ffffff] dark:bg-darkmode-black-02 w-full lg:w-auto h-full px-4 pt-8 sm:px-12 ms:px-24 md:px-40 lg:px-16 lg:py-12' >
+            <h2 className='dark:text-[#ffffff] z-[999] mb-8 text-[2rem] font-semibold' >Crear una aplicacion</h2>
             
             <Formik
             innerRef={formikRef}
@@ -94,7 +93,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
                 }} >
                 {({values, ...props}) => (
                     
-                    <Form className='py-12' >
+                    <Form className='' >
                         <div className='max-h-20 mb-7 flex' >
                             <div>
 
@@ -129,7 +128,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
                                 .catch( err => console.log(err) )
                                 }} >Regenerar</button>
                         </div>
-                        <Field disabled  name='secret' className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-[#ffffff] rounded px-3 py-2 focus:dark:bg-darkmode-black-02  mb-8 border-2 border-gray-light' id='secret' type={type} />
+                        <Field disabled  name='secret' className='dark:focus-visible:outline-none pr-20 lg:pr-0 focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-[#ffffff] rounded px-3 py-2 focus:dark:bg-darkmode-black-02  mb-8 border-2 border-gray-light' id='secret' type={type} />
                         <div className='w-12 flex justify-between absolute right-[1.25rem] bottom-[2.75rem]' >
                             <button onClick={async() => {
                                await navigator.clipboard.writeText(values.secret)

@@ -6,6 +6,10 @@ import { ModalAPlicaciones } from '../components/ModalAPlicaciones'
 import { ModalAPlicacionesEdit } from '../components/ModalAplicaionesEdit'
 import { appsSubscribed } from '../store/apps/appsSlice';
 
+// Icons
+import { AiOutlinePlus } from 'react-icons/ai'
+
+
 export const Dashboard = () => {
 
     const apps = useSelector(appsSubscribed)
@@ -23,10 +27,10 @@ export const Dashboard = () => {
     }
 
   return (
-    <div className='pt-24 min-h-[95vh] items-center px-40 flex flex-col' >
+    <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 px-8 flex flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
-            <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Aplicaciones</h2>
-            <button onClick={handleShowModal} className='bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
+            <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Aplicación</h2>
+            <button onClick={handleShowModal} className='lg:block hidden bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
         </div>
         <div className=' overflow-x-hidden duration-700 w-full min-h-[36.5rem]' >
             { apps.length? (apps.map( (el, i) => {
@@ -41,8 +45,8 @@ export const Dashboard = () => {
                  )}
         </div>
         <ModalAPlicaciones view={show} hide={handleShowModal} add={handleShowAndCLoseModal} />
-        <ModalAPlicacionesEdit add={add} />
-        
+        <ModalAPlicacionesEdit/>
+        <button onClick={handleShowModal} className='lg:hidden absolute bottom-3 right-4 bg-red text-white rounded-full font-semibold px-3 py-3' > <AiOutlinePlus className='text-[3rem]' /> </button>
     </div>
   )
 }

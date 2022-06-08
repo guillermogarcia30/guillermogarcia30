@@ -53,7 +53,7 @@ function App() {
         .then( res => {
           res.data.map( el => {
             dispatch( addApp({
-              logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
+              logo: el.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png',
               title: el.name, 
               token: el.id,
               secret: el.secret, 
@@ -74,13 +74,13 @@ function App() {
 
 
   return (
-    <div className='bg-soft-gray dark:bg-darkmode-black-01 relative' >
+    <div className='bg-white-b dark:bg-darkmode-black-01 relative' >
       <Header/>
       <Routes>
         <Route path='/home' element={<Dashboard/>} />
         <Route path='/profile' element={<Profile/>} />
       </Routes>
-      <Copyright/>
+      {/* <Copyright/> */}
       <ModalPetitionOk  />
       <ModalPetitionWrong/>
     </div>
