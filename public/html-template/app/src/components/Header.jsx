@@ -15,6 +15,7 @@ import { BsTriangleFill } from 'react-icons/bs'
 import { BiLogOut } from 'react-icons/bi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { MenuAppIcon } from './icons/MenuAppIcon'
+import { AiOutlineClose } from 'react-icons/ai'
 
 export const Header = () => {
 
@@ -51,7 +52,7 @@ export const Header = () => {
               <Logo/>
             </div>
             <div className='flex relative lg:hidden justify-between w-20' >
-              <button className='focus-visible:outline-none focus-visible:border-none' onClick={() => setDropDownView(!dropdownView)} ><GiHamburgerMenu className='text-[#8E8E8E] text-[1.2rem]' /></button>
+              <button className='focus-visible:outline-none focus-visible:border-none' onClick={() => setDropDownView(!dropdownView)} >{ !dropdownView ? <GiHamburgerMenu className='text-[#8E8E8E] text-[1.2rem]' /> : <AiOutlineClose className='text-[#8E8E8E] text-[1.2rem]' /> }</button>
               
               {
                   dropdownView && (
@@ -108,9 +109,11 @@ export const Header = () => {
                 <small className='text-gray-light dark:text-soft-gray' > {user.position} </small>
               </div>
               <div className='relative' >
-                <div className='w-10 h-10 rounded-full overflow-hidden '>
-                  <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
-                </div>
+                <Link to={'/profile'} >
+                  <div className='w-10 h-10 rounded-full overflow-hidden '>
+                    <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
+                  </div>
+                </Link>
                 <button onClick={() => setDropDownView(!dropdownView)} className='hidden lg:block rotate-[179deg] absolute text-[.5rem] right-[-15px] top-0 bottom-0 margin-[auto]' ><BsTriangleFill className='dark:text-white' /></button>
                 {/* Dropdown Desktop*/}
                 {
