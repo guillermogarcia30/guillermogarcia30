@@ -33,12 +33,12 @@
                 <label for="check">Recordar contraseña</label>
             </div>
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}">Olvidó su contraseña?</a>
+                <a href="{{ route('password.request') }}">¿Olvidó su contraseña?</a>
             @endif
         </div>
         <button class="btn" >Iniciar sesion</button>
     </form>
     <footer class="synapse__footer" >
-        <p>No posee una cuenta? <a href="{{ route('register') }}">Registrese aquí</a></p>
+        <p>¿No posee una cuenta? <a href="{{ route('register') }}">Registrese aquí</a></p>
     </footer>
 @endsection

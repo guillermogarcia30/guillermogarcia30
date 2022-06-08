@@ -55,6 +55,6 @@
 </form>
 
 <footer class="synapse__footer">
-    <p>Ya posee una cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
+    <p>¿Ya posee una cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
 </footer>
 @endsection

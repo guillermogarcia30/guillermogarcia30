@@ -39,6 +39,6 @@
         <button class="btn-recuperar" >Recuperar</button>
     </form>
     <footer class="synapse__footer" >
-        <p>Ya recuerda su contraseña? <a href="{{ route('login') }}">Iniciar sesión</a></p>
+        <p>¿Ya recuerda su contraseña? <a href="{{ route('login') }}">Iniciar sesión</a></p>
     </footer>
 @endsection

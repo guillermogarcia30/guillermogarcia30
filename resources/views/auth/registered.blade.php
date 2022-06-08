@@ -11,7 +11,7 @@
         <p class="dont__worry-d" >
             <span class="span__blue" >!Felicidades¡</span> 
             ya te registraste en <span class="bolder-black" >Synapse</span>, 
-            dale al boton de <span class="pink">iniciar sesion</span>
+            dale al boton de <span class="pink">Iniciar sesion</span>
         </p>
     </div>
     <footer class="synapse__footer-d" >
