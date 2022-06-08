@@ -30,7 +30,7 @@ export const Dashboard = () => {
     <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 px-8 flex flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
             <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Aplicación</h2>
-            <button onClick={handleShowModal} className='lg:block hidden bg-red text-white rounded-[10px] font-semibold px-3 py-1' >+ Agregar</button>
+            <button onClick={handleShowModal} className='lg:block hidden bg-red text-white rounded-[5px] font-semibold px-[4px] py-[10px]' >+ Agregar</button>
         </div>
         <div className=' overflow-x-hidden duration-700 w-full min-h-[36.5rem]' >
             { apps.length? (apps.map( (el, i) => {

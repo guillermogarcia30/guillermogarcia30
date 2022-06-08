@@ -62,6 +62,7 @@ img{
     margin-bottom: 3rem;
 }
 .synapse__introduce{
+    text-align: center;
     width: 25rem;
     margin-bottom: 1rem; 
 }
@@ -335,6 +336,7 @@ input[class="password__recovery"]{
         width: 20rem;
     }
     .synapse__introduce{
+        text-align: center;
         width: 20rem;
         margin-bottom: 1rem; 
     }
