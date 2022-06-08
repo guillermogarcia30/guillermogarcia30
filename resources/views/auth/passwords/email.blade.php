@@ -9,7 +9,7 @@
     <div class="recovery__img" >
         <img src="{{ asset('assets/llaves.svg') }}" alt="llaves">
     </div>
-    <div class="synapse__introduce">
+    <div class="synapse__introduce" style="text-align: center;" >
         <h2 align="center">¿Olvidó su contraseña?</h2>
     </div>
     <form class="synapse__form" method="POST" action="{{ route('password.email') }}">
@@ -25,7 +25,7 @@
         </div>
         <button class="btn-recuperar">Enviar Correo</button>
     </form>
-    <footer class="synapse__footer" >
-         <p><a href="{{ route('login') }}" align="center"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Iniciar sesión</a></p>
+    <footer class="synapse__footer" style="text-align:center;">
+         <p><a href="{{ route('login') }}"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Iniciar sesión</a></p>
     </footer>
 @endsection

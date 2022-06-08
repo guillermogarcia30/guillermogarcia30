@@ -3,7 +3,7 @@
 @section('title', 'Inicio de Sesión')
 
 @section('content')
-    <div class="synapse__introduce">
+    <div class="synapse__introduce" style="text-align: center;" >
         <p>Bienvenido</p>
         <h2>Iniciar Sesión</h2>
     </div>
