@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Auth;
 use DB;
 use Carbon\Carbon;
+use App\Models\Country;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\RoleUser;
@@ -296,8 +297,18 @@ class UserController extends Controller
         $position = $decode->position;
 
         try {
+
+            $country = Country::where('id','=',$country_id)->count();
+            
             $exists = User::where([['email','=',$email],['id','!=',$id]])->count();
-            if ($exists == 1) {
+            
+            if ($country == 0) {
+                $response = [
+                    'error' => true,
+                    'description' => "No country found with id ".$country_id,
+                ];
+                return response($response,500);
+            }else if ($exists == 1) {
                 $response = [
                     'error' => true,
                     'description' => "There is already another user with email ".$email.", try another",
