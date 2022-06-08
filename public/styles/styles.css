@@ -38,15 +38,13 @@ input[type="checkbox"]{
 img{
     height: 100%;
 }
-/* Layout */
-.main__container{
-    display: flex;
-}
+
 /* synapse */
 .synapse{
     width: 40rem;
     height: 100vh;
     margin: 0 auto;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -140,6 +138,9 @@ img{
 }
 .synapse__footer > p > a{
     color: var(--main-color);
+}
+.synapse__footer{
+    width: 25rem;
 }
 .synapse__footer-d{
     text-align: center;
@@ -256,6 +257,7 @@ input[class="password__recovery"]{
 
 @media screen and (max-width: 1500px) {
     .synapse {
+        margin-top: 3rem;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -265,6 +267,7 @@ input[class="password__recovery"]{
 }
 @media screen and (max-width: 1285px) {
     .synapse {
+        margin-top: 3rem;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -279,10 +282,12 @@ input[class="password__recovery"]{
         flex-direction: column;
         align-items: center;
         padding: 5rem 3rem;
+        margin-top: 3rem;
     }
 }
 @media screen and (max-width: 930px) {
     .synapse {
+        margin-top: 3rem;
         width: 55vw;
         height: 100vh;
         display: flex;
@@ -304,6 +309,7 @@ input[class="password__recovery"]{
         left: 0;
         right: 0;
         margin: auto;
+        margin-top: 3rem;
     }
     .form__options-container{
         flex-direction: column;
@@ -323,6 +329,9 @@ input[class="password__recovery"]{
         width: 20rem; 
     }
     .synapse__form{
+        width: 20rem;
+    }
+    .synapse__footer{
         width: 20rem;
     }
     .synapse__introduce{

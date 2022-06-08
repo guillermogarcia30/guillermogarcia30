@@ -6,7 +6,7 @@
     <div class="recovery__img" >
         <img src="{{ asset('assets/llaves.svg') }}" alt="">
     </div>
-    <div class="synapse__introduce">
+    <div class="synapse__introduce" style="text-align: center;" >
         <h2 align="center">Recuperar conraseña</h2>
         <p class="dont__worry-d" >La nueva contraseña debe ser diferente a la contraseña utilizada anteriormente</p>
     </div>
@@ -39,6 +39,6 @@
         <button class="btn-recuperar" >Recuperar</button>
     </form>
     <footer class="synapse__footer" >
-        <p>Ya recuerda su contraseña? <a href="{{ route('login') }}">Iniciar sesión</a></p>
+        <p>¿Ya recuerda su contraseña? <a href="{{ route('login') }}">Iniciar sesión</a></p>
     </footer>
 @endsection

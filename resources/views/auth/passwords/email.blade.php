@@ -1,10 +1,6 @@
 @extends('layouts.login')
 
 @section('content')
-    <div class="synapse__introduce">
-        <p>Bienvenido</p>
-        <h2>Recuperar contraseña</h2>
-    </div>
     @if (session('status'))
         <div style="font-weight: bold;">
             {{ session('status') }}
@@ -12,6 +8,9 @@
     @endif
     <div class="recovery__img" >
         <img src="{{ asset('assets/llaves.svg') }}" alt="llaves">
+    </div>
+    <div class="synapse__introduce" style="text-align: center;" >
+        <h2 align="center">¿Olvidó su contraseña?</h2>
     </div>
     <form class="synapse__form" method="POST" action="{{ route('password.email') }}">
         @csrf
@@ -26,7 +25,7 @@
         </div>
         <button class="btn-recuperar">Enviar Correo</button>
     </form>
-    <footer class="synapse__footer" >
+    <footer class="synapse__footer" style="text-align:center;">
          <p><a href="{{ route('login') }}"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Iniciar sesión</a></p>
     </footer>
 @endsection

@@ -3,7 +3,7 @@
 @section('title', 'Registro de Usuario')
 
 @section('content')
-<div class="synapse__introduce">
+<div class="synapse__introduce" style="text-align: center;" >
     <p>Bienvenido</p>
     <h2>Registro</h2>
 </div>
@@ -55,6 +55,6 @@
 </form>
 
 <footer class="synapse__footer">
-    <p>Ya posee una cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
+    <p>¿Ya posee una cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
 </footer>
 @endsection
