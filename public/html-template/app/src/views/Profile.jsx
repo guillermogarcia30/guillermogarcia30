@@ -47,6 +47,7 @@ export const Profile = () => {
     <div className='pt-24 min-h-[100vh] items-center lg:px-40 px-8 flex flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
             <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Perfil</h2>
+            <h4 className='font-normal text-lg' >Aplicación <span className='text-gray-light' >/ perfil</span></h4>
         </div>
         <div className='w-full ' >
             {/* Datos principales */}
@@ -63,7 +64,7 @@ export const Profile = () => {
                     <div className="flex flex-col ml-4 relative">
                         <h4 className='text-[#000000] dark:text-white font-bold text-lg lg:text-xl' >{userData.name}</h4>
                         <p className='font-semibold dark:text-soft-gray text-gray-light' >Vinculados</p>
-                        <Link to={''} className='absolute right-[-30px] top-[7px]' ><FiEdit/></Link>
+                        <Link to='/profile/configuration' className='absolute right-[-30px] top-[7px]' ><FiEdit className='text-gray-light' /></Link>
                     </div>
                 </div>
                 {/* Cargo y pais */}

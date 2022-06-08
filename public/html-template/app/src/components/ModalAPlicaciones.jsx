@@ -87,7 +87,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
                         errors.secret = 'Por favor vuelva a generar el secret'
                     }
                     if(values.appurls[0].appurl.length < 2){
-                        errors.appurls = 'Debe colocar almenos una url a la aplicacion'
+                        errors.appurls = 'Debe colocar almenos una url a la aplicación'
                     }
                     values.appurls.forEach( el => {
                         if(el.appurl.length > 0){

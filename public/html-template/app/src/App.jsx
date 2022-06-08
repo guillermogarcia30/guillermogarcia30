@@ -11,8 +11,9 @@ import { seTtoken, setUserData } from './store/user/userSlice'
 
 import { Profile } from './views/Profile';
 import { Dashboard } from './views/dashboard';
+import { ProfileConfiguration } from './views/ProfileConfiguration';
+
 import { Header } from './components/Header'
-import { Copyright } from './components/copyright'
 import { ModalPetitionOk } from './components/modalPetitionOk'
 import { ModalPetitionWrong } from './components/modalPetitionWrong'
 
@@ -88,6 +89,7 @@ function App() {
       <Routes>
         <Route path='/home' element={<Dashboard/>} />
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/profile/configuration' element={<ProfileConfiguration/>} />
       </Routes>
       {/* <Copyright/> */}
       <ModalPetitionOk  />
