@@ -11,8 +11,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400&display=swap" rel="stylesheet">
         <link rel="manifest" href="/manifest.json"/>
         <title>Synapse</title>
-        <script defer="defer" src="/static/js/main.5fba2c97.js"></script>
-        <link href="/static/css/main.b517331c.css" rel="stylesheet">
+        <script defer="defer" src="/static/js/main.bf70c4ac.js"></script>
+        <link href="/static/css/main.b1a6dcbe.css" rel="stylesheet">
     </head>
     <body>
         @yield('content')

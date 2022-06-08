@@ -63,17 +63,24 @@ export const Header = () => {
                           </div>
                         ) } )
                       }
-                      <div className='ml-3 relative border-t-2 border-solid border-t-gray-border pt-4' >
+                      <div className='ml-3 flex items-center relative border-t-2 border-solid border-t-gray-border pt-4' >
                         <div className='w-10 h-10 rounded-full overflow-hidden mb-2'>
                           <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
                         </div>
-                        <Link onClick={() => setDropDownView(!dropdownView)} to={'/profile'} className='ml-2 lg:ml-0 font-medium focus-visible:outline-none text-gray-light' >Perfil</Link>
+                        <div className='ml-4 leading-[20px] flex flex-col items-start' >
+                          <p className='text-black font-semibold dark:text-white' >{user.name}</p>
+                          <small className='text-gray-light dark:text-soft-gray' > {user.position}</small>
+                        </div>
+
                         <div className='w-2 h-2 absolute top-[15px] left-[29px]  bg-green rounded-full' ></div>
+                      </div>
+                      <div>
+                        <Link onClick={() => setDropDownView(!dropdownView)} to={'/profile'} className='ml-3 lg:ml-0 font-medium focus-visible:outline-none text-gray-light' >Perfil</Link>
                       </div>
                       <div onClick={()=>{
                         document.getElementById('logout-form').submit()
                       }} className='flex items-center justify-between px-2 py-3 cursor-pointer' >
-                        <div className='flex justify-between w-[4rem] items-center ml-3'  >
+                        <div className='flex justify-between w-[4rem] items-center ml-1'  >
                           <p className='text-gray-light' >Salir</p>
                           <BiLogOut className='text-gray-light' />
                         </div>
@@ -89,7 +96,7 @@ export const Header = () => {
             <div className='hidden lg:flex items-center justify-between flex-grow-1/2' >
                 { links.map( el => { return <CustomLink key={el.id} to={el.src}> {el.name} </CustomLink>})}
             </div>
-            <div className='flex-grow-[0.2] justify-between flex items-center' >
+            <div className='lg:flex-grow-[0.2] flex-grow-[0.5] justify-between flex items-center' >
               <button className='mr-3 lg:hidden' ><MenuAppIcon/></button>
               <Toggle/>
               <button className='relative' >

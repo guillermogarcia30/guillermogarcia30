@@ -34,7 +34,7 @@ export const Profile = () => {
                         </div>
                     </div>
                     <div className="flex flex-col ml-4 relative">
-                        <h4 className='text-[#000000] dark:text-white font-bold text-lg lg:text-xl' >{userData.name} Edward Colmenarez</h4>
+                        <h4 className='text-[#000000] dark:text-white font-bold text-lg lg:text-xl' >{userData.name}</h4>
                         <p className='font-semibold dark:text-soft-gray text-gray-light' >Vinculados</p>
                         <Link to={''} className='absolute right-[-30px] top-[7px]' ><FiEdit/></Link>
                     </div>
