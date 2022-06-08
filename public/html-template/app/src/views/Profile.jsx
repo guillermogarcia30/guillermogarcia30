@@ -13,8 +13,35 @@ import { FiEdit } from 'react-icons/fi'
 
 export const Profile = () => {
 
+    const loading = useSelector( state => state.apps.loading )
+
     const userData = useSelector( state => state.user )
     const dispatch = useDispatch()
+
+    if (loading) {
+        return (
+        <div className='pt-24 min-h-[100vh] items-center lg:px-40 px-8 flex flex-col'>
+            <div className='flex items-center justify-between w-full my-4'>
+                <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Perfil</h2>
+            </div>
+            <div className='w-full '>
+            <div className='w-full shadow-lg rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'>
+                <div className='flex mb-4' >
+                    <div className='relative cursor-pointer' >
+                        <div className='w-[6rem] h-[6rem] rounded-full overflow-hidden' >
+                            <img className='w-full min-h-full' src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' alt="foto de perfil" />
+                        </div>
+                        <div className='absolute right-0 bottom-[-5px] bg-gray-light w-8 h-8 rounded-full flex justify-center items-center' >
+                            <FiCamera className='text-white text-[1.2rem]' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        )
+    }
 
   return (
     <div className='pt-24 min-h-[100vh] items-center lg:px-40 px-8 flex flex-col' >

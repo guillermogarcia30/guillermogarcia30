@@ -14,7 +14,8 @@ const initialState = {
   //   website: 'https://www.betabox.com'
   // }
   ],
-  AppsBackup: []
+  AppsBackup: [],
+  loading: true
 };
 
 
@@ -31,10 +32,13 @@ export const appSlice = createSlice({
     removeApp: (state, action) => {
       state.apps = state.apps.filter((b) => b.id !== action.payload.id)
     },
+    setLoadingFalse: (state) => {
+      state.loading = false
+    }
   },
 });
 
-export const { addApp, removeApp, clearApps } = appSlice.actions;
+export const { addApp, removeApp, clearApps, setLoadingFalse } = appSlice.actions;
 
 
 export const appsSubscribed = (state) => state.apps.apps;

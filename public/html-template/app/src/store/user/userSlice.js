@@ -11,7 +11,7 @@ const initialState = {
     address: '',
     phone: '',
     position: '',
-    image: 'https://external-preview.redd.it/CgG0Niv1V1DUujXD7PfW5HfzgWCoXNcG0aklNvERYVw.jpg?width=640&crop=smart&auto=webp&s=51ef185c2a471324b7a6b3d18799926e11f6116d'
+    image: ''
 }
 
 const userSlice = createSlice({

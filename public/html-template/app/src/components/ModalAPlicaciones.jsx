@@ -19,7 +19,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
             appurl: ''
         }
     ]
-
+    let regxp = new RegExp(/^(https|localhost)[^ "]+$/)
     const formikRef = useRef()
 
     const [ type, setInputType] = useState('password')
@@ -56,9 +56,9 @@ export const ModalAPlicaciones = ({view, hide }) => {
     }
 
   return (
-    <div style={view ?{display: 'flex'}:{display: 'none'}} className='justify-end bg-black-transparent min-h-[100vh] z-[1000]  fixed top-0 bottom-0 left-0 right-0 m-[0 auto]' >
-        <div className='bg-[#ffffff] dark:bg-darkmode-black-02 w-full lg:w-auto h-full px-4 pt-8 sm:px-12 ms:px-24 md:px-40 lg:px-16 lg:py-12' >
-            <h2 className='dark:text-[#ffffff] z-[999] mb-8 text-[2rem] font-semibold' >Crear una aplicacion</h2>
+    <div style={view ?{display: 'flex'}:{display: 'none'}} className=' justify-end bg-black-transparent min-h-[100vh] z-[1000]  fixed top-0 bottom-0 left-0 right-0 m-[0 auto]' >
+        <div className='overflow-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-pink bg-[#ffffff] dark:bg-darkmode-black-02 w-full lg:w-auto h-full px-4 pt-8 sm:px-12 ms:px-24 md:px-40 lg:px-16 lg:py-12' >
+            <h2 className='dark:text-[#ffffff] z-[999] mb-8 text-[2rem] font-semibold' >Crear una aplicación</h2>
             
             <Formik
             innerRef={formikRef}
@@ -89,6 +89,13 @@ export const ModalAPlicaciones = ({view, hide }) => {
                     if(values.appurls[0].appurl.length < 2){
                         errors.appurls = 'Debe colocar almenos una url a la aplicacion'
                     }
+                    values.appurls.forEach( el => {
+                        if(el.appurl.length > 0){
+                            if(!regxp.test(el.appurl)){
+                                errors.appurls = 'Las URLS deben ser "localhost" o "https"'
+                            }
+                        }    
+                    })
                     return errors;
                 }} >
                 {({values, ...props}) => (
@@ -140,7 +147,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
                         <label className='mb-2 text-dark-blue dark:text-darkmode-blue-01 font-normal' htmlFor="appurls" >App url</label>
                         <FieldArray  name='appurls' className='dark:focus-visible:outline-none focus-visible:outline-none dark:bg-darkmode-black-02 dark:text-[#ffffff] rounded px-3 py-2 focus:dark:bg-darkmode-black-02  border-2 border-gray-light' id='appurl' type="text" >
                         {({ insert, remove, push }) => (
-                        <div className='overflow-scroll overflow-x-hidden max-h-[11rem] scrollbar-thin scrollbar-thumb-pink pr-4 scrollbar-track-black-transparent dark:scrollbar-track-gray-border ' >
+                        <div className='scrollbar-track-black-transparent dark:scrollbar-track-gray-border ' >
                             {values.appurls.length > 0 &&
                             values.appurls.map((appurls, index) => (
                                 <div className="mb-2" key={index}>
@@ -158,7 +165,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
                             className='text-pink mb-8 text-right w-full '
                             onClick={() => push({ appurl: '' })}
                             >
-                            + Agregar
+                            Agregar +
                             </button>
                         </div>
                         )}
@@ -169,7 +176,7 @@ export const ModalAPlicaciones = ({view, hide }) => {
                     <ErrorMessage className='text-red' name='website' component='p' />
                     <ErrorMessage className='text-red' name='secret' component='p' />
                     <ErrorMessage className='text-red' name='appurls' component='p' />
-                    <div className='mt-4 flex justify-between' >
+                    <div className='mt-4 pb-8 flex justify-between' >
                         <button type='reset' className='w-[45%] bg-[#ffffff] border border-solid rounded-[10px] font-semibold px-3 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink ' onClick={hide} >Volver</button>
                         <button type='submit' className='w-[45%] bg-pink text-white rounded-[10px] font-semibold px-3 py-2'  >Guardar</button>
                     </div>

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { getUser } from './helpers/getUser'
 
 import { useDispatch } from 'react-redux'
-import { addApp, clearApps } from './store/apps/appsSlice' 
+import { addApp, clearApps, setLoadingFalse } from './store/apps/appsSlice' 
 import { seTtoken, setUserData } from './store/user/userSlice'
 
 import { Profile } from './views/Profile';
@@ -51,23 +51,32 @@ function App() {
        headers: headersList
       }).then( res => res.json() )
         .then( res => {
-          res.data.map( el => {
-            dispatch( addApp({
-              logo: el.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png',
-              title: el.name, 
-              token: el.id,
-              secret: el.secret, 
-              status: el.revoked === 0 ? true : false, 
-              fabricante: el.maker || 'Desconocido',
-              appurls: el.redirect || "https://" ,
-              website: el.website || 'No posee un sito web',
-              id: el.id
-            }) )
-          })
+          if (!res.error) {
+            res.data.map( el => {
+              dispatch( addApp({
+                logo: el.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png',
+                title: el.name, 
+                token: el.id,
+                secret: el.secret, 
+                status: el.revoked === 0 ? true : false, 
+                fabricante: el.maker || 'Desconocido',
+                appurls: el.redirect || "https://" ,
+                website: el.website || 'No posee un sito web',
+                id: el.id
+              }) )
+            })
+            dispatch( setLoadingFalse() )
+          }
+          else {
+            dispatch( setLoadingFalse() )
+          }
         } )
       }
-      else console.log(res)
-    });
+      else {
+        console.log(res)
+        dispatch( setLoadingFalse() )
+      }
+    }).catch( dispatch( setLoadingFalse() ) );
   }, [dispatch])
 
     
