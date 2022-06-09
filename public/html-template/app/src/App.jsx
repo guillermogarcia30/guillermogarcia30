@@ -38,7 +38,7 @@ function App() {
       dispatch(clearApps())
       
       dispatch(seTtoken({ token: res.token }))
-      dispatch(setUserData({ email: res.user.email, tenant: res.tenant_id, name: res.user.name, birthDAte: res.user.birth_date, adress: res.user.adress, phone: res.user.phone, position: res.position, image: res.user.image, ciudad: res.user.city, pais: res.user.country_name }))
+      dispatch(setUserData({ email: res.user.email, tenant: res.tenant_id, name: res.user.name, birthDAte: res.user.birth_date, adress: res.user.adress, phone: res.user.phone, position: res.position, image: res.user.profile_image, ciudad: res.user.city, pais: res.user.country_name }))
 
 
       let headersList = {
