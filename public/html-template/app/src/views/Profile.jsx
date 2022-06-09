@@ -20,7 +20,7 @@ export const Profile = () => {
 
     if (loading) {
         return (
-        <div className='pt-24 min-h-[100vh] items-center lg:px-40 xl:px-80 px-8 flex flex-col'>
+        <div className='pt-24 min-h-[100vh] items-center lg:px-40 xl:px-52 px-8 flex flex-col'>
             <div className='flex items-center justify-between w-full my-4'>
                 <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Perfil</h2>
             </div>
@@ -44,7 +44,7 @@ export const Profile = () => {
     }
 
   return (
-    <div className='pt-24 min-h-[100vh] items-center lg:px-40 xl:px-80 px-8 flex flex-col' >
+    <div className='pt-24 min-h-[100vh] items-center lg:px-40 xl:px-52 px-8 flex flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
             <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Perfil</h2>
             <h4 className='font-normal text-lg' >Aplicación <span className='text-gray-light' >/ perfil</span></h4>

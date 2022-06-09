@@ -14,7 +14,7 @@ export const ProfileConfiguration = () => {
 
 
   return (
-    <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-80 px-8 flex flex-col' >
+    <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-52 px-8 flex flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
             <h2 className='text-2xl dark:text-[#ffffff] font-semibold' >Configuración</h2>
             <h4 className='font-normal text-lg lg:block hidden' >Perfil <span className='text-gray-light' >/ configuración</span></h4>

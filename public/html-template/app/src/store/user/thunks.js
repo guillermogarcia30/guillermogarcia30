@@ -1,4 +1,5 @@
 import { onErrorOpen, onProfilePicClose } from '../modals/modalEditSlice'
+import { setUserImg } from './userSlice'
 
 const imgUpdateUrl = 'https://auth.synapse-crm.com/api/user/me/image'
 
@@ -25,9 +26,11 @@ export const changeProfilePicture = (token, image) => {
         .then( res => {
 
             if (!res.error) {
+                console.log(res)
                 dispatch( onProfilePicClose() )
-                dispatch({image: res.image })
+                dispatch(setUserImg({image: res.image }))
             }else {
+                console.log(res)
                 dispatch( onProfilePicClose() )
                 dispatch(onErrorOpen())                
             }

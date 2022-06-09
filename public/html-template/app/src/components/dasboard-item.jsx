@@ -47,9 +47,9 @@ export const DasboardItem = ({logo, title, token, secret = '', status, id, fabri
             <div className='lg:w-12 lg:h-12 w-16 h-16 mb-4 lg:mb-0' >
                 <img className='w-full h-full' src={logo} alt={title} />
             </div>
-                <h3 className='dark:text-[#ffffff] font-semibold text-lg lg:ml-16 max-w-[12rem] mb-4 lg:mb-0' >{title}</h3>
+                <h3 className='dark:text-[#ffffff] font-semibold text-lg lg:ml-5 semi-l:ml-16 max-w-[12rem] mb-4 lg:mb-0' >{title}</h3>
         </div>
-        <div className='break-all min-w-[15rem] lg:pr-12 lg:border-r-2 lg:border-solid lg:border-r-gray-border' >
+        <div className='break-all min-w-[13rem] lg:pr-4 semi-l:pr-12 lg:w-40 semi-l:w-auto lg:border-r-2 lg:border-solid lg:border-r-gray-border' >
             <h4 className='text-dark-blue text-sm lg:text-base text-center lg:text-left dark:text-darkmode-blue-01 font-semibold' >{token}</h4>
             <p className='dark:text-[#ffffff] text-sm lg:text-base text-center lg:text-left' >Secret: {decodeSecret}</p>
         </div>

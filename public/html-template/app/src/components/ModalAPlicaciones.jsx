@@ -162,11 +162,11 @@ export const ModalAPlicaciones = ({view, hide }) => {
                                 </div>
                             ))}
                             <div className='flex items-center pl-3' >
-                                <button disabled={ values.appurls.length === 1 ? true : false } className='text-pink mb-8 text-right w-full' type='button'
+                                <button hidden={ values.appurls.length === 1 ? true : false } className='text-pink mb-8 text-right w-full focus-visible:outline-none focus-visible:border-none' type='button'
                                 onClick={() => remove(values.appurls.length - 1)} > <ImMinus /> </button>
                                 <button
                                 type="button"
-                                className='text-pink mb-8 text-right w-full '
+                                className='text-pink mb-8 text-right w-full focus-visible:outline-none focus-visible:border-none'
                                 onClick={() => push({ appurl: '' })}
                                 >
                                 Agregar +
