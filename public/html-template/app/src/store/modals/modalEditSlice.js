@@ -10,7 +10,8 @@ const initialState = {
   fabricante: '',
   website: '',
   appurls: '',
-  secret: ''
+  secret: '',
+  changeOk: false
 };
 
 
@@ -51,11 +52,14 @@ export const modalSlice = createSlice({
     },
     onProfilePicClose: (state) => {
       state.changeProfilePic = false
+    },
+    setChangeOk: (state, actions) => {
+      state.changeOk = actions.payload.ok
     }
   },
 });
 
-export const { showModal, hideModal, onErrorClose, onErrorOpen, onSuccesClose, onSuccesOpen, onProfilePicOpen, onProfilePicClose } = modalSlice.actions;
+export const { showModal, hideModal, onErrorClose, onErrorOpen, onSuccesClose, onSuccesOpen, onProfilePicOpen, onProfilePicClose, setChangeOk } = modalSlice.actions;
 
 
 export const modalSubscribed = (state) => state.modal;
