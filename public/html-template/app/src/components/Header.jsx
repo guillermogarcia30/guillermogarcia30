@@ -25,7 +25,7 @@ export const Header = () => {
   useEffect(() => {
     getUser().then( res => {
       if(!res.error){}
-      setUSer({ image: res.user.image || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: res.user.name || 'John Doe' , position: res.user.position || 'la posicion no fue especificada' })
+      setUSer({ image: res.user.profile_image || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: res.user.name || 'John Doe' , position: res.user.position || 'la posicion no fue especificada' })
       console.log(res)
     } )
 

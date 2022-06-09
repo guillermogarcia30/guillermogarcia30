@@ -8,8 +8,9 @@ const imgUpdateUrl = 'https://auth.synapse-crm.com/api/user/me/image'
 export const changeProfilePicture = (token, image) => {
     
     return async(dispatch) => {
+        
         dispatch( onProfilePicClose() )
-        console.log(image)
+        console.log('cargando')
         if(image)
         {
             let formData = new FormData()
@@ -24,7 +25,7 @@ export const changeProfilePicture = (token, image) => {
         })
         .then( res => res.json() )
         .then( res => {
-
+            console.log('fin de la carga')
             if (!res.error) {
                 dispatch( onProfilePicClose() )
                 dispatch(setUserImg({image: res.image }))
@@ -34,7 +35,9 @@ export const changeProfilePicture = (token, image) => {
                 dispatch(onErrorOpen())                
             }
         } )
-        .catch(dispatch(onErrorOpen()))
+        .catch( err => { 
+            console.log(err) 
+            dispatch(onErrorOpen()) })
         }
     }
 }

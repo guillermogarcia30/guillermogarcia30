@@ -194,7 +194,11 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                     dispatch(onErrorOpen())
                 }
                 }
-            }).catch(dispatch(onErrorOpen()));
+            }).catch( err => { 
+                console.log(err) 
+                dispatch(onErrorOpen()) }
+            )
+            
 
         if (image) {
             const formData = new FormData()
@@ -231,7 +235,10 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                     console.log(res)
                     dispatch(onErrorOpen())
                 }
-              }).catch(dispatch(onErrorOpen()));
+              }).catch( err => { 
+                console.log(err) 
+                dispatch(onErrorOpen()) }
+            )
         }
     }
 }
