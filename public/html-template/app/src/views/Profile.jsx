@@ -76,7 +76,7 @@ export const Profile = () => {
             {/* Fin de datos principales */}
             {/* Datos personales */}
             <div className='w-full shadow-lg rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-3 flex-col mt-8'>
-                <h4 className='mb-2 text-[#000000] dark:text-white font-bold text-[1.5rem]' >Informacion Personal</h4>
+                <h4 className='mb-2 text-[#000000] dark:text-white font-bold text-lg lg:text-xl' >Informacion Personal</h4>
                 <div className='flex justify-between lg:items-center flex-col lg:flex-row ' >
                     <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Fecha de nacimiento: <span className='text-gray-dark dark:text-soft-gray ' >{userData.birthDay}</span></p>
                     <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Ciudad: <span className='text-gray-dark dark:text-soft-gray ' >{userData.ciudad}</span></p>
@@ -86,7 +86,7 @@ export const Profile = () => {
             {/* Fin de Datos personales */}
             {/* Telefono */}
             <div className='w-full shadow-lg rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-3 flex-col mt-8'>
-                <h4 className='mb-2 text-[#000000] dark:text-white font-bold text-[1.5rem]' >Telefono</h4>
+                <h4 className='mb-2 text-[#000000] dark:text-white font-bold text-lg lg:text-xl' >Telefono</h4>
                 <div className='flex justify-between items-center' >
                     <p className=' dark:text-white font-semibold' >Telefono personal: <span className='text-gray-dark dark:text-soft-gray ' >{userData.phone}</span></p>
                 </div>
@@ -94,7 +94,7 @@ export const Profile = () => {
             {/* Fin de telefono */}
             {/* Email */}
             <div className='w-full shadow-lg rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-3 flex-col mt-8'>
-                <h4 className='mb-2 text-[#000000] dark:text-white font-bold text-[1.5rem]' >Correo Electronico</h4>
+                <h4 className='mb-2 text-[#000000] dark:text-white font-bold text-lg lg:text-xl' >Correo Electronico</h4>
                 <div className='flex justify-between items-center' >
                     <p className=' dark:text-white font-semibold' >Correo: <span className='text-gray-dark dark:text-soft-gray ' >{userData.email}</span></p>
                 </div>

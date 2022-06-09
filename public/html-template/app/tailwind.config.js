@@ -38,7 +38,8 @@ module.exports = {
       'darkmode-black-02': '#21262E',
       'darkmode-blue-01': '#3A9CFF',
       'darkmode-green-toggle':'#34C38F',
-      'transparent': 'transparent'
+      'transparent': 'transparent',
+      'white-input':'#F3F3F3'
     },
     fontFamily: {
       robot: ['"Roboto"', 'sans-serif']

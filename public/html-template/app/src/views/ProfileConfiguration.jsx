@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux'
 
 import { ToggleHelper } from '../components/ToggleHelper'
 
+// Icons
+import { AiOutlineEdit } from 'react-icons/ai'
+
 export const ProfileConfiguration = () => {
 
     const userData = useSelector( state => state.user )
@@ -71,10 +74,16 @@ export const ProfileConfiguration = () => {
             </div>
 
             <h4 className='text-xl font-semibold mb-8' >Información</h4>
-            <Formik>
+            <Formik initialValues={{ country: '' }} >
                 <Form>
-
+                <div className='w-full shadow-lg mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
+                    <div className='w-full flex items-center' >
+                        <label htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4' />
+                     </div>
+                    <Field className='bg-white-input rounded-[5px] h-8 px-4 py-6' name='country' id='country' type='text' />
+                </div>  
                 </Form>
+
             </Formik>
         </div>
     </div>
