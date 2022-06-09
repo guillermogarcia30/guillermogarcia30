@@ -310,13 +310,17 @@ class UserController extends Controller
             
             $exists = User::where([['email','=',$email],['id','!=',$id]])->count();
             
+            /*
             if ($country == 0) {
                 $response = [
                     'error' => true,
                     'description' => "No country found with id ".$country_id,
                 ];
                 return response($response,500);
-            }else if ($exists == 1) {
+            }
+            */
+                        
+            if ($exists == 1) {
                 $response = [
                     'error' => true,
                     'description' => "There is already another user with email ".$email.", try another",
