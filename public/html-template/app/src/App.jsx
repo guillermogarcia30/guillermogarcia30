@@ -77,7 +77,10 @@ function App() {
         console.log(res)
         dispatch( setLoadingFalse() )
       }
-    }).catch( dispatch( setLoadingFalse() ) );
+    }).catch( err => { 
+        console.log(err)
+       dispatch( setLoadingFalse() )
+      } );
   }, [dispatch])
 
     

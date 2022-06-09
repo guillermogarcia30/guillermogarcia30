@@ -76,25 +76,25 @@ export const Profile = () => {
             {/* Fin de datos principales */}
             {/* Datos personales */}
             <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-[25px] flex-col mt-8'>
-                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Informacion Personal</h4>
+                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Información Personal</h4>
                 <div className='flex justify-between lg:items-center flex-col lg:flex-row ' >
                     <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Fecha de nacimiento: <span className='text-gray-dark dark:text-soft-gray ' >{userData.birthDay}</span></p>
                     <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Ciudad: <span className='text-gray-dark dark:text-soft-gray ' >{userData.ciudad}</span></p>
-                    <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Direccion: <span className='text-gray-dark dark:text-soft-gray ' >{userData.address}</span></p>
+                    <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Dirección: <span className='text-gray-dark dark:text-soft-gray ' >{userData.address}</span></p>
                 </div>
             </div>
             {/* Fin de Datos personales */}
             {/* Telefono */}
             <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-[25px] flex-col mt-8'>
-                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Telefono</h4>
+                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Teléfono</h4>
                 <div className='flex justify-between items-center' >
-                    <p className=' dark:text-white font-semibold' >Telefono personal: <span className='text-gray-dark dark:text-soft-gray ' >{userData.phone}</span></p>
+                    <p className=' dark:text-white font-semibold' >Teléfono personal: <span className='text-gray-dark dark:text-soft-gray ' >{userData.phone}</span></p>
                 </div>
             </div>
             {/* Fin de telefono */}
             {/* Email */}
             <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-[25px] flex-col mt-8'>
-                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Correo Electronico</h4>
+                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Correo Electrónico</h4>
                 <div className='flex justify-between items-center' >
                     <p className=' dark:text-white font-semibold' >Correo: <span className='text-gray-dark dark:text-soft-gray ' >{userData.email}</span></p>
                 </div>
