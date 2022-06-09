@@ -319,7 +319,7 @@ class UserController extends Controller
                 return response($response,500);
             }
             */
-                        
+
             if ($exists == 1) {
                 $response = [
                     'error' => true,
@@ -339,7 +339,8 @@ class UserController extends Controller
 
                 return response([
                     'error' => false,
-                    'data' => $id,
+                    'data' => $user,
+                    //'data' => $id,
                 ],200);
             }
         } catch (\Exception $e) {
