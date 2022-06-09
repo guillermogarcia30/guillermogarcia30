@@ -30,29 +30,29 @@ export const Dashboard = () => {
 
     if (loading) {
         return (
-            <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 px-8 flex flex-col' >
+            <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-80 px-8 flex flex-col' >
                 <div className='flex items-center justify-between w-full my-4'>
                     <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Aplicación</h2>
-                    <button  className='lg:block hidden bg-red text-white rounded-[5px] font-semibold px-[4px] py-[10px]' >+ Agregar</button>
+                    <button  className='lg:block hidden bg-red text-white rounded-[5px] font-semibold px-[7px] py-[6px]' >+ Agregar</button>
                  </div>
             </div>
         )
     }
 
   return (
-    <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 px-8 flex flex-col' >
+    <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-80 px-8 flex flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
             <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Aplicaciones</h2>
-            <button onClick={handleShowModal} className='lg:block hidden bg-red text-white rounded-[5px] font-semibold px-[4px] py-[10px]' >+ Agregar</button>
+            <button onClick={handleShowModal} className='lg:block hidden bg-red text-white rounded-[5px] font-semibold px-[7px] py-[6px]' >+ Agregar</button>
         </div>
-        <div className=' overflow-x-hidden duration-700 w-full min-h-[36.5rem]' >
+        <div className='pt-5 duration-700 w-full min-h-[36.5rem]' >
             { apps.length? (apps.map( (el, i) => {
                  if(i === 0) {
                     return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id} first={true}  appurls={el.appurls} fabricante={el.fabricante} website={el.website} />
                  } else {
                   return <DasboardItem logo={el.logo} secret={el.secret} status={el.status} title={el.title}  token={el.token} key={el.id} id={el.id}  appurls={el.appurls} fabricante={el.fabricante} website={el.website} />
                  }})): (
-                     <div className=' flex justify-center items-center h-[5rem] w-full bg-white mt-16 dark:bg-darkmode-black-02 ' >
+                     <div className='shadow-custom rounded-[5px] flex justify-center items-center h-[5rem] w-full bg-white mt-16 dark:bg-darkmode-black-02 ' >
                          <h3 className='text-center dark:text-white ' >Aun no has añadido Aplicaciones, !empieza ahora¡</h3>
                      </div>
                  )}

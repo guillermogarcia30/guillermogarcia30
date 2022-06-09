@@ -22,7 +22,7 @@ module.exports = {
       'pink': '#FF2B44',
       'orange': '#ff7849',
       'green': '#34C38F',
-      'green-light': '#b8ffb8',
+      'green-light': '#95f79552',
       'red': '#ff0000',
       'red-light':'#fbbdbd',
       'yellow': '#F4C018',
@@ -40,6 +40,9 @@ module.exports = {
       'darkmode-green-toggle':'#34C38F',
       'transparent': 'transparent',
       'white-input':'#F3F3F3'
+    },
+    boxShadow: {
+      'custom': '0px 4px 24px rgba(0, 0, 0, 0.07)'
     },
     fontFamily: {
       robot: ['"Roboto"', 'sans-serif']

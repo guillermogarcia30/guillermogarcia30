@@ -3,6 +3,7 @@ import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik'
 
 import {  AiFillEye } from 'react-icons/ai'
 import { MdOutlineFileCopy } from 'react-icons/md'
+import { ImMinus } from 'react-icons/im'
 
 import { createAppAsync } from '../store/apps/thunks'
 
@@ -160,13 +161,17 @@ export const ModalAPlicaciones = ({view, hide }) => {
                                 </div>
                                 </div>
                             ))}
-                            <button
-                            type="button"
-                            className='text-pink mb-8 text-right w-full '
-                            onClick={() => push({ appurl: '' })}
-                            >
-                            Agregar +
-                            </button>
+                            <div className='flex items-center pl-3' >
+                                <button disabled={ values.appurls.length === 1 ? true : false } className='text-pink mb-8 text-right w-full' type='button'
+                                onClick={() => remove(values.appurls.length - 1)} > <ImMinus /> </button>
+                                <button
+                                type="button"
+                                className='text-pink mb-8 text-right w-full '
+                                onClick={() => push({ appurl: '' })}
+                                >
+                                Agregar +
+                                </button>
+                            </div>
                         </div>
                         )}
                     </FieldArray>

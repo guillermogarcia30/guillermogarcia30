@@ -44,11 +44,11 @@ export const Header = () => {
                   id: 4,src: '/calendario', name: 'Calendario'
                 }]
   return (
-    <header className='fixed z-[100] h-16 w-[100vw] px-11 bg-[#ffffff] dark:bg-darkmode-black-02 pt-4 shadow-md'>
+    <header className='fixed z-[100] h-16 w-[100vw] px-11 lg:px-40 xl:px-80 bg-[#ffffff] dark:bg-darkmode-black-02 pt-4 shadow-custom'>
         <nav className='flex  items-center justify-between' >
           
             <div className='lg:flex hidden items-center' >
-              <button className='mr-3 focus-visible:outline-none focus-visible:border-none' ><MenuAppIcon/></button>
+              <button className='mr-[60px] focus-visible:outline-none focus-visible:border-none' ><MenuAppIcon/></button>
               <Logo/>
             </div>
             <div className='flex relative lg:hidden justify-between w-20' >
@@ -56,7 +56,7 @@ export const Header = () => {
               
               {
                   dropdownView && (
-                    <div  className="lg:hidden fixed w-[100vw] top-[65px] left-[1px]  bg-white shadow dark:bg-darkmode-black-02">
+                    <div  className="lg:hidden fixed w-[100vw] top-[65px] left-[1px]  bg-white shadow-custom dark:bg-darkmode-black-02">
                       {
                         links.map( el => { return (
                           <div className='flex items-center justify-between px-2 py-3 cursor-pointer' >
@@ -118,7 +118,7 @@ export const Header = () => {
                 {/* Dropdown Desktop*/}
                 {
                   dropdownView && (
-                    <div  className="hidden lg:block fixed w-36 top-[65px] right-[25px]  bg-white shadow dark:bg-darkmode-black-02">
+                    <div  className="hidden lg:block fixed w-36 top-[65px] right-[25px]  bg-white shadow-custom dark:bg-darkmode-black-02">
                     <div onClick={()=>{
                       document.getElementById('logout-form').submit()
                     }} className='flex items-center justify-between px-2 py-3 cursor-pointer' >

@@ -1,13 +1,12 @@
 module.exports = {
   content: [
-    "./public/html-template/app/src/**/*.{js,jsx,ts,tsx}",
-    "./resources/**/*.blade.php",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   darkMode: 'class',
   theme: {
     screens: {
       sm: '480px',
-      ms: '600px',
+      ms:'600px',
       md: '768px',
       lg: '976px',
       'semi-l': '1270px',
@@ -39,7 +38,11 @@ module.exports = {
       'darkmode-black-02': '#21262E',
       'darkmode-blue-01': '#3A9CFF',
       'darkmode-green-toggle':'#34C38F',
-      'transparent': 'transparent'
+      'transparent': 'transparent',
+      'white-input':'#F3F3F3'
+    },
+    boxShadow: {
+      'custom': '0px 4px 24px rgba(0, 0, 0, 0.07)'
     },
     fontFamily: {
       robot: ['"Roboto"', 'sans-serif']
