@@ -258,29 +258,8 @@ class UserController extends Controller
         //fin
 
         $error_array = array();
-        if (!isset($decode->country_id)) {
-            array_push($error_array,"Parameter country_id required");
-        }
-        if (!isset($decode->name)) {
-            array_push($error_array,"Parameter name required");
-        }
         if (!isset($decode->email)) {
             array_push($error_array,"Parameter email required");
-        }
-        if (!isset($decode->birth_date)) {
-            array_push($error_array,"Parameter birth_date required");
-        }
-        if (!isset($decode->address)) {
-            array_push($error_array,"Parameter address required");
-        }
-        if (!isset($decode->city)) {
-            array_push($error_array,"Parameter city required");
-        }
-        if (!isset($decode->phone)) {
-            array_push($error_array,"Parameter phone required");
-        }
-        if (!isset($decode->position)) {
-            array_push($error_array,"Parameter position required");
         }
 
         if (count($error_array) > 0) {
@@ -293,28 +272,55 @@ class UserController extends Controller
 
         $id = $request->user()->id;
 
-        $country_id = $decode->country_id;
-        $name = $decode->name;
+        $country_id = "";
+        if (isset($decode->country_id)) {
+            $country_id = $decode->country_id;
+        }
+
         $email = $decode->email;
-        $birth_date = $decode->birth_date;
-        $address = $decode->address;
-        $city = $decode->city;
-        $phone = $decode->phone;
-        $position = $decode->position;
+        
+        $birth_date = null;
+        if (isset($decode->birth_date)) {
+            $birth_date = $decode->birth_date;
+        }
+
+        $address = "";
+        if (isset($decode->address)) {
+            $address = $decode->address;
+        }
+
+        $city = "";
+        if (isset($decode->city)) {
+            $city = $decode->city;
+        }
+
+        $phone = "";
+        if (isset($decode->phone)) {
+            $phone = $decode->phone;
+        }
+
+        $position = "";
+        if(isset($decode->position)){
+            $position = $decode->position;
+        }
 
         try {
 
-            $country = Country::where('id','=',$country_id)->count();
+            $country = Country::where([['id','=',$country_id],['id','!=','']])->count();
             
             $exists = User::where([['email','=',$email],['id','!=',$id]])->count();
             
+            /*
             if ($country == 0) {
                 $response = [
                     'error' => true,
                     'description' => "No country found with id ".$country_id,
                 ];
                 return response($response,500);
-            }else if ($exists == 1) {
+            }
+            */
+
+            if ($exists == 1) {
                 $response = [
                     'error' => true,
                     'description' => "There is already another user with email ".$email.", try another",
@@ -323,7 +329,6 @@ class UserController extends Controller
             } else {
                 $user = User::where('id','=',$id)->first();
                 $user->country_id = $country_id;
-                $user->name = ucwords(strtolower($name));
                 $user->email = trim(strtolower($email));
                 $user->birth_date = $decode->birth_date;
                 $user->address = ucwords(strtolower($address));
@@ -334,7 +339,8 @@ class UserController extends Controller
 
                 return response([
                     'error' => false,
-                    'data' => $id,
+                    'data' => $user,
+                    //'data' => $id,
                 ],200);
             }
         } catch (\Exception $e) {
