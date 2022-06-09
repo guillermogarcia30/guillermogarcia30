@@ -51,7 +51,7 @@ export const ModalImg = () => {
                 <button onClick={() => dispatch(onProfilePicClose())} className='w-[40%] bg-[#ffffff] border border-solid rounded-[10px] font-semibold px-3 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink' > Cancelar </button>
                 <button onClick={() => {
                   setUrl('')
-                  dispatch(changeProfilePicture('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjgwYWY4Yi1mM2UwLTRkZmItODE4Zi00NmE3ZDEwZjA2ZmEiLCJqdGkiOiI1YmFlYTU4Zjk0MTAxODcwZDUwNGJmZThjZmU1NmQ3MzcwM2M0NDdhZDc1ZGJlOWY2ZDFmMDIxOGZjOWY5NzM1YWU3MGU4NDBkZDA1MjVmMiIsImlhdCI6MTY1NDc5NzE1MC43MzY0MDgsIm5iZiI6MTY1NDc5NzE1MC43MzY0MTIsImV4cCI6MTY1NTQwMTk1MC43MzAxMjgsInN1YiI6Ijk3OTFiNWJiLTNkN2QtNGJhZS1iZGViLTQxOWJhNDg5ZTRlMCIsInNjb3BlcyI6W119.Ihu7zAwSjx88uu4GZVpGHZnvLighWTLnuwX2lLpcY5uv_Gu08KwN1zigQ-9ZRc1kMYsdD37rXC3Cq9Ie7zUniXWwYkBAxFl4MPpd8g0r0fM3-5PaT01bAa98L9I4yE73yaVvP3YZSxHB59FmcULcjcDwA2nkPjhW0NSIYOph5s9ZtWOVzAl9jhs-EE2pkl2kbUXuZJenLd4ROo4GOO19wtEVevnkJ3I22n3XrzPTGg0xABAK1JJHtJ3kxQ5tYL_ZfJ2XW-LbalUdw_LtN7ergqqOFjcyFdMLhSVCNE-f0ud7LX8C1VZ5oWya_OxPe3wdsYlMtbJZ-oZ1S7fBP0lKEpTvBikJupcRo4L3UwZn-fhv2WxWj7n5pnYyuRsI3VdQn4tLs5GLF4xFI5jq9gegEYLqc3_Ij8CFcYRXEwv2CcQtUFwLlvPEzNDTdcgYFrjtgyt6yGuZ3r_AkugmwfQgewbEO_EJDh0zKPHQeheg329RCtAuMaakvsKyKn-AmfNMIEZrUzBQbB7h_VhcOIa-bjiCFadR0QMYKm2cNM1bRkXqnOeQsn1ciNDoDfATK7b7Mv-e9pING6zj7xK3Uytng_AH3xzrIlUFmXj3PtEi985fIkeCLC6AVVRkufriwQ1nGV6dz4b9qloYYUXhhrjUp8pkGGE4XSPqzJL3V0LAwEE', img))
+                  dispatch(changeProfilePicture(B_token, img))
                   }} className='w-[40%] bg-pink text-white rounded-[10px] font-semibold px-3 py-2' > Guardar </button>
             </div>
         </div>
