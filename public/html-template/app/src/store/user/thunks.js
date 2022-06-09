@@ -26,7 +26,6 @@ export const changeProfilePicture = (token, image) => {
         .then( res => {
 
             if (!res.error) {
-                console.log(res)
                 dispatch( onProfilePicClose() )
                 dispatch(setUserImg({image: res.image }))
             }else {
@@ -35,6 +34,7 @@ export const changeProfilePicture = (token, image) => {
                 dispatch(onErrorOpen())                
             }
         } )
+        .catch(dispatch(onErrorOpen()))
         }
     }
 }

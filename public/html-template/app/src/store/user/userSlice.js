@@ -11,7 +11,7 @@ const initialState = {
     address: '',
     phone: '',
     position: '',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+    image: ''
 }
 
 const userSlice = createSlice({
@@ -22,6 +22,8 @@ const userSlice = createSlice({
             state.token = action.payload.token
         },
         setUserData: (state, action ) => {
+            console.log(action.payload)
+            console.log(action.payload.image !== null)
             state.email = action.payload.email
             state.tenant = action.payload.tenant? action.payload.tenant : ''
             state.name = action.payload.name
@@ -29,7 +31,7 @@ const userSlice = createSlice({
             state.address = action.payload.address? action.payload.address : 'Dirección no especificada'
             state.phone = action.payload.phone? action.payload.phone : ''
             state.position = action.payload.position ? action.payload.position : 'Posición laboral no especificada'
-            state.image = action.payload.image ? action.payload.image : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+            state.image = action.payload.image !== null ? action.payload.image : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
             state.ciudad = action.payload.ciudad ? action.payload.ciudad : 'Ciudad no especificada'
             state.pais = action.payload.pais ? action.payload.ciudad : 'País no especificado'
         },
