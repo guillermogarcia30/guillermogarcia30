@@ -69,16 +69,22 @@ class UserController extends Controller
 
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
-
+        $accessToken = $tokenResult->accessToken;
         $token = $tokenResult->token;
         $token->expires_at = Carbon::now()->addWeeks(1);
 
         $tenant_id = Str::uuid()->toString();
-        //$tokenResult->accessToken = $tokenResult->accessToken."&&".$tenant_id;
+
+        /*
+        $token = $tokenResult->token;
+        $token->expires_at = Carbon::now()->addWeeks(1);
+
+        $tokenResult->accessToken = $tokenResult->accessToken."&&".$tenant_id;
         $token->save();
+        */
 
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
+            'access_token' => $accessToken,
             'tenant_id' => $tenant_id,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()

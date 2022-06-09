@@ -30,11 +30,10 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         $tokenResult = $user->createToken('Personal Access Token');
+        $access_token = $tokenResult->accessToken;
         $token = $tokenResult->token;
         $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
 
-        $access_token = $tokenResult->accessToken;
         setcookie("access_token", $access_token);   
 
         return view('profile');
