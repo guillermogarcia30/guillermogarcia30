@@ -16,9 +16,9 @@ class Country extends Model
         'status',
     ];
     protected $casts = ['id' => 'string'];
-}
 
-public function user()
-{
-    return $this->hasMany(User::class);        
+    public function user()
+    {
+        return $this->hasMany(User::class);        
+    }
 }
