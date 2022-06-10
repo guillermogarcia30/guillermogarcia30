@@ -16,9 +16,11 @@ import { BiLogOut } from 'react-icons/bi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { MenuAppIcon } from './icons/MenuAppIcon'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 
 export const Header = () => {
 
+  const img = useSelector( state => state.user.image )
   const [user, setUSer] = useState({ image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: '' , position: '' })
   const [ dropdownView, setDropDownView] = useState(false)
 
@@ -26,10 +28,9 @@ export const Header = () => {
     getUser().then( res => {
       if(!res.error){}
       setUSer({ image: res.user.profile_image || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: res.user.name || 'John Doe' , position: res.user.position || 'la posicion no fue especificada' })
-      console.log(res)
     } )
 
-  }, [])
+  }, [img])
 
   const links = [{
                   id: 1, src: '/home', name: 'Dashboard'

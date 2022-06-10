@@ -16,6 +16,7 @@ import { ProfileConfiguration } from './views/ProfileConfiguration';
 import { Header } from './components/Header'
 import { ModalPetitionOk } from './components/modalPetitionOk'
 import { ModalPetitionWrong } from './components/modalPetitionWrong'
+import { ChangeOk } from './components/ChangeOk'
 
 function App() {
   const appTheme = () => {
@@ -97,6 +98,7 @@ function App() {
       {/* <Copyright/> */}
       <ModalPetitionOk  />
       <ModalPetitionWrong/>
+      <ChangeOk/>
     </div>
   );
 }
