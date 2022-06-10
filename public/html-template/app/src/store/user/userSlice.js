@@ -35,7 +35,6 @@ const userSlice = createSlice({
         },
         updateUserData: (state, action) => {
             state.email = action.payload.email
-            state.name = action.payload.name
             state.birthDate = action.payload.birthDate? action.payload.birthDate : ''
             state.address = action.payload.address? action.payload.address : 'Dirección no especificada'
             state.phone = action.payload.phone? action.payload.phone : ''
