@@ -11,29 +11,32 @@
     @csrf
     <div class="form__data-container">
         <label for="name">Nombre</label>
-        <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+        <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus maxlength="255">
         @error('name')
             <span style="color:red;" role="alert">
                 <strong>{{ str_replace("name","Nombre",$message) }}</strong>
             </span>
+            <br>
         @enderror
     </div>
     <div class="form__data-container">
         <label for="email">Correo electrónico</label>
-        <input id="email" id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+        <input id="email" id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="255">
         @error('email')
             <span style="color:red;" role="alert">
                 <strong>{{ str_replace("email","Correo Electrónico",$message) }}</strong>
             </span>
+            <br>
         @enderror
     </div>
     <div class="form__data-container">
         <label for="password">Contraseña</label>
-        <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+        <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password" maxlength="255">
         @error('password')
             <span style="color:red;" role="alert">
                 <strong>{{ str_replace("password","Contraseña",$message) }}</strong>
             </span>
+            <br>
         @enderror
     </div>
     <div class="form__data-container">
@@ -42,11 +45,12 @@
     </div>
     <div class="form__options-container" >
         <div class="separador">
-            <input id="check" type="checkbox"  name="terms" class="@error('terms') is-invalid @enderror" required="required">
+            <input id="check" type="checkbox"  name="terms" class="@error('terms') is-invalid @enderror" required="required" maxlength="255">
             @error('terms')
                 <span style="color:red;" role="alert">
                     <strong>{{ str_replace("terms","Términos",$message) }}</strong>
                 </span>
+                <br>
             @enderror
             <label class="pink" for="check">Aceptar los términos</label>
         </div>
