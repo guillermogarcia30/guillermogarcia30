@@ -19,6 +19,7 @@
             <span style="color:red;" role="alert">
                 <strong>{{ str_replace("email","Correo Electrónico",$message) }}</strong>
             </span>
+            <br>
         @enderror
 
         <div class="form__data-container">
@@ -29,6 +30,7 @@
                 <span style="color:red;" role="alert">
                     <strong>{{ str_replace("password","Contraseña",$message) }}</strong>
                 </span>
+                <br>
             @enderror
         </div>
         <div class="form__data-container">

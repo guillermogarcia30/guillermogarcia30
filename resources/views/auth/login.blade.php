@@ -16,6 +16,7 @@
                 <span style="color:red;" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
+                <br>
             @enderror
         </div>
         <div class="form__data-container">
@@ -25,6 +26,7 @@
                 <span style="color:red;" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
+                <br>
             @enderror
         </div>
         <div class="form__options-container" >
