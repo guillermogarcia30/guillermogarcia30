@@ -27,7 +27,7 @@ export const ProfileConfiguration = () => {
     <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-52 px-8 flex flex-col' >
         <div className='flex items-center justify-between w-full my-4'>
             <h2 className='text-2xl dark:text-[#ffffff] font-semibold' >Configuración</h2>
-            <h4 className='font-normal text-lg lg:block hidden' >Perfil <span className='text-gray-light' >/ configuración</span></h4>
+            <Link to={'/profile'} className='font-normal text-lg lg:block hidden' >Perfil <span className='text-gray-light' >/ configuración</span></Link>
         </div>
         {/* Container */}
         <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '', state: '' }} 
@@ -104,10 +104,14 @@ export const ProfileConfiguration = () => {
                                 <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                             </div>
                             <Field className='w-0 h-0' name='country' id='country' type='text' />
-                            <select className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
-                                <option selected >Seleccione un país</option>
-                                { data.map( el => { return( <option onClick={() => {props.setFieldValue("country", el.name)}} key={el.id} value={el.name} >{el.name}</option>) }) }
+                            <select onChange={(e) => props.setFieldValue("country", e.target.value)} className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
+                                <option value={''} >Seleccione un país</option>
+                                { data.map( el => { return( <option  key={el.id} value={el.name} >{el.name}</option>) }) }
                             </select>
+                            <div className='mb-2 w-full flex items-center' >
+                                <label className='font-normal text-lg' htmlFor='state' >Estado</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                            </div>
+                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='state' id='state' type='text' />
                             <div className='mb-2 w-full flex items-center' >
                                 <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                             </div>
@@ -116,10 +120,7 @@ export const ProfileConfiguration = () => {
                                 <label className='font-normal text-lg' htmlFor='address' >Dirección</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                             </div>
                             <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='address' id='address' type='text' />
-                            <div className='mb-2 w-full flex items-center' >
-                                <label className='font-normal text-lg' htmlFor='state' >Estado</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                            </div>
-                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='state' id='state' type='text' />
+                            
                         </div>
                         <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
                             <div className='mb-2 w-full flex items-center' >
@@ -220,9 +221,9 @@ export const ProfileConfiguration = () => {
                                         <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                                     </div>
                                     <Field className='w-0 h-0' name='country' id='country' type='text' />
-                                    <select className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
-                                        <option selected >Seleccione un país</option>
-                                        { data.map( el => { return( <option onClick={() => {props.setFieldValue("country", el.name)}} key={el.id} value={el.name} >{el.name}</option>) }) }
+                                    <select onChange={(e) => props.setFieldValue("country", e.target.value)} className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
+                                    <option >Seleccione un país</option>
+                                        { data.map( el => { return( <option key={el.id} value={el.name} >{el.name}</option>) }) }
                                     </select>
                                     <div className='mb-2 w-full flex items-center' >
                                         <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
@@ -255,7 +256,7 @@ export const ProfileConfiguration = () => {
                         </div>
                         
                 </div>
-                <div className='flex items-center justify-end mt-12' >
+                <div className='flex items-center justify-end mt-12 mb-5 ' >
                             <Link to={'/profile'} className='bg-[#ffffff] border border-solid rounded-[5px] font-semibold px-11 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink '>Volver</Link>
                             <button type='submit' className='bg-pink ml-8 text-white rounded-[5px] font-semibold px-11 py-2'  >Guardar</button>
                 </div>

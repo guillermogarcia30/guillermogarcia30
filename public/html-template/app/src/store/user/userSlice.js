@@ -11,7 +11,8 @@ const initialState = {
     address: '',
     phone: '',
     position: '',
-    image: ''
+    image: '',
+    profilePicCHangeLoading: false
 }
 
 const userSlice = createSlice({
@@ -35,7 +36,6 @@ const userSlice = createSlice({
         },
         updateUserData: (state, action) => {
             state.email = action.payload.email
-            state.name = action.payload.name
             state.birthDate = action.payload.birthDate? action.payload.birthDate : ''
             state.address = action.payload.address? action.payload.address : 'Dirección no especificada'
             state.phone = action.payload.phone? action.payload.phone : ''
@@ -45,10 +45,13 @@ const userSlice = createSlice({
         },
         setUserImg: (state, action) => {
             state.image = action.payload.image
+        },
+        setPicLoandig: (state, action) => {
+            state.profilePicCHangeLoading = action.payload.ok
         }
     }
 })
 
-export const { seTtoken, setUserData, setUserImg, updateUserData } = userSlice.actions
+export const { seTtoken, setUserData, setUserImg, updateUserData, setPicLoandig } = userSlice.actions
 
 export default userSlice.reducer

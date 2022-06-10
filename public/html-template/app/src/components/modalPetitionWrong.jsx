@@ -6,6 +6,7 @@ import { onErrorClose } from '../store/modals/modalEditSlice'
 export const ModalPetitionWrong = () => {
 
   const view = useSelector( state => state.modal.onError )
+  const errormsg = useSelector( state => state.modal.errorMsg )
   const dispatch = useDispatch()
 
   return (
@@ -16,7 +17,7 @@ export const ModalPetitionWrong = () => {
                   <BiError className='text-red text-[25px] ' />
               </div>
               <h4 className='text-[18px] leading-6 font-medium text-center mt-[20px] dark:text-[#ffffff]' >Algo salio mal</h4>
-              <p className='text-center text-[17px] dark:text-[#ffffff] my-9' >Por favor intenta de nuevo mas tarde</p>
+              <p className='text-center text-[17px] dark:text-[#ffffff] my-9' >{errormsg}</p>
               <button className='px-4 py-2 rounded-md height-[2.25rem] w-[20.0625rem] bg-red text-white font-semibold' onClick={() => dispatch(onErrorClose())} >Regresar</button>
           </div>
       </div>
