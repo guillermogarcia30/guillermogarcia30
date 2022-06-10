@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tenant extends Model
 {
     use HasFactory;
-    protected $table = 'tentants';
+    protected $table = 'tenants';
     protected $fillable = [
         'domain',
         'name',
