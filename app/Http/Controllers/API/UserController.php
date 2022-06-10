@@ -129,7 +129,7 @@ class UserController extends Controller
         );
         $user = DB::table('users')
                     ->leftJoin('countries','countries.id','=','users.country_id')
-                    ->leftJoin('tentants','tentants.id','=','users.tentant_id')
+                    ->leftJoin('tenants','tenants.id','=','users.tenant_id')
                     ->where('users.id','=',$auth->id)
                     ->select($campos_user)
                     ->first();
