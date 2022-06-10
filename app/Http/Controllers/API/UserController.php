@@ -110,7 +110,6 @@ class UserController extends Controller
 
         $campos_user = array(
             "users.id AS id",
-            "users.tenant_id AS tenant_id",
             "users.name AS name",
             "users.email AS email",
             "users.birth_date AS birth_date",
@@ -123,9 +122,14 @@ class UserController extends Controller
             "countries.country_code AS country_code",
             "countries.country_name AS country_name",
             DB::raw("CONCAT('+',countries.phone_code) AS phone_code"),
+            "tenants.id AS tenant_id",
+            "tenants.domain AS tenant_domain",
+            "tenants.name AS tenant_name",
+            "tenants.image AS tenant_image",
         );
         $user = DB::table('users')
                     ->leftJoin('countries','countries.id','=','users.country_id')
+                    ->leftJoin('tentants','tentants.id','=','users.tentant_id')
                     ->where('users.id','=',$auth->id)
                     ->select($campos_user)
                     ->first();
