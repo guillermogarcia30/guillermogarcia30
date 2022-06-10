@@ -10,7 +10,7 @@ export const ChangeOk = () => {
   const dispatch = useDispatch()
   return (
     <div style={view ?{display: 'flex'}:{display: 'none'}} className='bg-black-transparent w-[100vw] z-[100] h-[100vh] fixed top-0 bottom-0 left-0 right-0 m-[auto]' >
-      <div className='px-[3.375rem] w-[26.825rem] h-[18.3125rem] rounded-[1.25rem] bg-[#ffffff] dark:bg-darkmode-black-02 z-50 absolute top-0 bottom-0 left-0 right-0 m-[auto]' >
+      <div className='px-[3.375rem] w-[26.825rem] h-[25rem] rounded-[1.25rem] bg-[#ffffff] dark:bg-darkmode-black-02 z-50 absolute top-0 bottom-0 left-0 right-0 m-[auto]' >
           <div className='h-full w-full flex flex-col justify-center items-center' >
               <div className='flex items-center justify-center bg-green-light rounded-full w-12 h-12' >
                   <AiOutlineCheck className='text-green text-[25px] ' />
