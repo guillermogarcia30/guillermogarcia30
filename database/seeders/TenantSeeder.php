@@ -15,12 +15,12 @@ class TenantSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         for ($i = 1; $i <= 20; $i++) {
             $tenant = new Tenant;
             $tenant->id = $faker->unique()->uuid();
-            $tenant->domain = strtoupper($this->faker->unique()->buildingNumber());
+            $tenant->domain = strtoupper($faker->unique()->buildingNumber());
             $tenant->name = $faker->company();
             $tenant->image = $faker->imageUrl($width = 640, $height = 480);
             $tenant->status = $faker->randomElement($array = array (1,0));
