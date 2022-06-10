@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class Tenant extends Model
 {
     use HasFactory;
-    protected $table = 'countries';
+    protected $table = 'tentants';
     protected $fillable = [
         'domain',
         'name',
@@ -16,9 +16,9 @@ class Country extends Model
         'status',
     ];
     protected $casts = ['id' => 'string'];
-}
 
-public function user()
-{
-    return $this->hasMany(User::class);        
+    public function user()
+    {
+        return $this->hasMany(User::class);        
+    }
 }

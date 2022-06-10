@@ -201,6 +201,7 @@ class UserController extends Controller
 
             if (empty($request->file('profile_image'))) {
                 return response([
+                    'type' => 'image_required',
                     'error' => true,
                     'description' => 'Field profile_image is required',
                 ],500);
@@ -223,6 +224,7 @@ class UserController extends Controller
             }
         } catch (\Exception $e) {
             return response([
+                'type' => 'server_error',
                 'error' => true,
                 'description' => $e->getMessage(),
             ],500);
@@ -328,6 +330,7 @@ class UserController extends Controller
 
             if ($exists == 1) {
                 $response = [
+                    'type' => 'already_email',
                     'error' => true,
                     'description' => "There is already another user with email ".$email.", try another",
                 ];
@@ -352,6 +355,7 @@ class UserController extends Controller
             }
         } catch (\Exception $e) {
             return response([
+                'type' => 'server_error',
                 'error' => true,
                 'description' => $e->getMessage(),
             ],500);

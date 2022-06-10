@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use DB;
+use App\Models\Tenant;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\RoleUser;
@@ -76,7 +77,7 @@ class RoleSeeder extends Seeder
                 //creamos el usuario si no existe
                 $user = new User;
                 $user->id = $users[$key]['id'];
-                $user->tenant_id = '';
+                $user->tenant_id = Tenant::orderBy(DB::raw("RAND()"))->first()->id;
                 $user->name = $users[$key]['name'];
                 $user->email = $users[$key]['email'];
                 $user->password = Hash::make($users[$key]['password']);
