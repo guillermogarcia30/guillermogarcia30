@@ -290,6 +290,11 @@ class UserController extends Controller
             $address = $decode->address;
         }
 
+        $state = "";
+        if (isset($decode->state)) {
+            $state = $decode->state;
+        }
+
         $city = "";
         if (isset($decode->city)) {
             $city = $decode->city;
@@ -333,6 +338,7 @@ class UserController extends Controller
                 $user->email = trim(strtolower($email));
                 $user->birth_date = $birth_date;
                 $user->address = ucwords(strtolower($address));
+                $user->state = ucwords(strtolower($state));
                 $user->city = ucwords(strtolower($city));
                 $user->phone = $phone;
                 $user->position = ucwords(strtolower($position));
