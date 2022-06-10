@@ -36,6 +36,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->status = 1; // Valor 1 significa status Activo
         $user->save();
 
         $role_user_id = Str::uuid()->toString();
@@ -330,7 +331,7 @@ class UserController extends Controller
                 $user = User::where('id','=',$id)->first();
                 $user->country_id = $country_id;
                 $user->email = trim(strtolower($email));
-                $user->birth_date = $decode->birth_date;
+                $user->birth_date = $birth_date;
                 $user->address = ucwords(strtolower($address));
                 $user->city = ucwords(strtolower($city));
                 $user->phone = $phone;

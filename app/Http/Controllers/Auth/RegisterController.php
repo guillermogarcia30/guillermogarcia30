@@ -77,6 +77,7 @@ class RegisterController extends Controller
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
+        $user->status = 1; // Valor 1 significa status Activo
         $user->save();
 
         $role_user_id = Str::uuid()->toString();

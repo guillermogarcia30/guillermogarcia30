@@ -49,21 +49,24 @@ class RoleSeeder extends Seeder
                 "name" => "Jon Due",
                 "role" => "super_admin",
                 "email" => "superadmin@betaboxtechnologies.com",
-                "password"=>"12345678"
+                "password"=>"12345678",
+                "status" => 1
             ),    
             array(
                 "id" => "eebd7f43-e5ca-11ec-b469-509a4c58c04f",
                 "name" => "Jon Due",
                 "role" => "admin",
                 "email" => "admin@betaboxtechnologies.com",
-                "password"=>"12345678"
+                "password"=>"12345678",
+                "status" => 1
             ),        
             array(
                 "id" => "f99a2380-e5ca-11ec-b469-509a4c58c04f",
                 "name" => "Jon Due",
                 "role" => "user",
                 "email" => "user@betaboxtechnologies.com",
-                "password"=>"12345678"
+                "password"=>"12345678",
+                "status" => 1
             ),        
         );
 
@@ -77,6 +80,7 @@ class RoleSeeder extends Seeder
                 $user->name = $users[$key]['name'];
                 $user->email = $users[$key]['email'];
                 $user->password = Hash::make($users[$key]['password']);
+                $user->status = $users[$key]['status'];
                 $user->save();
                 //fin
 
