@@ -142,14 +142,14 @@ export const ProfileConfiguration = () => {
             dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
         }} >
             {({values, ...props}) => (
-            <div className='hidden w-full semi-l:block' >
+            <div className='hidden mt-[25px] w-full semi-l:block' >
 
                 <Form  >
 
                 <div className='flex justify-between ' >
                     <div className='w-80 ' >
                         <div>
-                            <h4 className='text-xl font-semibold mb-8' >Cuenta</h4>
+                            <h4 className='text-xl font-semibold mb-[30px]' >Cuenta</h4>
                             <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3' >
                                 <div className='max-w-[3rem] max-h-[3rem] overflow-hidden rounded-full' >
                                     <img className='w-full h-full' src={userData.image} alt="" />
@@ -161,7 +161,7 @@ export const ProfileConfiguration = () => {
                             </div>
                         </div>
                         <div>
-                            <h4 className='text-xl font-semibold mb-8' >Activar estado</h4>
+                            <h4 className='text-xl font-semibold mb-[10px] ' >Activar estado</h4>
                             <div className='w-full mb-6 rounded-[5px]   flex flex-col' >
                                 <div className='bg-[#ffffff] shadow-custom w-full dark:bg-darkmode-black-02 dark:text-white rounded-[5px] p-2 text-[11px]' ><p>si tienes el estado activo tus clientes pueden ver si estás activo o ausente, si quieres que tus clientes no vean tu estado de perfil puedes desactivarlo</p></div>
                                 <div className='flex items-center pl-[1.8rem] mt-4' >
@@ -171,7 +171,7 @@ export const ProfileConfiguration = () => {
                             </div>
                         </div>
                         <div>
-                            <h4 className='text-xl font-semibold mb-8' >Privacidad</h4>
+                            <h4 className='text-xl font-semibold mb-[30px]' >Privacidad</h4>
                             <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
                             <div className='flex items-center' >
                                     <ToggleHelper i={8} />
@@ -197,7 +197,7 @@ export const ProfileConfiguration = () => {
                     {/*  */}
                     <div>
                         <div>
-                            <h4 className='text-xl font-semibold mb-8' >Preferencia</h4>
+                            <h4 className='text-xl font-semibold mb-[30px]' >Preferencia</h4>
                             <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
                                 <div className='flex items-center' >
                                     <ToggleHelper i={12} />
@@ -210,7 +210,7 @@ export const ProfileConfiguration = () => {
                             </div>
                         </div>
                             <div className='w-80' >
-                                <h4 className='text-xl font-semibold mb-8' >Información</h4>
+                                <h4 className='text-xl font-semibold mb-[30px]' >Información</h4>
                                 <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
                                     <div className='mb-2 w-full flex items-center' >
                                         <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
