@@ -20,7 +20,7 @@ class TenantSeeder extends Seeder
         for ($i = 1; $i <= 20; $i++) {
             $tenant = new Tenant;
             $tenant->id = $faker->unique()->uuid();
-            $tenant->domain = strtoupper($faker->unique()->buildingNumber());
+            $tenant->domain = $faker->unique()->buildingNumber();
             $tenant->name = $faker->company();
             $tenant->image = $faker->imageUrl($width = 640, $height = 480);
             $tenant->status = $faker->randomElement($array = array (1,0));
