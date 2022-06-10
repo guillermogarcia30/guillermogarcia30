@@ -91,8 +91,8 @@ export const ModalAPlicacionesEdit = () => {
 
   return (
     <div style={modalstate.open ?{display: 'flex'}:{display: 'none'}} className='justify-end bg-black-transparent min-h-[100vh] z-[1000]  fixed top-0 bottom-0 left-0 right-0 m-[0 auto]' >
-        <div className='bg-[#ffffff] dark:bg-darkmode-black-02 w-full lg:w-auto h-full px-4 pt-8 sm:px-12 ms:px-24 md:px-40 lg:px-16 lg:py-12' >
-            <h2 className='mb-8 overflow-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-pink dark:text-[#ffffff] z-[999] text-[2rem] font-semibold' >Editar una aplicación</h2>
+        <div className='overflow-scroll scrollbar-thin scrollbar-thumb-pink bg-[#ffffff] dark:bg-darkmode-black-02 w-full lg:w-auto h-full px-4 pt-8 sm:px-12 ms:px-24 md:px-40 lg:px-16 lg:py-12' >
+            <h2 className='mb-8  dark:text-[#ffffff] z-[999] text-[2rem] font-semibold' >Editar una aplicación</h2>
             
             <Formik
             innerRef={formikRef}

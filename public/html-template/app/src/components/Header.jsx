@@ -24,6 +24,7 @@ export const Header = () => {
   const img = useSelector( state => state.user.image )
   const [user, setUSer] = useState({ image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: '' , position: '' })
   const [ dropdownView, setDropDownView] = useState(false)
+  const [ dropdownView2, setDropDownView2] = useState(false)
   useEffect(() => {
     /**
      * Alert if clicked on outside of element
@@ -74,12 +75,12 @@ export const Header = () => {
               <button className='focus-visible:outline-none focus-visible:border-none' onClick={() => setDropDownView(!dropdownView)} >{ !dropdownView ? <GiHamburgerMenu className='text-[#8E8E8E] text-[1.2rem]' /> : <AiOutlineClose className='text-[#8E8E8E] text-[1.2rem]' /> }</button>
               {/* Menu movil */}
               {
-                  dropdownView && (
+                  dropdownView2 && (
                     <div  className="lg:hidden fixed w-[100vw] top-[65px] left-[1px]  bg-white shadow-custom dark:bg-darkmode-black-02">
                       {
                         links.map( (el, i) => { return (
                           <div key={i} className='flex items-center justify-between px-2 py-3 cursor-pointer' >
-                              <CustomLink  onClick={() => setDropDownView(!dropdownView)} to={el.src}>{el.name}</CustomLink>
+                              <CustomLink  onClick={() => setDropDownView(!dropdownView2)} to={el.src}>{el.name}</CustomLink>
                           </div>
                         ) } )
                       }
