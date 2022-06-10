@@ -103,8 +103,8 @@ export const ProfileConfiguration = () => {
                             <div className='mb-2 w-full flex items-center' >
                                 <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                             </div>
-                            {/* <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='country' id='country' type='text' /> */}
-                            <select className='bg-white-input mb-4 rounded-[5px] h-12'  name="" id="">
+                            <Field className='w-0 h-0' name='country' id='country' type='text' />
+                            <select className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
                                 <option selected >Seleccione un país</option>
                                 { data.map( el => { return( <option key={el.id} value={el.name} >{el.name}</option>) }) }
                             </select>
