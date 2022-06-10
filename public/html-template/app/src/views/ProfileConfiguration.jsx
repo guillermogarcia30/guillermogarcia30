@@ -9,12 +9,18 @@ import { ToggleHelper } from '../components/ToggleHelper'
 
 // Icons
 import { AiOutlineEdit } from 'react-icons/ai'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 export const ProfileConfiguration = () => {
-
+    const [ data, setData ] = useState([])
     const dispatch = useDispatch()
     const userData = useSelector( state => state.user )
-
+    useEffect(()=> {
+        fetch('https://auth.synapse-crm.com/api/countries')
+        .then( res => res.json() )
+        .then( res => setData(res.data) )
+    }, [])
 
 
   return (
@@ -28,8 +34,9 @@ export const ProfileConfiguration = () => {
         onSubmit={(values)=> {
             dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
         }} >
-            <div className='w-full lg:px-20 semi-l:px-0 semi-l:hidden relative' >
+            {({values, ...props}) => (
                 <Form>
+            <div className='w-full lg:px-20 semi-l:px-0 semi-l:hidden relative' >
                     {/* Primer separador */}
 
                     <div>
@@ -96,7 +103,11 @@ export const ProfileConfiguration = () => {
                             <div className='mb-2 w-full flex items-center' >
                                 <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                             </div>
-                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='country' id='country' type='text' />
+                            {/* <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='country' id='country' type='text' /> */}
+                            <select className='bg-white-input mb-4 rounded-[5px] h-12'  name="" id="">
+                                <option selected >Seleccione un país</option>
+                                { data.map( el => { return( <option key={el.id} value={el.name} >{el.name}</option>) }) }
+                            </select>
                             <div className='mb-2 w-full flex items-center' >
                                 <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                             </div>
@@ -119,123 +130,132 @@ export const ProfileConfiguration = () => {
                             <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='email' id='email' type='text' />
                         </div>
                     <button type='submit' className='lg:hidden fixed bottom-3 right-4 bg-red text-white rounded-full font-semibold px-3 py-3' > <AiOutlineCheck className='text-[3rem]' /> </button>
-
+                    </div>
                     </Form>
-                </div>
+            )}
             </Formik>
+
+
             {/* form desktop */}
         <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '' }} 
         onSubmit={(values)=> {
             dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
         }} >
+            {({values, ...props}) => (
             <div className='hidden w-full semi-l:block' >
+
                 <Form  >
-                    {/* Primer separador */}
 
-                    <div className='flex justify-between ' >
-                        <div className='w-80 ' >
-                            <div>
-                                <h4 className='text-xl font-semibold mb-8' >Cuenta</h4>
-                                <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3' >
-                                    <div className='max-w-[3rem] max-h-[3rem] overflow-hidden rounded-full' >
-                                        <img className='w-full h-full' src={userData.image} alt="" />
-                                    </div>
-                                    <div className='pl-4' >
-                                        <h5 className='font-semibold' >{userData.name}</h5>
-                                        <p className='dark:text-white text-[11px] text-gray ' >¿Este no es tu usuario? <span className='text-pink underline' >Cambiar de cuenta</span> </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className='text-xl font-semibold mb-8' >Activar estado</h4>
-                                <div className='w-full mb-6 rounded-[5px]   flex flex-col' >
-                                    <div className='bg-[#ffffff] shadow-custom w-full dark:bg-darkmode-black-02 dark:text-white rounded-[5px] p-2 text-[11px]' ><p>si tienes el estado activo tus clientes pueden ver si estás activo o ausente, si quieres que tus clientes no vean tu estado de perfil puedes desactivarlo</p></div>
-                                    <div className='flex items-center pl-[1.8rem] mt-4' >
-                                        <ToggleHelper i={7} />
-                                        <small className=' ml-4 text-[11px] ' >Puedes desactivar el estado de la cuenta</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className='text-xl font-semibold mb-8' >Privacidad</h4>
-                                <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
-                                <div className='flex items-center' >
-                                        <ToggleHelper i={8} />
-                                        <small className=' ml-4 text-[11px] ' >Perfil modo oculto</small>
-                                    </div>
-                                    <div className='flex items-center mt-4' >
-                                        <ToggleHelper i={9} />
-                                        <small className=' ml-4 text-[11px] ' >Ocultar direccion de correo electrónico</small>
-                                    </div>
-                                    <div className='flex items-center mt-4' >
-                                        <ToggleHelper i={10} />
-                                        <small className=' ml-4 text-[11px] ' >Ocultar número de teléfono</small>
-                                    </div>
-                                    <div className='flex items-center mt-4' >
-                                        <ToggleHelper i={11} />
-                                        <small className=' ml-4 text-[11px] ' >Nadie ve con quien estás vinculado</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/*  */}
-                        {/*  */}
-                        {/*  */}
+                <div className='flex justify-between ' >
+                    <div className='w-80 ' >
                         <div>
-                            <div>
-                                <h4 className='text-xl font-semibold mb-8' >Preferencia</h4>
-                                <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
-                                    <div className='flex items-center' >
-                                        <ToggleHelper i={12} />
-                                        <small className=' ml-4 text-[11px] ' >Enviar correo de nueva notificación</small>
-                                    </div>
-                                    <div className='flex items-center mt-4' >
-                                        <ToggleHelper i={13} />
-                                        <small className=' ml-4 text-[11px] ' >Cerrar la cuenta cada 10 dias</small>
-                                    </div>
+                            <h4 className='text-xl font-semibold mb-8' >Cuenta</h4>
+                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3' >
+                                <div className='max-w-[3rem] max-h-[3rem] overflow-hidden rounded-full' >
+                                    <img className='w-full h-full' src={userData.image} alt="" />
+                                </div>
+                                <div className='pl-4' >
+                                    <h5 className='font-semibold' >{userData.name}</h5>
+                                    <p className='dark:text-white text-[11px] text-gray ' >¿Este no es tu usuario? <span className='text-pink underline' >Cambiar de cuenta</span> </p>
                                 </div>
                             </div>
-                                <div>
-                                    <h4 className='text-xl font-semibold mb-8' >Información</h4>
-                                    <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                                        <div className='mb-2 w-full flex items-center' >
-                                            <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                        </div>
-                                        <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='country' id='country' type='text' />
-                                        <div className='mb-2 w-full flex items-center' >
-                                            <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                        </div>
-                                        <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='city' id='city' type='text' />
-                                        <div className='mb-2 w-full flex items-center' >
-                                            <label className='font-normal text-lg' htmlFor='address' >Dirección</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                        </div>
-                                        <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='address' id='address' type='text' />
-                                    </div>
-                                </div>
                         </div>
-                            <div className='mt-[3.6rem]' >
-                                <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                                    <div className='mb-2 w-full flex items-center' >
-                                        <label className='font-normal text-lg' htmlFor='tlf' >Teléfono personal</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                    </div>
-                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6 appearance-none' name='tlf' id='tlf' type='number' />
-                                </div>
-                                <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                                    <div className='mb-2 w-full flex items-center' >
-                                        <label className='font-normal text-lg' htmlFor='email' >Correo electrónico</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                    </div>
-                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='email' id='email' type='text' />
+                        <div>
+                            <h4 className='text-xl font-semibold mb-8' >Activar estado</h4>
+                            <div className='w-full mb-6 rounded-[5px]   flex flex-col' >
+                                <div className='bg-[#ffffff] shadow-custom w-full dark:bg-darkmode-black-02 dark:text-white rounded-[5px] p-2 text-[11px]' ><p>si tienes el estado activo tus clientes pueden ver si estás activo o ausente, si quieres que tus clientes no vean tu estado de perfil puedes desactivarlo</p></div>
+                                <div className='flex items-center pl-[1.8rem] mt-4' >
+                                    <ToggleHelper i={7} />
+                                    <small className=' ml-4 text-[11px] ' >Puedes desactivar el estado de la cuenta</small>
                                 </div>
                             </div>
-                            
+                        </div>
+                        <div>
+                            <h4 className='text-xl font-semibold mb-8' >Privacidad</h4>
+                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
+                            <div className='flex items-center' >
+                                    <ToggleHelper i={8} />
+                                    <small className=' ml-4 text-[11px] ' >Perfil modo oculto</small>
+                                </div>
+                                <div className='flex items-center mt-4' >
+                                    <ToggleHelper i={9} />
+                                    <small className=' ml-4 text-[11px] ' >Ocultar direccion de correo electrónico</small>
+                                </div>
+                                <div className='flex items-center mt-4' >
+                                    <ToggleHelper i={10} />
+                                    <small className=' ml-4 text-[11px] ' >Ocultar número de teléfono</small>
+                                </div>
+                                <div className='flex items-center mt-4' >
+                                    <ToggleHelper i={11} />
+                                    <small className=' ml-4 text-[11px] ' >Nadie ve con quien estás vinculado</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className='flex items-center justify-end mt-12' >
-                                <Link to={'/profile'} className='bg-[#ffffff] border border-solid rounded-[5px] font-semibold px-11 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink '>Volver</Link>
-                                <button type='submit' className='bg-pink ml-8 text-white rounded-[5px] font-semibold px-11 py-2'  >Guardar</button>
+                    {/*  */}
+                    {/*  */}
+                    {/*  */}
+                    <div>
+                        <div>
+                            <h4 className='text-xl font-semibold mb-8' >Preferencia</h4>
+                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
+                                <div className='flex items-center' >
+                                    <ToggleHelper i={12} />
+                                    <small className=' ml-4 text-[11px] ' >Enviar correo de nueva notificación</small>
+                                </div>
+                                <div className='flex items-center mt-4' >
+                                    <ToggleHelper i={13} />
+                                    <small className=' ml-4 text-[11px] ' >Cerrar la cuenta cada 10 dias</small>
+                                </div>
+                            </div>
+                        </div>
+                            <div className='w-80' >
+                                <h4 className='text-xl font-semibold mb-8' >Información</h4>
+                                <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
+                                    <div className='mb-2 w-full flex items-center' >
+                                        <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                                    </div>
+                                    <Field className='w-0 h-0' name='country' id='country' type='text' />
+                                    <select className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
+                                        <option selected >Seleccione un país</option>
+                                        { data.map( el => { return( <option onClick={() => {props.setFieldValue("country", el.name)}} key={el.id} value={el.name} >{el.name}</option>) }) }
+                                    </select>
+                                    <div className='mb-2 w-full flex items-center' >
+                                        <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                                    </div>
+                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='city' id='city' type='text' />
+                                    <div className='mb-2 w-full flex items-center' >
+                                        <label className='font-normal text-lg' htmlFor='address' >Dirección</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                                    </div>
+                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='address' id='address' type='text' />
+                                </div>
+                            </div>
                     </div>
-                    </Form>
-
+                        <div className='mt-[3.6rem]' >
+                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
+                                <div className='mb-2 w-full flex items-center' >
+                                    <label className='font-normal text-lg' htmlFor='tlf' >Teléfono personal</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                                </div>
+                                <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6 appearance-none' name='tlf' id='tlf' type='number' />
+                            </div>
+                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
+                                <div className='mb-2 w-full flex items-center' >
+                                    <label className='font-normal text-lg' htmlFor='email' >Correo electrónico</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                                </div>
+                                <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='email' id='email' type='text' />
+                            </div>
+                        </div>
+                        
                 </div>
+                <div className='flex items-center justify-end mt-12' >
+                            <Link to={'/profile'} className='bg-[#ffffff] border border-solid rounded-[5px] font-semibold px-11 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink '>Volver</Link>
+                            <button type='submit' className='bg-pink ml-8 text-white rounded-[5px] font-semibold px-11 py-2'  >Guardar</button>
+                </div>
+                </Form>
+                </div>
+
+            )}
+
                 
             </Formik>
     </div>
