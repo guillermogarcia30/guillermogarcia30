@@ -30,7 +30,7 @@ export const ProfileConfiguration = () => {
             <h4 className='font-normal text-lg lg:block hidden' >Perfil <span className='text-gray-light' >/ configuración</span></h4>
         </div>
         {/* Container */}
-        <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '' }} 
+        <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '', state: '' }} 
         onSubmit={(values)=> {
             dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
         }} >
@@ -106,7 +106,7 @@ export const ProfileConfiguration = () => {
                             <Field className='w-0 h-0' name='country' id='country' type='text' />
                             <select className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
                                 <option selected >Seleccione un país</option>
-                                { data.map( el => { return( <option key={el.id} value={el.name} >{el.name}</option>) }) }
+                                { data.map( el => { return( <option onClick={() => {props.setFieldValue("country", el.name)}} key={el.id} value={el.name} >{el.name}</option>) }) }
                             </select>
                             <div className='mb-2 w-full flex items-center' >
                                 <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
@@ -116,6 +116,10 @@ export const ProfileConfiguration = () => {
                                 <label className='font-normal text-lg' htmlFor='address' >Dirección</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                             </div>
                             <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='address' id='address' type='text' />
+                            <div className='mb-2 w-full flex items-center' >
+                                <label className='font-normal text-lg' htmlFor='state' >Estado</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                            </div>
+                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='state' id='state' type='text' />
                         </div>
                         <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
                             <div className='mb-2 w-full flex items-center' >
@@ -137,7 +141,7 @@ export const ProfileConfiguration = () => {
 
 
             {/* form desktop */}
-        <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '' }} 
+        <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '', state: '' }} 
         onSubmit={(values)=> {
             dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
         }} >
@@ -228,6 +232,10 @@ export const ProfileConfiguration = () => {
                                         <label className='font-normal text-lg' htmlFor='address' >Dirección</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
                                     </div>
                                     <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='address' id='address' type='text' />
+                                    <div className='mb-2 w-full flex items-center' >
+                                        <label className='font-normal text-lg' htmlFor='state' >Estado</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
+                                    </div>
+                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='state' id='state' type='text' />
                                 </div>
                             </div>
                     </div>

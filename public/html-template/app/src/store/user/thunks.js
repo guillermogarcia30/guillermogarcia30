@@ -44,7 +44,7 @@ export const changeProfilePicture = (token, image) => {
 }
 
 
-export const updateProfileData = ({country, city, address, tlf, email, token, backup_email}) => {
+export const updateProfileData = ({country, city, address, tlf, email, token, backup_email, state}) => {
 
     return async(dispatch) => {
         const tester = new RegExp(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
@@ -54,13 +54,15 @@ export const updateProfileData = ({country, city, address, tlf, email, token, ba
                 phone: tlf,
                 address,
                 city,
-                country
+                country,
+                state
             } : {
                 email: backup_email,
                 phone: tlf,
                 address,
                 city,
-                country
+                country,
+                state
             }
 
             console.log(body)
