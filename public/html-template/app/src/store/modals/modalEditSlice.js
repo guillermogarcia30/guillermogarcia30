@@ -11,6 +11,7 @@ const initialState = {
   website: '',
   appurls: '',
   secret: '',
+  errorMsg: 'Por favor intenta de nuevo mas tarde',
   changeOk: false
 };
 
@@ -55,11 +56,17 @@ export const modalSlice = createSlice({
     },
     setChangeOk: (state, actions) => {
       state.changeOk = actions.payload.ok
+    },
+    setMsg: (state, actions) => {
+      if (actions.payload.msg) {
+         return state.errorMsg = actions.payload.msg
+      }
+      state.errorMsg = 'Por favor intenta de nuevo mas tarde'
     }
   },
 });
 
-export const { showModal, hideModal, onErrorClose, onErrorOpen, onSuccesClose, onSuccesOpen, onProfilePicOpen, onProfilePicClose, setChangeOk } = modalSlice.actions;
+export const { showModal, hideModal, onErrorClose, onErrorOpen, onSuccesClose, onSuccesOpen, onProfilePicOpen, onProfilePicClose, setChangeOk, setMsg } = modalSlice.actions;
 
 
 export const modalSubscribed = (state) => state.modal;

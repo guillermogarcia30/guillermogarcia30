@@ -40,7 +40,7 @@ export const ModalImg = () => {
       
 
   return (
-    <div className={view ? 'bg-black-transparent w-[100vw] h-[100vh] fixed top-0 bottom-0 right-0 left-0 m-[auto]': 'hidden'} >
+    <div className={view ? 'bg-black-transparent z-[100] w-[100vw] h-[100vh] fixed top-0 bottom-0 right-0 left-0 m-[auto]': 'hidden'} >
         <div className='w-[25rem] h-[27rem] bg-white dark:bg-darkmode-black-02 absolute top-0 bottom-0 right-0 left-0 m-[auto] ' >
             <div {...getRootProps()} draggable="true" className='h-[20rem] relative   ' >
                     <img className='w-full h-full brightness-[.6]' src={ !url ? userData.image : url } alt="imagen de perfil" />

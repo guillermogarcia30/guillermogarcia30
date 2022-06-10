@@ -1,5 +1,5 @@
-import { onErrorOpen, onProfilePicClose, setChangeOk } from '../modals/modalEditSlice'
-import { setUserImg, updateUserData } from './userSlice'
+import { onErrorOpen, onProfilePicClose, setMsg, setChangeOk } from '../modals/modalEditSlice'
+import { setUserImg, updateUserData, setPicLoandig } from './userSlice'
 
 const imgUpdateUrl = 'https://auth.synapse-crm.com/api/user/me/image'
 const updateUrl = 'https://auth.synapse-crm.com/api/user/me'
@@ -9,7 +9,7 @@ const updateUrl = 'https://auth.synapse-crm.com/api/user/me'
 export const changeProfilePicture = (token, image) => {
     
     return async(dispatch) => {
-        
+        dispatch( setPicLoandig({ok: true}) )
         dispatch( onProfilePicClose() )
         console.log('cargando')
         if(image)
@@ -26,7 +26,7 @@ export const changeProfilePicture = (token, image) => {
         })
         .then( res => res.json() )
         .then( res => {
-            console.log('fin de la carga')
+            dispatch( setPicLoandig({ok: false}) )
             if (!res.error) {
                 dispatch( onProfilePicClose() )
                 dispatch(setUserImg({image: res.image }))
@@ -38,6 +38,7 @@ export const changeProfilePicture = (token, image) => {
         } )
         .catch( err => { 
             console.log(err) 
+            dispatch( setPicLoandig({ok: false}) )
             dispatch(onErrorOpen()) })
         }
     }
@@ -83,7 +84,10 @@ export const updateProfileData = ({country, city, address, tlf, email, token, ba
                     
                 }else {
                     console.log(res)
-                    dispatch(onErrorOpen())                
+                    dispatch(onErrorOpen())
+                    if(res.type === 'already_email'){
+                        dispatch(setMsg({ msg: 'Ya existe un correo con esa direccion, por favor intente otro' }))
+                    }           
                 }
             } )
             .catch( err => { 

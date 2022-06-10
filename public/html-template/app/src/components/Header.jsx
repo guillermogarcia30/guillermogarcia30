@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link } from "react-router-dom"
 
 
@@ -19,11 +19,29 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 
 export const Header = () => {
-
+  const menu = useRef()
+  
   const img = useSelector( state => state.user.image )
   const [user, setUSer] = useState({ image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: '' , position: '' })
   const [ dropdownView, setDropDownView] = useState(false)
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
 
+      function handleClickOutside(event) {
+        if (menu.current && !menu.current.contains(event.target)) {
+          setDropDownView(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+
+  }, [dropdownView]);
   useEffect(() => {
     getUser().then( res => {
       if(!res.error){}
@@ -45,11 +63,11 @@ export const Header = () => {
                   id: 4,src: '/calendario', name: 'Calendario'
                 }]
   return (
-    <header className='fixed z-[100] h-16 w-[100vw] px-11 lg:px-40 xl:px-52 bg-[#ffffff] dark:bg-darkmode-black-02 pt-4 shadow-custom'>
+    <header className='fixed z-[100] pb-4 w-[100vw] px-11 lg:px-40 xl:px-52 bg-[#ffffff] dark:bg-darkmode-black-02 pt-4 shadow-custom'>
         <nav className='flex  items-center justify-between' >
           
             <div className='lg:flex hidden items-center' >
-              <button className='mr-[60px] focus-visible:outline-none focus-visible:border-none' ><MenuAppIcon/></button>
+              <button className=' mr-[60px] focus-visible:outline-none focus-visible:border-none' ><MenuAppIcon/></button>
               <Logo/>
             </div>
             <div className='flex relative lg:hidden justify-between w-20' >
@@ -59,9 +77,9 @@ export const Header = () => {
                   dropdownView && (
                     <div  className="lg:hidden fixed w-[100vw] top-[65px] left-[1px]  bg-white shadow-custom dark:bg-darkmode-black-02">
                       {
-                        links.map( el => { return (
-                          <div className='flex items-center justify-between px-2 py-3 cursor-pointer' >
-                              <CustomLink onClick={() => setDropDownView(!dropdownView)} to={el.src}>{el.name}</CustomLink>
+                        links.map( (el, i) => { return (
+                          <div key={i} className='flex items-center justify-between px-2 py-3 cursor-pointer' >
+                              <CustomLink  onClick={() => setDropDownView(!dropdownView)} to={el.src}>{el.name}</CustomLink>
                           </div>
                         ) } )
                       }
@@ -115,7 +133,7 @@ export const Header = () => {
                     <img className='w-full h-full' src={user.image} alt="Foto de perfil" />
                   </div>
                 </Link>
-                <button onClick={() => setDropDownView(!dropdownView)} className='hidden lg:block rotate-[179deg] absolute text-[.5rem] right-[-15px] top-0 bottom-0 margin-[auto]' ><BsTriangleFill className='dark:text-white' /></button>
+                <button ref={menu} onClick={() => { setDropDownView(!dropdownView)}} className='hidden lg:block rotate-[179deg] absolute text-[.5rem] right-[-15px] top-0 bottom-0 margin-[auto]' ><BsTriangleFill className='dark:text-white' /></button>
                 {/* Dropdown Desktop*/}
                 {
                   dropdownView && (
