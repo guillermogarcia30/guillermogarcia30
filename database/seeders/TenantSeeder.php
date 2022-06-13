@@ -16,7 +16,8 @@ class TenantSeeder extends Seeder
      * @return void
      */
     public function run(Faker $faker)
-    {
+    {   
+        /*
         for ($i = 1; $i <= 20; $i++) {
             $tenant = new Tenant;
             $tenant->id = $faker->unique()->uuid();
@@ -26,6 +27,7 @@ class TenantSeeder extends Seeder
             $tenant->status = $faker->randomElement($array = array (1,0));
             $tenant->save();
         }
-        //Tenant::factory(20)->create();
+        */
+        Tenant::factory(20)->create();
     }
 }
