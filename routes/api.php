@@ -37,6 +37,11 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('/apps',App\Http\Controllers\API\AppController::class);
     Route::post('/apps/image/{id}', [App\Http\Controllers\API\AppController::class,'image']);
     //FIN    
+
+    //APIS DE TENANT
+    Route::resource('/tenant',App\Http\Controllers\API\TenantController::class);
+    Route::post('/tenant/image/{id}', [App\Http\Controllers\API\TenantController::class,'image']);
+    //FIN
 });
 
 //APIS DE CLIENT_ID Y SECRET
