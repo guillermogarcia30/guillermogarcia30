@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BiError } from 'react-icons/bi'
-import { onErrorClose } from '../store/modals/modalEditSlice'
+import { onErrorClose, setMsg } from '../store/modals/modalEditSlice'
 
 export const ModalPetitionWrong = () => {
 
@@ -18,7 +18,10 @@ export const ModalPetitionWrong = () => {
               </div>
               <h4 className='text-[18px] leading-6 font-medium text-center mt-[20px] dark:text-[#ffffff]' >Algo salio mal</h4>
               <p className='text-center text-[17px] dark:text-[#ffffff] my-9' >{errormsg}</p>
-              <button className='px-4 py-2 rounded-md height-[2.25rem] w-[20.0625rem] bg-red text-white font-semibold' onClick={() => dispatch(onErrorClose())} >Regresar</button>
+              <button className='px-4 py-2 rounded-md height-[2.25rem] w-[20.0625rem] bg-red text-white font-semibold' onClick={() =>{ 
+                dispatch(onErrorClose())
+                setTimeout(() => { dispatch(setMsg({msg: 'Por favor intenta de nuevo mas tarde'})) }, 1000)
+                }} >Regresar</button>
           </div>
       </div>
     </div>

@@ -1,114 +1,172 @@
 import React from 'react'
-import { Link } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
 
-import { ModalImg } from '../components/ModalImg'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import { onProfilePicOpen } from '../store/modals/modalEditSlice'
+// icons
+import { PencilIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
-// Icons
-import { FiCamera } from 'react-icons/fi'
-import { FiEdit } from 'react-icons/fi'
 
+
+
+
+const team = [
+  {
+    name: 'Leslie Alexander',
+    handle: 'lesliealexander',
+    role: 'Co-Founder / CEO',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    name: 'Michael Foster',
+    handle: 'michaelfoster',
+    role: 'Co-Founder / CTO',
+    imageUrl:
+      'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    name: 'Dries Vincent',
+    handle: 'driesvincent',
+    role: 'Manager, Business Relations',
+    imageUrl:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    name: 'Lindsay Walton',
+    handle: 'lindsaywalton',
+    role: 'Front-end Developer',
+    imageUrl:
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+]
 
 export const Profile = () => {
-
-    const loading = useSelector( state => state.apps.loading )
-
-    const userData = useSelector( state => state.user )
-    const dispatch = useDispatch()
-    if (loading) {
-        return (
-        <div className='pt-24 min-h-[100vh] items-center lg:px-40 xl:px-52 px-8 flex flex-col'>
-            <div className='flex items-center justify-between w-full my-4'>
-                <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Perfil</h2>
-            </div>
-            <div className='w-full '>
-            <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-[25px] flex-col'>
-                <div className='flex mb-4' >
-                    <div className='relative cursor-pointer' >
-                        <div className='w-[6rem] h-[6rem] rounded-full overflow-hidden' >
-                            <img className='w-full min-h-full' src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' alt="foto de perfil" />
-                        </div>
-                        <div className='absolute right-0 bottom-[-5px] bg-gray-light w-8 h-8 rounded-full flex justify-center items-center' >
-                            <FiCamera className='text-white text-[1.2rem]' />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            </div>
-        </div>
-        )
-    }
-
+  const userData = useSelector( state => state.user )
+  const profile = {
+    name: userData.name,
+    position: userData.position,
+    imageUrl:
+      userData.image,
+    fields: {
+      'Correo Electronico': userData.email,
+      Telefono: userData.phone,
+      'País': userData.pais,
+      'Estado': userData.state,
+      'Ciudad': userData.ciudad,
+      'Dirección': userData.address,
+    },
+  }
+  
   return (
-    <div className='pt-24 min-h-[100vh] items-center lg:px-40 xl:px-52 px-8 flex flex-col' >
-        <div className='flex items-center justify-between w-full my-4'>
-            <h2 className='text-[2rem] dark:text-[#ffffff] font-semibold' >Perfil</h2>
-            <Link to={'/home'} className='font-normal text-lg' >Aplicación <span className='text-gray-light' >/ perfil</span></Link>
-        </div>
-        <div className='w-full ' >
-            {/* Datos principales */}
-            <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-[25px] flex-col' >
-                <div className='flex mb-4' >
-                    <div className='relative cursor-pointer' onClick={() => dispatch(onProfilePicOpen())} >
-                        { !userData.profilePicCHangeLoading ? (
-                        <div className='w-[6rem] h-[6rem] rounded-full overflow-hidden' >
-                            <img className='w-full min-h-full' src={userData.image} alt="foto de perfil" />                            
-                        </div> 
-                        ) : (
-                            <div className='w-[6rem] h-[6rem] bg-gray-light flex items-center justify-center rounded-full overflow-hidden' >
-                                <svg role="status" className="w-8 h-8 mr-2 text-white animate-spin fill-pink" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-                                </svg>
-                            </div >
-                        )}                        
-                        <div className='absolute right-0 bottom-[-5px] bg-gray-light w-8 h-8 rounded-full flex justify-center items-center' >
-                            <FiCamera className='text-white text-[1.2rem]' />
+    <>
+      
+      <div className="h-full flex">
+        
+        <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
+          <div className="lg:hidden">
+            <div className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+              <div>
+                <img
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/workflow-mark-pink-500.svg"
+                  alt="Workflow"
+                />
+              </div>
+              <div>
+
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 relative z-0 flex overflow-hidden">
+            <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
+
+              <article>
+                {/* Profile header */}
+                <div  >
+                  <div className="max-w-5xl mt-32 mx-auto px-4 sm:px-6 lg:px-8">
+                  <div  className='flex items-center justify-between mb-10' >
+                    <div className='flex flex-col justify-center' >
+                      <div className='flex items-center' >
+                        <p className='text-sm font-medium text-[#6B7280]' >Cuenta</p>
+                        <ChevronRightIcon className='h-5 w-5 text-[#6B7280]' />
+                        <p className='text-sm font-medium ' >Perfil</p>
+                      </div>
+                      <h2 className='mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate' >Perfil de usuario</h2>
+                    </div>
+                    <div>
+                          <button
+                            type="button"
+                            className="inline-flex justify-center px-4 py-2 border border-[#6B7280] shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                          >
+                            <PencilIcon className="-ml-1 text-[#6B7280] mr-2 h-5 w-5" aria-hidden="true" />
+                            <Link to={'/profile/configuration'} ><span className='text-[#6B7280]' >Editar</span></Link>
+                          </button>
+                    </div>
+                  </div>
+                    <div className=" sm:flex sm:items-end sm:space-x-5">
+                    
+                      <div className="flex">
+                        <img
+                          className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
+                          src={profile.imageUrl}
+                          alt="Profile picture"
+                        />
+                      </div>
+                      <div className="mt-6 my-auto sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+                        <div className="2xl:block my-auto mx-auto sm:ml-8 xl:ml-8  min-w-0 flex-1">
+                          <h1 className="text-2xl text-gray-900 truncate">{profile.name}</h1>
+                          <p className='text-xs uppercase text-[#6B6B6B]' >{profile.position}</p>
                         </div>
+                        <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+                          
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex flex-col ml-4 relative">
-                        <h4 className='text-[#000000] dark:text-white font-bold text-lg lg:text-xl' >{userData.name}</h4>
-                        <p className='font-semibold dark:text-soft-gray text-gray-light' >Vinculados</p>
-                        <Link to='/profile/configuration' className='absolute right-[-30px] top-[7px]' ><FiEdit className='text-gray-light' /></Link>
-                    </div>
+                  </div>
                 </div>
-                {/* Cargo y pais */}
-                <div>
-                    <p className='font-semibold dark:text-white' >{userData.position}</p>
-                    <p className='font-semibold dark:text-soft-gray text-gray-light' >{userData.pais}</p>
+
+
+                {/* Description list */}
+                <div className="max-w-5xl mx-auto px-8 py-4 sm:mt-4 sm:rounded-[10px] shadow-custom sm:px-6 lg:px-8 bg-white">
+                  <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                    {Object.keys(profile.fields).map((field) => (
+                      <div key={field} className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">{field}</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{profile.fields[field]}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </div>
-            </div>
-            {/* Fin de datos principales */}
-            {/* Datos personales */}
-            <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-[25px] flex-col mt-8'>
-                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Información Personal</h4>
-                <div className='flex justify-between lg:items-center flex-col lg:flex-row ' >
-                    <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Fecha de nacimiento: <span className='text-gray-dark dark:text-soft-gray ' >{userData.birthDay}</span></p>
-                    <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Ciudad: <span className='text-gray-dark dark:text-soft-gray ' >{userData.ciudad}</span></p>
-                    <p className=' mb-2 lg:mb-0 dark:text-white font-semibold' >Dirección: <span className='text-gray-dark dark:text-soft-gray ' >{userData.address}</span></p>
+
+                {/* Team member list */}
+                <div className="mt-16 max-w-5xl mx-auto  pb-12  lg:px-8">
+                  <h2 className="text-sm font-medium text-gray-500">Team members</h2>
+                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {team.map((person) => (
+                      <div
+                        key={person.handle}
+                        className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
+                      >
+                        <div className="flex-shrink-0">
+                          <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <a href="#" className="focus:outline-none">
+                            <span className="absolute inset-0" aria-hidden="true" />
+                            <p className="text-sm font-medium text-gray-900">{person.name}</p>
+                            <p className="text-sm text-gray-500 truncate">{person.role}</p>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-            </div>
-            {/* Fin de Datos personales */}
-            {/* Telefono */}
-            <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-[25px] flex-col mt-8'>
-                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Teléfono</h4>
-                <div className='flex justify-between items-center' >
-                    <p className=' dark:text-white font-semibold' >Teléfono personal: <span className='text-gray-dark dark:text-soft-gray ' >{userData.phone}</span></p>
-                </div>
-            </div>
-            {/* Fin de telefono */}
-            {/* Email */}
-            <div className='w-full shadow-custom rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02  flex  px-7 py-[25px] flex-col mt-8'>
-                <h4 className=' text-[#000000] dark:text-white font-bold text-lg lg:text-xl mb-[20px]' >Correo Electrónico</h4>
-                <div className='flex justify-between items-center' >
-                    <p className=' dark:text-white font-semibold' >Correo: <span className='text-gray-dark dark:text-soft-gray ' >{userData.email}</span></p>
-                </div>
-            </div>
+              </article>
+            </main>
+          </div>
         </div>
-        <ModalImg />
-    </div>
+      </div>
+    </>
   )
 }
