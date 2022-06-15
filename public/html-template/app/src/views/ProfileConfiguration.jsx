@@ -1,15 +1,18 @@
 import { Form, Formik, Field } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { updateProfileData } from '../store/user/thunks'
 import { onProfilePicOpen } from '../store/modals/modalEditSlice'
 import { ModalImg } from '../components/ModalImg'
 // Icons
-import {  ChevronRightIcon } from '@heroicons/react/solid'
+import {  ArrowLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
 
 export const ProfileConfiguration = () => {
+
+    const navigate = useNavigate()
+
     const [ data, setData ] = useState([])
     const dispatch = useDispatch()
     const userData = useSelector( state => state.user )
@@ -33,15 +36,18 @@ export const ProfileConfiguration = () => {
         <div>
         <div className='flex w-full justify-between items-center mb-8' >
             <div className='flex flex-col justify-start w-full ' >
-                <div className='flex items-center' >
-                <p className='text-sm font-medium text-[#6B7280]' >Cuenta</p>
-                <ChevronRightIcon className='h-5 w-5 text-[#6B7280]' />
-                <p className='text-sm font-medium ' >Perfil</p>
+                <div className='hidden sm:flex items-center' >
+                    <p className='hidden sm:inline-flex text-sm font-medium text-[#6B7280]' >Cuenta</p>
+                    <ChevronRightIcon className='hidden sm:inline-flex h-5 w-5 text-[#6B7280]' />
+                    <p className='hidden sm:inline-flex text-sm font-medium ' >Perfil</p>
                 </div>
-                <h2 className='mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate' >Editar perfil</h2>
+                <div className='flex items-center' >
+                    <ArrowLeftIcon onClick={() => navigate(-1) } className='sm:hidden w-6 h-6 mr-4 text-pink' />
+                    <h2 className='mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate' >Editar perfil</h2>
+                </div>
             </div>
             <div className='flex' >
-                <Link className="inline-flex justify-center px-4 py-2 border border-[#6B7280] shadow-sm text-sm font-medium rounded-[5px] text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" to={'/profile'} ><span className='text-[#6B7280]' >Volver</span></Link>
+                <button type='button' onClick={()=> navigate(-1)} className="hidden  sm:inline-flex justify-center px-4 py-2 border border-[#6B7280] shadow-sm text-sm font-medium rounded-[5px] text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"  ><span className='text-[#6B7280]' >Volver</span></button>
 
                 <button type='submit' className='ml-6 px-4 py-2 bg-pink text-white rounded-[5px]' >Guardar</button>
             </div>

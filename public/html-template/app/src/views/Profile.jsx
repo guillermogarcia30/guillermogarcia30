@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // icons
-import { PencilIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import { PencilIcon, ChevronRightIcon, ArrowLeftIcon } from '@heroicons/react/solid'
 
 
 
@@ -42,6 +42,7 @@ const team = [
 ]
 
 export const Profile = () => {
+  const navigate = useNavigate()
   const userData = useSelector( state => state.user )
   const profile = {
     name: userData.name,
@@ -75,12 +76,15 @@ export const Profile = () => {
                   <div className="max-w-5xl mt-11 mx-auto px-4 sm:px-6 lg:px-8">
                   <div  className='flex items-center justify-between mb-10' >
                     <div className='flex flex-col justify-center' >
-                      <div className='flex items-center' >
-                        <p className='text-sm font-medium text-[#6B7280]' >Cuenta</p>
-                        <ChevronRightIcon className='h-5 w-5 text-[#6B7280]' />
-                        <p className='text-sm font-medium ' >Perfil</p>
+                      <div className='hidden sm:flex items-center' >
+                        <p className='hidden sm:inline-flex text-sm font-medium text-[#6B7280]' >Cuenta</p>
+                        <ChevronRightIcon className='hidden sm:inline-flex h-5 w-5 text-[#6B7280]' />
+                        <p className='hidden sm:inline-flex text-sm font-medium ' >Perfil</p>
                       </div>
-                      <h2 className='mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate' >Perfil de usuario</h2>
+                      <div className="flex items-center">
+                        <ArrowLeftIcon onClick={() => navigate(-1)} className='sm:hidden w-6 h-6 text-pink mr-4' />
+                        <h2 className='mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate' >Perfil de usuario</h2>
+                      </div>
                     </div>
                     <div>
                           <button
