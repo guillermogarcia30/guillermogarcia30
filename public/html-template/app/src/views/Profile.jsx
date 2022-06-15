@@ -65,18 +65,6 @@ export const Profile = () => {
         
         <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
           <div className="lg:hidden">
-            <div className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
-              <div>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-pink-500.svg"
-                  alt="Workflow"
-                />
-              </div>
-              <div>
-
-              </div>
-            </div>
           </div>
           <div className="flex-1 relative z-0 flex overflow-hidden">
             <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
@@ -84,7 +72,7 @@ export const Profile = () => {
               <article>
                 {/* Profile header */}
                 <div  >
-                  <div className="max-w-5xl mt-32 mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="max-w-5xl mt-11 mx-auto px-4 sm:px-6 lg:px-8">
                   <div  className='flex items-center justify-between mb-10' >
                     <div className='flex flex-col justify-center' >
                       <div className='flex items-center' >
@@ -110,7 +98,7 @@ export const Profile = () => {
                         <img
                           className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
                           src={profile.imageUrl}
-                          alt="Profile picture"
+                          alt="Tu imagen de perfil"
                         />
                       </div>
                       <div className="mt-6 my-auto sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
@@ -140,24 +128,32 @@ export const Profile = () => {
                 </div>
 
                 {/* Team member list */}
-                <div className="mt-16 max-w-5xl mx-auto  pb-12  lg:px-8">
+                <div className="mt-16 max-w-5xl mx-auto  pb-12">
                   <h2 className="text-sm font-medium text-gray-500">Team members</h2>
-                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-3">
                     {team.map((person) => (
-                      <div
-                        key={person.handle}
-                        className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
-                      >
-                        <div className="flex-shrink-0">
-                          <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" />
+                      <div key={person.handle} className='bg-white rounded-lg px-6 shadow-custom' >
+                        <div
+                          
+                          className="relative  px-6 pb-3 pt-5 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
+                        >
+                          <div className="flex-shrink-0">
+                            <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <a href="#" className="focus:outline-none">
+                              <span className="absolute inset-0" aria-hidden="true" />
+                              <p className="text-sm font-medium text-gray-900">{person.name}</p>
+                              <p className="text-sm text-gray-500 truncate">{person.role}</p>
+                            </a>
+                        
+                          </div>
+                        
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <a href="#" className="focus:outline-none">
-                            <span className="absolute inset-0" aria-hidden="true" />
-                            <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                            <p className="text-sm text-gray-500 truncate">{person.role}</p>
-                          </a>
-                        </div>
+                        <div className='border-t  border-t-[#808080] grid grid-cols-2 mt-4' >
+                            <button className='p-2 text-[#808080] border-r border-r-[#808080] ' >Llamar</button>
+                            <button className='p-2 text-[#808080] border-l border-l-[#808080]' >Correo</button>
+                          </div>
                       </div>
                     ))}
                   </div>

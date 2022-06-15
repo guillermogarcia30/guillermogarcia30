@@ -11,7 +11,7 @@ const initialState = {
   website: '',
   appurls: '',
   secret: '',
-  errorMsg: 'Por favor intenta de nuevo mas tarde',
+  errorMesage: 'Por favor intenta de nuevo mas tarde',
   changeOk: false
 };
 
@@ -42,7 +42,7 @@ export const modalSlice = createSlice({
       state.onSucces = false
     },
     onErrorOpen: (state) => {
-      console.log(state.onError)
+      console.log(state)
       state.onError = true
     },
     onErrorClose: (state) => {
@@ -59,9 +59,10 @@ export const modalSlice = createSlice({
     },
     setMsg: (state, actions) => {
       if (actions.payload.msg) {
-         return state.errorMsg = actions.payload.msg
+        state.errorMesage = actions.payload.msg
+      }else {
+      state.errorMesage = 'Por favor intenta de nuevo mas tarde'
       }
-      state.errorMsg = 'Por favor intenta de nuevo mas tarde'
     }
   },
 });

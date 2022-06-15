@@ -6,7 +6,7 @@ import { onErrorClose, setMsg } from '../store/modals/modalEditSlice'
 export const ModalPetitionWrong = () => {
 
   const view = useSelector( state => state.modal.onError )
-  const errormsg = useSelector( state => state.modal.errorMsg )
+  const errormsg = useSelector( state => state.modal.errorMesage )
   const dispatch = useDispatch()
 
   return (

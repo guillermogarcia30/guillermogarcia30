@@ -2,18 +2,18 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     token: '',
-    email: '',
+    email: 'edward@hotmail.com',
     tenant: '',
-    ciudad: '',
-    pais: '',
-    name: '',
-    birthDate: '',
-    address: '',
-    phone: '',
-    position: '',
-    image: '',
+    ciudad: 'Aragua',
+    pais: 'Venezuela',
+    name: 'Edward Colmenarez',
+    birthDate: '18/09/2000',
+    address: 'Caña de azúcar sector 2',
+    phone: '+58 424-356-7502',
+    position: 'Programador frontend en betabox',
+    image: 'https://s1.zerochan.net/Son.Goku.%28DRAGON.BALL%29.600.1275212.jpg',
     profilePicCHangeLoading: false,
-    state: ''
+    state: 'Aragua'
 }
 
 const userSlice = createSlice({
@@ -72,3 +72,19 @@ export default userSlice.reducer
 // image: 'https://s1.zerochan.net/Son.Goku.%28DRAGON.BALL%29.600.1275212.jpg',
 // profilePicCHangeLoading: false,
 // state: 'Aragua'
+
+
+
+// token: '',
+// email: '',
+// tenant: '',
+// ciudad: '',
+// pais: '',
+// name: '',
+// birthDate: '',
+// address: '',
+// phone: '',
+// position: '',
+// image: '',
+// profilePicCHangeLoading: false,
+// state: ''

@@ -1,16 +1,13 @@
 import { Form, Formik, Field } from 'formik'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { updateProfileData } from '../store/user/thunks'
-import { AiOutlineCheck } from 'react-icons/ai'
-
-import { ToggleHelper } from '../components/ToggleHelper'
-
+import { onProfilePicOpen } from '../store/modals/modalEditSlice'
+import { ModalImg } from '../components/ModalImg'
 // Icons
-import { AiOutlineEdit } from 'react-icons/ai'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import {  ChevronRightIcon } from '@heroicons/react/solid'
+
 
 export const ProfileConfiguration = () => {
     const [ data, setData ] = useState([])
@@ -24,249 +21,173 @@ export const ProfileConfiguration = () => {
 
 
   return (
-    <div className='pt-24 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-52 px-8 flex flex-col' >
-        <div className='flex items-center justify-between w-full my-4'>
-            <h2 className='text-2xl dark:text-[#ffffff] font-semibold' >Configuración</h2>
-            <Link to={'/profile'} className='font-normal text-lg lg:block hidden' >Perfil <span className='text-gray-light' >/ configuración</span></Link>
-        </div>
+    <div className='mt-11 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-52 px-8 flex flex-col' >
+        
         {/* Container */}
-        <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '', state: '' }} 
+        <Formik initialValues={{ email: '', phoneNumber: '', country: '', state: '', city: '', position: '', address: '' }}
         onSubmit={(values)=> {
-            dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
-        }} >
+            dispatch(updateProfileData({token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjhiNjdmZC0yMzAwLTQ2YTgtYjlmOS1lMDFjZmIxMmVmYWMiLCJqdGkiOiI1ZGI2NDVjNTIzZWVhZWFhNGZmN2Q5NzIzYWI0MTNmZTc4ZTkxMjM3ZTcyMzVjZjQzOGNiMmZiNTUwY2YwNWU0ZjZhOTQwZmNmYzIxZGExZSIsImlhdCI6MTY1NTMxNDM5OC4zMjk4OTEsIm5iZiI6MTY1NTMxNDM5OC4zMjk4OTMsImV4cCI6MTY1NTkxOTE5OC4zMjUyNDIsInN1YiI6ImEyYTNhMmNlLWVkMmMtNDAyNC04NTRhLTRhYjNhNjllYWM2NSIsInNjb3BlcyI6W119.KWa4NA6VDikV5XkyZhDSRqldkeC4-6PivtDidxd589kjuqYfzmFGa_YMIACCutxTXk4ZGbzzo6CeJ-ZfXmtZSfuVtLyhpPvxIHPWiARsncqVesI6ldLuR908syp2F4EGYxOAjrwlBPergVZJ8tJuS6euwVXwM7VHNmdFq0eLmbHiZnnI3OXFqpbdkTkvHUyKxD00Guz-tWMOdy4qwdr-KFSmjqdbrdNx9ixM_P54NToZ5eaJZuu5YYTeM7BEvU5qjcy3Ed9zeA-WWJGT0nVaew626hwLMGkMxkRKCFcQATBoaQCS5yilvDh5_41TS_DcinQw0ys9DhYyVq3paMzUSHYR3iB78NuqO-T5nnomxZpSLX76ZdayodRNpysHeN7RzKbXOnMG1i809P0_-sFjK3NTRg_heB2i57-F-MzbWDPGl1fPdD-PJSff2Bt1T7D_hSf4eKDWUznoJWy8tdaFCoPacYjeylVFN1BXnm_GnPOmIYskmDgN6GKAkyFfRJ0-daJIW1ehQXJQpO_wUKZAwQGBpMRqMt1zmgRGy5DiRN9E3dzoA2dGEykClwOnda5xszfpXq2iIfz-nKN63MQrP3BNCHzxC_KQI2uNcnGv8iIRkoL8W4i0XEpc7VgaozC53g2p5NmU6shpQV162d8dKPNmLSLI8PhM3lB_PEactjo', backup_email: userData.email , ...values }))
+        }}>
             {({values, ...props}) => (
-                <Form>
-            <div className='w-full lg:px-20 semi-l:px-0 semi-l:hidden relative' >
-                    {/* Primer separador */}
-
-                    <div>
-                        <h4 className='text-xl font-semibold mb-8 mt-7' >Cuenta</h4>
-                        <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3' >
-                            <div className='max-w-[3rem] max-h-[3rem] overflow-hidden rounded-full' >
-                                <img className='w-full h-full' src={userData.image} alt="" />
-                            </div>
-                            <div className='pl-4' >
-                                <h5 className='font-semibold' >{userData.name}</h5>
-                                <p className='dark:text-white text-[11px] text-gray ' >¿Este no es tu usuario? <span className='text-pink underline' >Cambiar de cuenta</span> </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 className='text-xl font-semibold mb-8' >Preferencia</h4>
-                        <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
-                            <div className='flex items-center' >
-                                <ToggleHelper i={1} />
-                                <small className=' ml-4 text-[11px] ' >Enviar correo de nueva notificación</small>
-                            </div>
-                            <div className='flex items-center mt-4' >
-                                <ToggleHelper i={2} />
-                                <small className=' ml-4 text-[11px] ' >Cerrar la cuenta cada 10 dias</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 className='text-xl font-semibold mb-8' >Activar estado</h4>
-                        <div className='w-full mb-6 rounded-[5px]   flex flex-col' >
-                            <div className='bg-[#ffffff] shadow-custom w-full dark:bg-darkmode-black-02 dark:text-white rounded-[5px] p-2 text-[11px]' ><p>si tienes el estado activo tus clientes pueden ver si estás activo o ausente, si quieres que tus clientes no vean tu estado de perfil puedes desactivarlo</p></div>
-                            <div className='flex items-center pl-[1.8rem] mt-4' >
-                                <ToggleHelper i={3} />
-                                <small className=' ml-4 text-[11px] ' >Puedes desactivar el estado de la cuenta</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 className='text-xl font-semibold mb-8' >Privacidad</h4>
-                        <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
-                        <div className='flex items-center' >
-                                <ToggleHelper i={4} />
-                                <small className=' ml-4 text-[11px] ' >Perfil modo oculto</small>
-                            </div>
-                            <div className='flex items-center mt-4' >
-                                <ToggleHelper i={5} />
-                                <small className=' ml-4 text-[11px] ' >Ocultar direccion de correo electrónico</small>
-                            </div>
-                            <div className='flex items-center mt-4' >
-                                <ToggleHelper i={5} />
-                                <small className=' ml-4 text-[11px] ' >Ocultar número de teléfono</small>
-                            </div>
-                            <div className='flex items-center mt-4' >
-                                <ToggleHelper i={6} />
-                                <small className=' ml-4 text-[11px] ' >Nadie ve con quien estás vinculado</small>
-                            </div>
-                        </div>
-                    </div>
-
-
-                        <h4 className='text-xl font-semibold mb-8' >Información</h4>
-
-                        <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                            <div className='mb-2 w-full flex items-center' >
-                                <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                            </div>
-                            <Field className='w-0 h-0' name='country' id='country' type='text' />
-                            <select onChange={(e) => props.setFieldValue("country", e.target.value)} className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
-                                <option value={''} >Seleccione un país</option>
-                                { data.map( el => { return( <option  key={el.id} value={el.name} >{el.name}</option>) }) }
-                            </select>
-                            <div className='mb-2 w-full flex items-center' >
-                                <label className='font-normal text-lg' htmlFor='state' >Estado</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                            </div>
-                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='state' id='state' type='text' />
-                            <div className='mb-2 w-full flex items-center' >
-                                <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                            </div>
-                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='city' id='city' type='text' />
-                            <div className='mb-2 w-full flex items-center' >
-                                <label className='font-normal text-lg' htmlFor='address' >Dirección</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                            </div>
-                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='address' id='address' type='text' />
-                            
-                        </div>
-                        <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                            <div className='mb-2 w-full flex items-center' >
-                                <label className='font-normal text-lg' htmlFor='tlf' >Teléfono personal</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                            </div>
-                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='tlf' id='tlf' type='number' />
-                        </div>
-                        <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                            <div className='mb-2 w-full flex items-center' >
-                                <label className='font-normal text-lg' htmlFor='email' >Correo electrónico</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                            </div>
-                            <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='email' id='email' type='text' />
-                        </div>
-                    <button type='submit' className='lg:hidden fixed bottom-3 right-4 bg-red text-white rounded-full font-semibold px-3 py-3' > <AiOutlineCheck className='text-[3rem]' /> </button>
-                    </div>
-                    </Form>
-            )}
-            </Formik>
-
-
-            {/* form desktop */}
-        <Formik initialValues={{ country: '', city: '', address: '', tlf: '', email: '', state: '' }} 
-        onSubmit={(values)=> {
-            dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
-        }} >
-            {({values, ...props}) => (
-            <div className='hidden mt-[25px] w-full semi-l:block' >
-
-                <Form  >
-
-                <div className='flex justify-between ' >
-                    <div className='w-80 ' >
-                        <div>
-                            <h4 className='text-xl font-semibold mb-[30px]' >Cuenta</h4>
-                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3' >
-                                <div className='max-w-[3rem] max-h-[3rem] overflow-hidden rounded-full' >
-                                    <img className='w-full h-full' src={userData.image} alt="" />
-                                </div>
-                                <div className='pl-4' >
-                                    <h5 className='font-semibold' >{userData.name}</h5>
-                                    <p className='dark:text-white text-[11px] text-gray ' >¿Este no es tu usuario? <span className='text-pink underline' >Cambiar de cuenta</span> </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className='text-xl font-semibold mb-[10px] ' >Activar estado</h4>
-                            <div className='w-full mb-6 rounded-[5px]   flex flex-col' >
-                                <div className='bg-[#ffffff] shadow-custom w-full dark:bg-darkmode-black-02 dark:text-white rounded-[5px] p-2 text-[11px]' ><p>si tienes el estado activo tus clientes pueden ver si estás activo o ausente, si quieres que tus clientes no vean tu estado de perfil puedes desactivarlo</p></div>
-                                <div className='flex items-center pl-[1.8rem] mt-4' >
-                                    <ToggleHelper i={7} />
-                                    <small className=' ml-4 text-[11px] ' >Puedes desactivar el estado de la cuenta</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className='text-xl font-semibold mb-[30px]' >Privacidad</h4>
-                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
-                            <div className='flex items-center' >
-                                    <ToggleHelper i={8} />
-                                    <small className=' ml-4 text-[11px] ' >Perfil modo oculto</small>
-                                </div>
-                                <div className='flex items-center mt-4' >
-                                    <ToggleHelper i={9} />
-                                    <small className=' ml-4 text-[11px] ' >Ocultar direccion de correo electrónico</small>
-                                </div>
-                                <div className='flex items-center mt-4' >
-                                    <ToggleHelper i={10} />
-                                    <small className=' ml-4 text-[11px] ' >Ocultar número de teléfono</small>
-                                </div>
-                                <div className='flex items-center mt-4' >
-                                    <ToggleHelper i={11} />
-                                    <small className=' ml-4 text-[11px] ' >Nadie ve con quien estás vinculado</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/*  */}
-                    {/*  */}
-                    {/*  */}
-                    <div>
-                        <div>
-                            <h4 className='text-xl font-semibold mb-[30px]' >Preferencia</h4>
-                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col' >
-                                <div className='flex items-center' >
-                                    <ToggleHelper i={12} />
-                                    <small className=' ml-4 text-[11px] ' >Enviar correo de nueva notificación</small>
-                                </div>
-                                <div className='flex items-center mt-4' >
-                                    <ToggleHelper i={13} />
-                                    <small className=' ml-4 text-[11px] ' >Cerrar la cuenta cada 10 dias</small>
-                                </div>
-                            </div>
-                        </div>
-                            <div className='w-80' >
-                                <h4 className='text-xl font-semibold mb-[30px]' >Información</h4>
-                                <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                                    <div className='mb-2 w-full flex items-center' >
-                                        <label className='font-normal text-lg' htmlFor='country' >Pais</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                    </div>
-                                    <Field className='w-0 h-0' name='country' id='country' type='text' />
-                                    <select onChange={(e) => props.setFieldValue("country", e.target.value)} className='bg-white-input mb-4 rounded-[5px] h-12 appearance-none px-4'  name="" id="">
-                                    <option >Seleccione un país</option>
-                                        { data.map( el => { return( <option key={el.id} value={el.name} >{el.name}</option>) }) }
-                                    </select>
-                                    <div className='mb-2 w-full flex items-center' >
-                                        <label className='font-normal text-lg' htmlFor='country' >Ciudad</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                    </div>
-                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='city' id='city' type='text' />
-                                    <div className='mb-2 w-full flex items-center' >
-                                        <label className='font-normal text-lg' htmlFor='address' >Dirección</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                    </div>
-                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='address' id='address' type='text' />
-                                    <div className='mb-2 w-full flex items-center' >
-                                        <label className='font-normal text-lg' htmlFor='state' >Estado</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                    </div>
-                                    <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='state' id='state' type='text' />
-                                </div>
-                            </div>
-                    </div>
-                        <div className='mt-[3.6rem]' >
-                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                                <div className='mb-2 w-full flex items-center' >
-                                    <label className='font-normal text-lg' htmlFor='tlf' >Teléfono personal</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                </div>
-                                <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6 appearance-none' name='tlf' id='tlf' type='number' />
-                            </div>
-                            <div className='w-full shadow-custom mb-6 rounded-[5px] bg-[#ffffff] dark:bg-darkmode-black-02 flex  px-7 py-3 flex-col'  >
-                                <div className='mb-2 w-full flex items-center' >
-                                    <label className='font-normal text-lg' htmlFor='email' >Correo electrónico</label> <AiOutlineEdit className='ml-4 text-gray-light ' />
-                                </div>
-                                <Field className='bg-white-input mb-4 rounded-[5px] h-8 px-4 py-6' name='email' id='email' type='text' />
-                            </div>
-                        </div>
-                        
+                <Form className='w-full' >
+        <div>
+        <div className='flex w-full justify-between items-center mb-8' >
+            <div className='flex flex-col justify-start w-full ' >
+                <div className='flex items-center' >
+                <p className='text-sm font-medium text-[#6B7280]' >Cuenta</p>
+                <ChevronRightIcon className='h-5 w-5 text-[#6B7280]' />
+                <p className='text-sm font-medium ' >Perfil</p>
                 </div>
-                <div className='flex items-center justify-end mt-12 mb-5 ' >
-                            <Link to={'/profile'} className='bg-[#ffffff] border border-solid rounded-[5px] font-semibold px-11 py-2 dark:bg-darkmode-black-02 dark:text-[#ffffff] dark:border-pink '>Volver</Link>
-                            <button type='submit' className='bg-pink ml-8 text-white rounded-[5px] font-semibold px-11 py-2'  >Guardar</button>
+                <h2 className='mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate' >Editar perfil</h2>
+            </div>
+            <div className='flex' >
+                <Link className="inline-flex justify-center px-4 py-2 border border-[#6B7280] shadow-sm text-sm font-medium rounded-[5px] text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" to={'/profile'} ><span className='text-[#6B7280]' >Volver</span></Link>
+
+                <button type='submit' className='ml-6 px-4 py-2 bg-pink text-white rounded-[5px]' >Guardar</button>
+            </div>
+        </div>
+            <div className="md:grid md:grid-cols-1 md:gap-6">
+            <div className="mt-5 md:mt-0 md:col-span-2">
+                <div className="shadow sm:rounded-md sm:overflow-hidden">
+                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6 shadow-custom ">
+                    <div className="grid sm:grid-cols-2 gap-6">
+
+                        <div className="flex flex-col">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-[#111827]">
+                            Correo electrónico
+                        </label>
+                        <Field
+                            type="text"
+                            name="email"
+                            id="email"
+                            autoComplete="email"
+                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                        />
+                        </div>
+
+                        <div className="flex flex-col">
+                        <label htmlFor="phoneNumber" className="block sm:w-4/5 sm:self-end text-sm font-medium text-gray-[#111827]">
+                            Teléfono
+                        </label>
+                        <Field
+                            type="number"
+                            name="phoneNumber"
+                            id="phoneNumber"
+                            autoComplete="tel"
+                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:w-4/5 sm:self-end shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                        />
+                        </div>
+
+                        <div className="flex flex-col">
+                        <label htmlFor="country" className="block text-sm font-medium text-gray-[#111827]">
+                            País
+                        </label>
+                        <Field className="hidden"  name="country" />
+
+                            <select
+                            onChange={(e) => props.setFieldValue("country", e.target.value)}
+                            id="country"
+                            name="country"
+                            autoComplete="country-name"
+                            className="mt-1 block w-full lg:w-4/5 py-2 px-3 border border-[#D1D5DB] bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                            <option value={''} >Seleccione un país</option>
+                                    { data.map( el => { return( <option  key={el.id} value={el.name} >{el.name}</option>) }) }
+                        </select>
+                        </div>
+                        <div className="flex flex-col">
+                        <label htmlFor="state" className="sm:w-4/5 sm:self-end block text-sm font-medium text-gray-[#111827]">
+                            Estado
+                        </label>
+                        <Field
+                            type="text"
+                            name="state"
+                            id="state"
+                            autoComplete=""
+                            className="sm:w-4/5 sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                        />
+                        </div>
+                        <div className="flex flex-col">
+                        <label htmlFor="city" className="block text-sm font-medium text-gray-[#111827]">
+                            Ciudad
+                        </label>
+                        <Field
+                            type="text"
+                            name="city"
+                            id="city"
+                            autoComplete=""
+                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                        />
+                        </div>
+                        <div className="flex flex-col">
+                        <label htmlFor="position" className="sm:w-4/5 sm:self-end block text-sm font-medium text-gray-[#111827]">
+                            Posición
+                        </label>
+                        <Field
+                            type="text"
+                            name="position"
+                            id="position"
+                            autoComplete=""
+                            className="sm:w-4/5 sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                        />
+                        </div>
+                    </div>
+                    <div className="col-span-3">
+                  <label htmlFor="addres" className="block text-sm font-medium text-gray-700">
+                    Dirección
+                  </label>
+                  <Field className="hidden" name='address' />
+                    <div className="mt-1">
+                        <textarea
+                        onChange={(e)=> props.setFieldValue("address", e.target.value)}
+                        id="addres"
+                        name="addres"
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        defaultValue={''}
+                        />
+                    </div>
                 </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-[#111827]">Photo</label>
+                        <div className="mt-1 flex items-center">
+                        <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                            <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path className='text-[#c3c3c3]' d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </span>
+                        <button
+                        onClick={ () => {
+                            dispatch(onProfilePicOpen())
+                        }}
+                            type="button"
+                            className="ml-5 bg-white py-2 px-3 border border-[#D1D5DB] rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Subir
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+                    <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <button
+                        type="submit"
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Save
+                    </button>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
                 </Form>
-                </div>
-
             )}
 
-                
-            </Formik>
+        </Formik>
+                <ModalImg/>
     </div>
   )
 }
+
+

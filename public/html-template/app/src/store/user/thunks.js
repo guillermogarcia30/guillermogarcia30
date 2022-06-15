@@ -45,25 +45,32 @@ export const changeProfilePicture = (token, image) => {
 }
 
 
-export const updateProfileData = ({country, city, address, tlf, email, token, backup_email, state}) => {
+export const updateProfileData = ({country, city, address, phoneNumber, email, token, backup_email, state, position}) => {
 
     return async(dispatch) => {
-        const tester = new RegExp(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
 
+            const tester = new RegExp(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
+            // const phoneTester = new RegExp(/[0-9]/)
+            if( email && !tester.test(email) ){
+               dispatch(setMsg({ msg: 'Debe ingresar una dirección de correo valida' }))
+               return dispatch(onErrorOpen())
+            }
             let body = tester.test(email) ? {
                 email,
-                phone: tlf,
+                phone: phoneNumber,
                 address,
                 city,
                 country,
-                state
+                state,
+                position
             } : {
                 email: backup_email,
-                phone: tlf,
+                phone: phoneNumber,
                 address,
                 city,
                 country,
-                state
+                state,
+                position
             }
 
             console.log(body)
@@ -90,9 +97,10 @@ export const updateProfileData = ({country, city, address, tlf, email, token, ba
                     }           
                 }
             } )
-            .catch( err => { 
+            .catch( (err) => { 
                 console.log(err) 
-                dispatch(onErrorOpen()) })
+                dispatch(onErrorOpen()) 
+            })
     
     }
 }
