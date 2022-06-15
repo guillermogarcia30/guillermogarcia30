@@ -57,7 +57,7 @@ export const Header = () => {
         {({ open, ...props }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 ">
-              <div className="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
+              <div className="relative flex justify-between lg:gap-8 xl:flex">
                 <div className="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
                   <div className="flex-shrink-0 flex items-center">
                     <Link to={'/profile'}>
@@ -66,7 +66,7 @@ export const Header = () => {
                     <button><MenuAppIcon/></button>
                   </div>
                 </div>
-                <div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
+                <div className="min-w-0 flex-1 md:px-8 lg:px-0">
                   <div className="flex items-center px-6 py-4 md:max-w-md md:mx-auto lg:max-w-none lg:mx-0 xl:px-0">
                     <div className="w-full">
                       <label htmlFor="search" className="sr-only">
@@ -98,7 +98,7 @@ export const Header = () => {
                     )}
                   </Popover.Button>
                 </div>
-                <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+                <div className="hidden lg:flex lg:items-center lg:justify-end">
                   <a
                     href="#"
                     className="ml-5 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

@@ -10,7 +10,7 @@ module.exports = {
       md: '768px',
       lg: '976px',
       'semi-l': '1270px',
-      xl: '1440px',
+      xl: '100000000000000000000000000000px',
     },
     colors: {
       'black': '#000000',
@@ -45,7 +45,10 @@ module.exports = {
       'profile-2': '10rem minmax(5rem, max-content)',
       'profile-3': '10rem minmax(7rem, max-content) minmax(8rem, 100%)',
       '2': 'repeat(2, minmax(0, 1fr))',
-      '3':'repeat(3, minmax(0, 1fr))'
+      '3':'repeat(3, minmax(0, 1fr))',
+      '4':'repeat(4, minmax(0, 1fr))',
+      '5': 'repeat(5, minmax(0, 1fr))',
+      '6': 'repeat(6, minmax(0, 1fr))'
     },
     boxShadow: {
       'custom': '0px 4px 24px rgba(0, 0, 0, 0.07)'
