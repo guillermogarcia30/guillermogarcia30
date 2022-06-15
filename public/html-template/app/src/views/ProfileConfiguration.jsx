@@ -26,7 +26,7 @@ export const ProfileConfiguration = () => {
         {/* Container */}
         <Formik initialValues={{ email: '', phoneNumber: '', country: '', state: '', city: '', position: '', address: '' }}
         onSubmit={(values)=> {
-            dispatch(updateProfileData({token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjhiNjdmZC0yMzAwLTQ2YTgtYjlmOS1lMDFjZmIxMmVmYWMiLCJqdGkiOiI1ZGI2NDVjNTIzZWVhZWFhNGZmN2Q5NzIzYWI0MTNmZTc4ZTkxMjM3ZTcyMzVjZjQzOGNiMmZiNTUwY2YwNWU0ZjZhOTQwZmNmYzIxZGExZSIsImlhdCI6MTY1NTMxNDM5OC4zMjk4OTEsIm5iZiI6MTY1NTMxNDM5OC4zMjk4OTMsImV4cCI6MTY1NTkxOTE5OC4zMjUyNDIsInN1YiI6ImEyYTNhMmNlLWVkMmMtNDAyNC04NTRhLTRhYjNhNjllYWM2NSIsInNjb3BlcyI6W119.KWa4NA6VDikV5XkyZhDSRqldkeC4-6PivtDidxd589kjuqYfzmFGa_YMIACCutxTXk4ZGbzzo6CeJ-ZfXmtZSfuVtLyhpPvxIHPWiARsncqVesI6ldLuR908syp2F4EGYxOAjrwlBPergVZJ8tJuS6euwVXwM7VHNmdFq0eLmbHiZnnI3OXFqpbdkTkvHUyKxD00Guz-tWMOdy4qwdr-KFSmjqdbrdNx9ixM_P54NToZ5eaJZuu5YYTeM7BEvU5qjcy3Ed9zeA-WWJGT0nVaew626hwLMGkMxkRKCFcQATBoaQCS5yilvDh5_41TS_DcinQw0ys9DhYyVq3paMzUSHYR3iB78NuqO-T5nnomxZpSLX76ZdayodRNpysHeN7RzKbXOnMG1i809P0_-sFjK3NTRg_heB2i57-F-MzbWDPGl1fPdD-PJSff2Bt1T7D_hSf4eKDWUznoJWy8tdaFCoPacYjeylVFN1BXnm_GnPOmIYskmDgN6GKAkyFfRJ0-daJIW1ehQXJQpO_wUKZAwQGBpMRqMt1zmgRGy5DiRN9E3dzoA2dGEykClwOnda5xszfpXq2iIfz-nKN63MQrP3BNCHzxC_KQI2uNcnGv8iIRkoL8W4i0XEpc7VgaozC53g2p5NmU6shpQV162d8dKPNmLSLI8PhM3lB_PEactjo', backup_email: userData.email , ...values }))
+            dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
         }}>
             {({values, ...props}) => (
                 <Form className='w-full' >
