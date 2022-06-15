@@ -143,7 +143,7 @@ export const Profile = () => {
                 {/* Team member list */}
                 <div className="mt-16 max-w-5xl mx-auto  pb-12">
                   <h2 className="text-sm font-medium text-gray-500">Team members</h2>
-                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div className="mt-1 grid grid-cols-3 gap-4 sm:grid-cols-3">
                     {team.map((person) => (
                       <div key={person.handle} className='bg-white rounded-lg px-6 shadow-custom' >
                         <div

@@ -42,9 +42,10 @@ module.exports = {
       'white-input':'#F3F3F3'
     },
     gridTemplateColumns: {
-      // Simple 16 column grid
       'profile-2': '10rem minmax(5rem, max-content)',
       'profile-3': '10rem minmax(7rem, max-content) minmax(8rem, 100%)',
+      '2': 'repeat(2, minmax(0, 1fr))',
+      '3':'repeat(3, minmax(0, 1fr))'
     },
     boxShadow: {
       'custom': '0px 4px 24px rgba(0, 0, 0, 0.07)'
