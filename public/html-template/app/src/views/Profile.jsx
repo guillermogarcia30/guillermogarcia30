@@ -47,8 +47,8 @@ export const Profile = () => {
   const profile = {
     name: userData.name,
     position: userData.position,
-    imageUrl:
-      userData.image,
+    imageUrl: userData.image,
+    tenant: userData.tenant,
     fields: {
       'Correo Electronico': userData.email,
       Telefono: userData.phone,
@@ -73,7 +73,7 @@ export const Profile = () => {
               <article>
                 {/* Profile header */}
                 <div  >
-                  <div className="max-w-5xl mt-11 mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="mt-11  mx-auto px-4 sm:px-6 lg:px-44">
                   <div  className='flex items-center justify-between mb-10' >
                     <div className='flex flex-col justify-center' >
                       <div className='hidden sm:flex items-center' >
@@ -96,7 +96,7 @@ export const Profile = () => {
                           </button>
                     </div>
                   </div>
-                    <div className=" sm:flex sm:items-end sm:space-x-5">
+                    <div className="grid sm:grid-cols-profile-2 lg:grid-cols-profile-3  sm:space-x-5">
                     
                       <div className="flex">
                         <img
@@ -105,7 +105,7 @@ export const Profile = () => {
                           alt="Tu imagen de perfil"
                         />
                       </div>
-                      <div className="mt-6 my-auto sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+                      <div className="items-start sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                         <div className="2xl:block my-auto mx-auto sm:ml-8 xl:ml-8  min-w-0 flex-1">
                           <h1 className="text-2xl text-gray-900 truncate">{profile.name}</h1>
                           <p className='text-xs uppercase text-[#6B6B6B]' >{profile.position}</p>
@@ -114,13 +114,22 @@ export const Profile = () => {
                           
                         </div>
                       </div>
+                      <div className='my-auto lg:flex lg:flex-col lg:items-end sm:col-start-1 sm:col-end-3 lg:col-start-auto lg:col-end-auto lg:m-auto self-end  min-h-[5rem]' >
+                        <div className='flex items-center' >
+                          <figure className='w-16 h-16' >
+                            <img className='w-full h-full object-contain' src="https://betaboxtechnologies.com/wp-content/uploads/2021/10/belt-g_pict.png" alt="logo de empresa" />
+                          </figure>
+                          <h4 className='uppercase ml-4' >NOMBRE DE LA EMPRESA</h4>
+                        </div>
+                        <p className='text-[#6B6B6B]' >{profile.tenant}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
 
                 {/* Description list */}
-                <div className="max-w-5xl mx-auto px-8 py-4 sm:mt-4 sm:rounded-[10px] shadow-custom sm:px-6 lg:px-8 bg-white">
+                <div className="mt-11  mx-auto px-4 sm:px-6 lg:px-8    max-w-5xl py-4 sm:mt-4 sm:rounded-[10px] shadow-custom bg-white">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     {Object.keys(profile.fields).map((field) => (
                       <div key={field} className="sm:col-span-1">

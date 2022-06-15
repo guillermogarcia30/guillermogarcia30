@@ -24,7 +24,7 @@ export const ProfileConfiguration = () => {
 
 
   return (
-    <div className='mt-11 min-h-[100vh] relative lg:static items-center lg:px-40 xl:px-52 px-8 flex flex-col' >
+    <div className='mt-11 min-h-[100vh] relative lg:static items-center mx-auto px-4 sm:px-6 lg:px-20 flex flex-col' >
         
         {/* Container */}
         <Formik initialValues={{ email: '', phoneNumber: '', country: '', state: '', city: '', position: '', address: '' }}

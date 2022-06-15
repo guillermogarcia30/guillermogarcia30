@@ -41,6 +41,11 @@ module.exports = {
       'transparent': 'transparent',
       'white-input':'#F3F3F3'
     },
+    gridTemplateColumns: {
+      // Simple 16 column grid
+      'profile-2': '10rem minmax(5rem, max-content)',
+      'profile-3': '10rem minmax(7rem, max-content) minmax(8rem, 100%)',
+    },
     boxShadow: {
       'custom': '0px 4px 24px rgba(0, 0, 0, 0.07)'
     },
