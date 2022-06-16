@@ -45,25 +45,32 @@ export const changeProfilePicture = (token, image) => {
 }
 
 
-export const updateProfileData = ({country, city, address, tlf, email, token, backup_email, state}) => {
+export const updateProfileData = ({country, city, address, phoneNumber, email, token, backup_email, state, position}) => {
 
     return async(dispatch) => {
-        const tester = new RegExp(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
 
+            const tester = new RegExp(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
+            // const phoneTester = new RegExp(/[0-9]/)
+            if( email && !tester.test(email) ){
+               dispatch(setMsg({ msg: 'Debe ingresar una dirección de correo valida' }))
+               return dispatch(onErrorOpen())
+            }
             let body = tester.test(email) ? {
                 email,
-                phone: tlf,
+                phone: phoneNumber,
                 address,
                 city,
-                country,
-                state
+                country_id: country,
+                state,
+                position
             } : {
                 email: backup_email,
-                phone: tlf,
+                phone: phoneNumber,
                 address,
                 city,
-                country,
-                state
+                country_id: country,
+                state,
+                position
             }
 
             console.log(body)
@@ -79,7 +86,8 @@ export const updateProfileData = ({country, city, address, tlf, email, token, ba
             .then( res => res.json() )
             .then( res => {
                 if (!res.error) {
-                    dispatch( updateUserData({ email: res.data.email, birthDate: res.data.birth_date, address: res.data.address, phone: res.data.phone, ciudad: res.data.city, country: res.data.country_id }) )
+                    console.log({ email: res.data.email, birthDate: res.data.birth_date, address: res.data.address, phone: res.data.phone, ciudad: res.data.city, country_id: res.data.country_id })
+                    dispatch( updateUserData({ email: res.data.email, birthDate: res.data.birth_date, address: res.data.address, phone: res.data.phone, ciudad: res.data.city, country_id: res.data.country_id, country_name: res.data.country_name }) )
                     dispatch( setChangeOk({ok: true}) )
                     
                 }else {
@@ -90,9 +98,10 @@ export const updateProfileData = ({country, city, address, tlf, email, token, ba
                     }           
                 }
             } )
-            .catch( err => { 
+            .catch( (err) => { 
                 console.log(err) 
-                dispatch(onErrorOpen()) })
+                dispatch(onErrorOpen()) 
+            })
     
     }
 }
