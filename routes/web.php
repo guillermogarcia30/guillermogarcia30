@@ -24,6 +24,7 @@ Route::get('/password-recovered', [App\Http\Controllers\Auth\RegisterController:
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/app',App\Http\Controllers\AppController::class);
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+Route::get('/profile/configuration', [App\Http\Controllers\HomeController::class, 'profile_configuration'])->name('profile_configuration');
 
 Route::get('/artisan/migrate',[App\Http\Controllers\ArtisanController::class,'migrate']);
 Route::get('/artisan/passport',[App\Http\Controllers\ArtisanController::class,'passport']);
