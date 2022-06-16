@@ -283,7 +283,7 @@ class UserController extends Controller
 
         try {
 
-            $country = Country::where([['id','=',$country_id],['id','!=','']])->count();
+            //$country = Country::where([['id','=',$country_id],['id','!=','']])->count();
             
             $exists = User::where([['email','=',$email],['id','!=',$id]])->count();
             
@@ -332,9 +332,35 @@ class UserController extends Controller
                 }
                 $user->update();
 
+                $campos_user = array(
+                    "users.id AS id",
+                    "users.name AS name",
+                    "users.email AS email",
+                    "users.birth_date AS birth_date",
+                    "users.phone AS phone",
+                    "users.address AS address",
+                    "users.city AS city",
+                    "users.position AS position",
+                    "users.profile_image AS profile_image",
+                    "countries.id AS country_id",
+                    "countries.country_code AS country_code",
+                    "countries.country_name AS country_name",
+                    DB::raw("CONCAT('+',countries.phone_code) AS phone_code"),
+                    "tenants.id AS tenant_id",
+                    "tenants.domain AS tenant_domain",
+                    "tenants.name AS tenant_name",
+                    "tenants.image AS tenant_image",
+                );
+                $userUpdated = DB::table('users')
+                                ->leftJoin('countries','countries.id','=','users.country_id')
+                                ->leftJoin('tenants','tenants.id','=','users.tenant_id')
+                                ->where('users.id','=',$id)
+                                ->select($campos_user)
+                                ->first();
+
                 return response([
                     'error' => false,
-                    'data' => $user,
+                    'data' => $userUpdated,
                     //'data' => $id,
                 ],200);
             }
