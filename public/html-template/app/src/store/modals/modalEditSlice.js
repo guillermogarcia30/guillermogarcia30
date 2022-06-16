@@ -42,7 +42,6 @@ export const modalSlice = createSlice({
       state.onSucces = false
     },
     onErrorOpen: (state) => {
-      console.log(state)
       state.onError = true
     },
     onErrorClose: (state) => {
