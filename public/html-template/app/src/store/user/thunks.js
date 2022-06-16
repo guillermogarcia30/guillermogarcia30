@@ -1,5 +1,5 @@
 import { onErrorOpen, onProfilePicClose, setMsg, setChangeOk } from '../modals/modalEditSlice'
-import { setUserImg, updateUserData, setPicLoandig } from './userSlice'
+import { setUserImg, updateUserData, setChangeLoading} from './userSlice'
 
 const imgUpdateUrl = 'https://auth.synapse-crm.com/api/user/me/image'
 const updateUrl = 'https://auth.synapse-crm.com/api/user/me'
@@ -9,9 +9,8 @@ const updateUrl = 'https://auth.synapse-crm.com/api/user/me'
 export const changeProfilePicture = (token, image) => {
     
     return async(dispatch) => {
-        dispatch( setPicLoandig({ok: true}) )
+        dispatch(setChangeLoading({ ok: true }))
         dispatch( onProfilePicClose() )
-        console.log('cargando')
         if(image)
         {
             let formData = new FormData()
@@ -26,19 +25,18 @@ export const changeProfilePicture = (token, image) => {
         })
         .then( res => res.json() )
         .then( res => {
-            dispatch( setPicLoandig({ok: false}) )
+            dispatch(setChangeLoading({ ok: false }))
             if (!res.error) {
-                dispatch( onProfilePicClose() )
+                dispatch( setChangeOk({ok: true}) )
                 dispatch(setUserImg({image: res.image }))
             }else {
                 console.log(res)
-                dispatch( onProfilePicClose() )
                 dispatch(onErrorOpen())                
             }
         } )
         .catch( err => { 
-            console.log(err) 
-            dispatch( setPicLoandig({ok: false}) )
+            console.log(err)
+            dispatch(setChangeLoading({ ok: false }))
             dispatch(onErrorOpen()) })
         }
     }
@@ -74,6 +72,7 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
             }
 
             console.log(body)
+            dispatch(setChangeLoading({ ok: true }))
             await fetch(updateUrl, {
                 method: 'PUT',
                 headers : {
@@ -85,6 +84,7 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
             })
             .then( res => res.json() )
             .then( res => {
+                dispatch(setChangeLoading({ ok: false }))
                 if (!res.error) {
                     console.log({ email: res.data.email, birthDate: res.data.birth_date, address: res.data.address, phone: res.data.phone, ciudad: res.data.city, country_id: res.data.country_id })
                     dispatch( updateUserData({ email: res.data.email, birthDate: res.data.birth_date, address: res.data.address, phone: res.data.phone, ciudad: res.data.city, country_id: res.data.country_id, country_name: res.data.country_name }) )
@@ -100,6 +100,7 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
             } )
             .catch( (err) => { 
                 console.log(err) 
+                dispatch(setChangeLoading({ ok: false }))
                 dispatch(onErrorOpen()) 
             })
     
