@@ -44,7 +44,8 @@ const team = [
 export const Profile = () => {
   const navigate = useNavigate()
   const userData = useSelector( state => state.user )
-  console.log(userData)
+  const loading = useSelector( state => state.apps.loading )
+  
   const profile = {
     name: userData.name,
     position: userData.position,
@@ -60,6 +61,52 @@ export const Profile = () => {
       'Ciudad': userData.ciudad,
       'Dirección': userData.address,
     },
+  }
+
+  if(loading){
+    return(
+      <div className="mt-11 max-w-5xl mx-auto px-4">
+                    <div  className='flex items-center justify-between mb-10' >
+                      <div className='flex flex-col justify-center' >
+                        <div className='hidden sm:flex items-center' >
+                          <p className='hidden sm:inline-flex text-sm font-medium text-[#6B7280]' >Cuenta</p>
+                          <ChevronRightIcon className='hidden sm:inline-flex h-5 w-5 text-[#6B7280]' />
+                          <p className='hidden sm:inline-flex text-sm font-medium ' >Perfil</p>
+                        </div>
+                        <div className="flex items-center">
+                          <ArrowLeftIcon onClick={() => navigate(-1)} className='sm:hidden w-6 h-6 text-pink mr-4' />
+                          <h2 className='mt-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate' >Perfil de usuario</h2>
+                        </div>
+                      </div>
+                      <div>
+                            <button
+                              onClick={()=> navigate('/profile/configuration')}
+                              type="button"
+                              className="inline-flex justify-center px-4 py-2 border border-[#6B7280] shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                            >
+                              <PencilIcon className="-ml-1 text-[#6B7280] mr-2 h-5 w-5" aria-hidden="true" />
+                              <Link to={'/profile/configuration'} ><span className='text-[#6B7280]' >Editar</span></Link>
+                            </button>
+                      </div>
+                    </div>
+                      <div className="grid sm:grid-cols-profile-2 lg:grid-cols-profile-3  sm:space-x-5">
+                      
+                        <div className="flex">
+                          <img
+                            className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
+                            src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+                            alt="Tu imagen de perfil"
+                          />
+                        </div>
+                        <div className="items-start sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+                          <div className="2xl:block my-auto mx-auto sm:ml-8 xl:ml-8  min-w-0 flex-1">
+                            <h1 className="text-2xl text-gray-900 truncate">{profile.name}</h1>
+                            <p className='text-xs uppercase text-[#6B6B6B]' >{profile.position}</p>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+    )
   }
   
   return (
