@@ -44,6 +44,7 @@ const team = [
 export const Profile = () => {
   const navigate = useNavigate()
   const userData = useSelector( state => state.user )
+  console.log(userData)
   const profile = {
     name: userData.name,
     position: userData.position,
@@ -54,7 +55,7 @@ export const Profile = () => {
     fields: {
       'Correo Electronico': userData.email,
       Telefono: userData.phone,
-      'País': userData.country,
+      'País': userData.country_name,
       'Estado': userData.state,
       'Ciudad': userData.ciudad,
       'Dirección': userData.address,

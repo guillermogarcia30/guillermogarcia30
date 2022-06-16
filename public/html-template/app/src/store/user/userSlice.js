@@ -7,7 +7,8 @@ const initialState = {
     tenant_img: '',
     tenant_name: '',
     ciudad: '',
-    country: '',
+    country_id: '',
+    country_name: '',
     name: '',
     birthDate: '',
     address: '',
@@ -37,7 +38,8 @@ const userSlice = createSlice({
             state.position = action.payload.position ? action.payload.position : 'Posición laboral no especificada'
             state.image = action.payload.image ? action.payload.image : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
             state.ciudad = action.payload.ciudad ? action.payload.ciudad : 'Ciudad no especificada'
-            state.country = action.payload.country ? action.payload.ciudad : 'País no especificado'
+            state.country_id = action.payload.country_id ? action.payload.ciudad : ''
+            state.country_name = action.payload.country_name ? action.payload.country_name : 'País no especificado'
             state.state = action.payload.state ? action.payload.state : 'Estado no especificado'
         },
         updateUserData: (state, action) => {
@@ -47,7 +49,8 @@ const userSlice = createSlice({
             state.phone = action.payload.phone? action.payload.phone : ''
             state.position = action.payload.position ? action.payload.position : 'Posición laboral no especificada'
             state.ciudad = action.payload.ciudad ? action.payload.ciudad : 'Ciudad no especificada'
-            state.country = action.payload.country ? action.payload.country : 'País no especificado'
+            state.country_id = action.payload.country_id ? action.payload.country_id : ''
+            state.country_name = action.payload.country_name ? action.payload.country_name : 'País no especificado'
             state.state = action.payload.state ? action.payload.state : 'Estado no especificado'
         },
         setUserImg: (state, action) => {

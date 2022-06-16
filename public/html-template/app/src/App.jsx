@@ -37,9 +37,9 @@ function App() {
       if(!res.error){
         
       dispatch(clearApps())
-      console.log({ state: res.user.state ,email: res.user.email, tenant: res.user.tenant_id, tenant_img: res.user.tenant_image, tenant_name: res.user.tenant_name, name: res.user.name, birthDAte: res.user.birth_date, address: res.user.address, phone: res.user.phone, position: res.position, image: res.user.profile_image, ciudad: res.user.city, country: res.user.country_id })
+      console.log({ state: res.user.state ,email: res.user.email, tenant: res.user.tenant_id, tenant_img: res.user.tenant_image, tenant_name: res.user.tenant_name, name: res.user.name, birthDAte: res.user.birth_date, address: res.user.address, phone: res.user.phone, position: res.position, image: res.user.profile_image, ciudad: res.user.city, country_id: res.user.country_id, country_name: res.data.country_name })
       dispatch(seTtoken({ token: res.token }))
-      dispatch(setUserData({ state: res.user.state ,email: res.user.email, tenant: res.user.tenant_id, tenant_img: res.user.tenant_image, tenant_name: res.user.tenant_name, name: res.user.name, birthDAte: res.user.birth_date, address: res.user.address, phone: res.user.phone, position: res.position, image: res.user.profile_image, ciudad: res.user.city, country: res.user.country_id }))
+      dispatch(setUserData({ state: res.user.state ,email: res.user.email, tenant: res.user.tenant_id, tenant_img: res.user.tenant_image, tenant_name: res.user.tenant_name, name: res.user.name, birthDAte: res.user.birth_date, address: res.user.address, phone: res.user.phone, position: res.position, image: res.user.profile_image, ciudad: res.user.city, country_id: res.user.country_id, country_name: res.data.country_name }))
 
 
       let headersList = {
