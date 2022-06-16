@@ -117,21 +117,21 @@ export const Profile = () => {
                             
                           </div>
                         </div>
-                        <div className='my-auto lg:flex lg:flex-col lg:items-end sm:col-start-1 sm:col-end-3 lg:col-start-auto lg:col-end-auto lg:m-auto self-end  min-h-[5rem]' >
+                        <div className='my-auto h-full lg:flex lg:flex-col lg:items-end sm:col-start-1 sm:col-end-3 lg:col-start-auto lg:col-end-auto lg:m-auto self-end  min-h-[5rem]' >
                           <div className='flex items-center' >
                             <figure className='w-16 h-16' >
                               <img className='w-full h-full object-contain' src={profile.tenant_img} alt="logo de empresa" />
                             </figure>
                             <h4 className='uppercase ml-4' >{profile.tenant_name}</h4>
                           </div>
-                          <p className='text-[#6B6B6B]' >{profile.tenant}</p>
+                          <p className='text-[#6B6B6B] text-[0.65625rem]' >{profile.tenant}</p>
                         </div>
                       </div>
                   </div>
 
 
                 {/* Description list */}
-                <div className="mt-11  mx-auto px-4 sm:px-6 lg:px-8    max-w-5xl py-4 sm:mt-4 sm:rounded-[10px] shadow-custom bg-white">
+                <div className="mt-11  mx-auto px-4 sm:px-6 lg:px-8    max-w-5xl py-4 sm:mt-4 sm:rounded-[10px] bg-white">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     {Object.keys(profile.fields).map((field) => (
                       <div key={field} className="sm:col-span-1">
