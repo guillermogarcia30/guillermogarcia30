@@ -151,7 +151,7 @@ export const ProfileConfiguration = () => {
                         id="addres"
                         name="addres"
                         rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        className="resize-none shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         defaultValue={''}
                         />
                     </div>
