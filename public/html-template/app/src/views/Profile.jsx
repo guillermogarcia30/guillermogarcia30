@@ -179,7 +179,7 @@ export const Profile = () => {
 
 
                 {/* Description list */}
-                <div className="mt-11  mx-auto px-4 sm:px-6 lg:px-8    max-w-5xl py-4 sm:mt-4 sm:rounded-[10px] bg-white">
+                <div className="mt-11  mx-auto px-4 sm:px-6 lg:px-8 shadow-custom max-w-5xl py-4 sm:mt-4 sm:rounded-[10px] bg-white">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     {Object.keys(profile.fields).map((field) => (
                       <div key={field} className="sm:col-span-1">

@@ -1,7 +1,8 @@
 // Tailwind UI things
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState, useRef } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 // Synapse logo
@@ -11,7 +12,8 @@ import { BsTriangleFill } from 'react-icons/bs'
 import { MenuAppIcon } from '../components/icons/MenuAppIcon'
 
 import { getUser } from '../helpers/getUser'
-import { useSelector } from 'react-redux'
+import { setAuthorizedApps } from '../store/apps/appsSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 const navigation = [
@@ -29,23 +31,48 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+
 export const Header = () => {
 
+  // Dispatcher de redux
+  const dispatch = useDispatch()
+  // Estados de redux
+  const authorized_apps = useSelector( state => state.apps.authorizedApps )
   const img = useSelector( state => state.user.image )
   const position = useSelector( state => state.user.position )
-  const [user, setUSer] = useState({ image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: 'Edward Colmenarez' , position: 'programador fontend' })
+  // Usuario actual
+  const [user, setUSer] = useState({ image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: '' , position: '' })
+  // Manejador de la vista de menu de aplicaciones
+  const [menuView, setMenuView] = useState(false)
+  //Referencia al menu de aplicaciones
+    const menu = useRef()
+    // Vigilante del menu de aplicaciones, maneja apertura y cierre
+    useEffect(() => {
+
+      function handleClickOutside(event) {
+        if (menu.current && !menu.current.contains(event.target)) {
+          setMenuView(false)
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [menu]);
 
     useEffect(() => {
     getUser().then( res => {
       if(!res.error){}
-      setUSer({ image: res.user.profile_image || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: res.user.name || 'John Doe' , position: res.user.position || 'la posicion no fue especificada' })
+      //Agregar aplicaciones que se muestran en el menu de aplicaciones
+      res.authorized_apps.map( e => dispatch( setAuthorizedApps( e ) ))
+      
+      // Actualizar datos del usuario
+        setUSer({ image: res.user.profile_image || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: res.user.name || 'John Doe' , position: res.user.position || 'la posicion no fue especificada' })
     } )
 
   }, [img, position])
-
   return (
     <>
-      {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
       <Popover
         as="header"
         className={({ open }) =>
@@ -60,11 +87,44 @@ export const Header = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 ">
               <div className="relative flex justify-between lg:gap-8 xl:flex">
                 <div className="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
-                  <div className="flex-shrink-0 flex items-center">
+                  <div className="flex-shrink-0 relative flex items-center">
                     <Link to={'/profile'}>
                       <Logo/>
                     </Link>
-                    <button><MenuAppIcon/></button>
+                    <div ref={menu}>
+                      <button  onClick={ ()=> setMenuView( !menuView ) } ><MenuAppIcon/></button>
+                      <div  style={menuView ? { display: 'block' } : { display: 'none' }} className='origin-top-right fixed lg:absolute p-8 h-screen bg-white-b  left-[-24px]  lg:left-[80px] top-[55px] lg:h-auto lg:w-128 z-10 right-0 mt-2 rounded-md shadow-lg lg:bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transform opacity-100 scale-100' >
+                        <h4 className='font-bold mb-4 text-2xl' >Aplicaciones</h4>
+                        <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4' >
+                          { authorized_apps.length ? authorized_apps.map( (el, i) => {
+                            if (i > 7) {
+                              <a onClick={() => setMenuView(false)} className='self-center' key={el.id} href={el.extra.redirect}>
+                                  <div className='flex lg:hidden sm:m-auto items-center self-center' >
+                                    <div className='w-8 h-8' >
+                                      <img className='w-full h-full object-contain' src="https://buckeyevillagemansfield.com/wp-content/uploads/2015/10/placeholder-circle-300x300.png" alt="imagen de aplicación" />
+                                    </div>
+                                    <p  className='ml-4' >{el.name}</p>
+                                  </div>
+                                </a>
+                            }
+                            return (
+                              <a onClick={() => setMenuView(false)} className='self-center' key={el.id} href={el.extra.redirect}>
+                                  <div className='flex sm:m-auto items-center self-center' >
+                                    <div className='w-8 h-8' >
+                                      <img className='w-full h-full object-contain' src="https://buckeyevillagemansfield.com/wp-content/uploads/2015/10/placeholder-circle-300x300.png" alt="imagen de aplicación" />
+                                    </div>
+                                    <p  className='ml-4' >{el.name}</p>
+                                  </div>
+                                </a>
+                                  )
+                          } ) : ( <div className='w-full p-8 col-start-1 col-end-3 ' > <p  className='text-center' >Aun no hay aplicaiones para Mostrar</p> </div> ) }
+                        </div>
+                          { authorized_apps.length > 8 && (<div className='flex items-center justify-center mt-6' >
+                            <button className='text-pink text-sm' > Mostrar todas las aplicaciones  </button>
+                            <ChevronRightIcon className='w-5 h-5 text-pink' />
+                          </div>)}
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="min-w-0 flex-1 md:px-8 lg:px-0">
@@ -74,16 +134,16 @@ export const Header = () => {
                         Search
                       </label>
                       <div className="relative">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                          <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                        </div>
-                        <input
-                          id="search"
-                          name="search"
-                          className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                          placeholder="Search"
-                          type="search"
-                        />
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                    </div>
+                    <input
+                      id="search"
+                      name="search"
+                      className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm"
+                      placeholder="Search"
+                      type="search"
+                    />
                       </div>
                     </div>
                   </div>
@@ -95,7 +155,7 @@ export const Header = () => {
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (
-                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                      <MenuIcon onClick={()=> setMenuView(false) } className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </Popover.Button>
                 </div>
@@ -203,7 +263,6 @@ export const Header = () => {
                     type="button"
                     className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
