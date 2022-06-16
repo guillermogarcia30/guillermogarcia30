@@ -42,4 +42,17 @@ class HomeController extends Controller
 
         return view('profile');
     }
+
+    public function profile_configuration()
+    {
+        $user = auth()->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $access_token = $tokenResult->accessToken;
+        $token = $tokenResult->token;
+        $token->expires_at = Carbon::now()->addWeeks(1);
+
+        setcookie("access_token", $access_token);   
+
+        return view('profile');
+    }
 }
