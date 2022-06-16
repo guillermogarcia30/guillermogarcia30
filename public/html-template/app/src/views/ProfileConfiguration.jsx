@@ -91,14 +91,16 @@ export const ProfileConfiguration = () => {
                         <Field className="hidden"  name="country" />
 
                             <select
-                            onChange={(e) => props.setFieldValue("country", e.target.value)}
+                            onChange={(e) => {
+                                props.setFieldValue("country", e.target.value)
+                            }}
                             id="country"
                             name="country"
                             autoComplete="country-name"
                             className="mt-1 block w-full lg:w-4/5 py-2 px-3 border border-[#D1D5DB] bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
                             <option value={''} >Seleccione un país</option>
-                                    { data.map( el => { return( <option  key={el.id} value={el.name} >{el.name}</option>) }) }
+                                    { data.map( el => { return( <option  key={el.id} value={el.id} >{el.name}</option>) }) }
                         </select>
                         </div>
                         <div className="flex flex-col">
