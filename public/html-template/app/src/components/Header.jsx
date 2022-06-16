@@ -32,6 +32,7 @@ function classNames(...classes) {
 export const Header = () => {
 
   const img = useSelector( state => state.user.image )
+  const position = useSelector( state => state.user.position )
   const [user, setUSer] = useState({ image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: 'Edward Colmenarez' , position: 'programador fontend' })
 
     useEffect(() => {
@@ -40,7 +41,7 @@ export const Header = () => {
       setUSer({ image: res.user.profile_image || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png', name: res.user.name || 'John Doe' , position: res.user.position || 'la posicion no fue especificada' })
     } )
 
-  }, [img])
+  }, [img, position])
 
   return (
     <>

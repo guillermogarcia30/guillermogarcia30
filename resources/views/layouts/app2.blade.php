@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400&display=swap" rel="stylesheet">
         <link rel="manifest" href="/manifest.json"/>
         <title>Synapse</title>
-        <script defer="defer" src="/static/js/main.deb103f3.js"></script>
+        <script defer="defer" src="/static/js/main.89467e85.js"></script>
         <link href="/static/css/main.1154cf9f.css" rel="stylesheet">
     </head>
     <body>

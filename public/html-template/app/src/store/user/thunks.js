@@ -86,7 +86,7 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
             .then( res => {
                 dispatch(setChangeLoading({ ok: false }))
                 if (!res.error) {
-                    dispatch( updateUserData({ email: res.data.email, birthDate: res.data.birth_date, address: res.data.address, phone: res.data.phone, ciudad: res.data.city, country_id: res.data.country_id, country_name: res.data.country_name }) )
+                    dispatch( updateUserData({ email: res.data.email, birthDate: res.data.birth_date, address: res.data.address, phone: res.data.phone, ciudad: res.data.city, country_id: res.data.country_id, country_name: res.data.country_name, state: res.data.state, position: res.data.position }) )
                     dispatch( setChangeOk({ok: true}) )
                     
                 }else {
