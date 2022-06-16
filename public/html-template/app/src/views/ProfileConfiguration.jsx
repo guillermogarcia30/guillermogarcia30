@@ -1,6 +1,6 @@
 import { Form, Formik, Field } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { updateProfileData } from '../store/user/thunks'
 import { onProfilePicOpen } from '../store/modals/modalEditSlice'
