@@ -279,42 +279,7 @@ class UserController extends Controller
 
         $id = $request->user()->id;
 
-        $country_id = "";
-        if (isset($decode->country_id)) {
-            $country_id = $decode->country_id;
-        }
-
         $email = $decode->email;
-        
-        $birth_date = null;
-        if (isset($decode->birth_date)) {
-            $birth_date = $decode->birth_date;
-        }
-
-        $address = "";
-        if (isset($decode->address)) {
-            $address = $decode->address;
-        }
-
-        $state = "";
-        if (isset($decode->state)) {
-            $state = $decode->state;
-        }
-
-        $city = "";
-        if (isset($decode->city)) {
-            $city = $decode->city;
-        }
-
-        $phone = "";
-        if (isset($decode->phone)) {
-            $phone = $decode->phone;
-        }
-
-        $position = "";
-        if(isset($decode->position)){
-            $position = $decode->position;
-        }
 
         try {
 
@@ -341,14 +306,30 @@ class UserController extends Controller
                 return response($response,500);
             } else {
                 $user = User::where('id','=',$id)->first();
-                $user->country_id = $country_id;
+                if (isset($decode->country_id)) {
+                    $user->country_id = $decode->country_id;
+                }
+
                 $user->email = trim(strtolower($email));
-                $user->birth_date = $birth_date;
-                $user->address = ucwords(strtolower($address));
-                $user->state = ucwords(strtolower($state));
-                $user->city = ucwords(strtolower($city));
-                $user->phone = $phone;
-                $user->position = ucwords(strtolower($position));
+
+                if (isset($decode->birth_date)) {
+                    $user->birth_date = $decode->birth_date;
+                }
+                if (isset($decode->address)) {
+                    $user->address = ucwords(strtolower($decode->address));
+                }
+                if (isset($decode->state)) {
+                    $user->state = ucwords(strtolower($decode->state));
+                }
+                if (isset($decode->city)) {
+                    $user->city = ucwords(strtolower($decode->city));
+                }
+                if (isset($decode->phone)) {
+                    $user->phone = $decode->phone;
+                }
+                if (isset($decode->position)) {
+                    $user->position = ucwords(strtolower($decode->position));
+                }
                 $user->update();
 
                 return response([
