@@ -60,7 +60,7 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
                 phone: phoneNumber,
                 address,
                 city,
-                country,
+                country_id: country,
                 state,
                 position
             } : {
@@ -68,7 +68,7 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
                 phone: phoneNumber,
                 address,
                 city,
-                country,
+                country_id: country,
                 state,
                 position
             }

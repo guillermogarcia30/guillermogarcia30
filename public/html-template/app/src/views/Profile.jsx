@@ -88,6 +88,7 @@ export const Profile = () => {
                       </div>
                       <div>
                             <button
+                              onClick={()=> navigate('/profile/configuration')}
                               type="button"
                               className="inline-flex justify-center px-4 py-2 border border-[#6B7280] shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
                             >
