@@ -49,6 +49,8 @@ export const Profile = () => {
     position: userData.position,
     imageUrl: userData.image,
     tenant: userData.tenant,
+    tenant_img: userData.tenant_img,
+    tenant_name: userData.tenant_name,
     fields: {
       'Correo Electronico': userData.email,
       Telefono: userData.phone,
@@ -118,9 +120,9 @@ export const Profile = () => {
                         <div className='my-auto lg:flex lg:flex-col lg:items-end sm:col-start-1 sm:col-end-3 lg:col-start-auto lg:col-end-auto lg:m-auto self-end  min-h-[5rem]' >
                           <div className='flex items-center' >
                             <figure className='w-16 h-16' >
-                              <img className='w-full h-full object-contain' src="https://betaboxtechnologies.com/wp-content/uploads/2021/10/belt-g_pict.png" alt="logo de empresa" />
+                              <img className='w-full h-full object-contain' src={profile.tenant_img} alt="logo de empresa" />
                             </figure>
-                            <h4 className='uppercase ml-4' >NOMBRE DE LA EMPRESA</h4>
+                            <h4 className='uppercase ml-4' >{profile.tenant_name}</h4>
                           </div>
                           <p className='text-[#6B6B6B]' >{profile.tenant}</p>
                         </div>

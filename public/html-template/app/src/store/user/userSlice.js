@@ -4,6 +4,8 @@ const initialState = {
     token: '',
     email: '',
     tenant: '',
+    tenant_img: '',
+    tenant_name: '',
     ciudad: '',
     pais: '',
     name: '',
@@ -26,7 +28,9 @@ const userSlice = createSlice({
         setUserData: (state, action ) => {
             state.email = action.payload.email
             state.tenant = action.payload.tenant? action.payload.tenant : ''
-            state.name = action.payload.name
+            state.tenant_img = action.payload.tenant_img ? action.payload.tenant_img : ''
+            state.tenant_name = action.payload.tenant_name ? action.payload.tenant_name : ''
+            state.name = action.payload.name ? action.payload.name : ''
             state.birthDate = action.payload.birthDate? action.payload.birthDate : ''
             state.address = action.payload.address? action.payload.address : 'Dirección no especificada'
             state.phone = action.payload.phone? action.payload.phone : ''
