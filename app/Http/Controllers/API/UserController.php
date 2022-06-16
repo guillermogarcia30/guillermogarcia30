@@ -283,7 +283,7 @@ class UserController extends Controller
 
         try {
 
-            $country = Country::where([['id','=',$country_id],['id','!=','']])->count();
+            //$country = Country::where([['id','=',$country_id],['id','!=','']])->count();
             
             $exists = User::where([['email','=',$email],['id','!=',$id]])->count();
             
