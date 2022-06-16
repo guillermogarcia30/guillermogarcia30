@@ -115,6 +115,7 @@ class UserController extends Controller
             "users.birth_date AS birth_date",
             "users.phone AS phone",
             "users.address AS address",
+            "users.state AS state",
             "users.city AS city",
             "users.position AS position",
             "users.profile_image AS profile_image",
@@ -212,7 +213,7 @@ class UserController extends Controller
             }else{
                 $image = $request->file('profile_image');
                 $format = $image->getClientOriginalExtension();
-                $path = env('APP_URL').'/images-profile/'.$id.'.'.$format;
+                $path = env('APP_URL').'/images-profile/'.$id.'_'.Str::random(6).'.'.$format;
                 $folder = public_path('/images-profile/');
                 $image->move($folder, $path);
     
@@ -339,6 +340,7 @@ class UserController extends Controller
                     "users.birth_date AS birth_date",
                     "users.phone AS phone",
                     "users.address AS address",
+                    "users.state AS state",
                     "users.city AS city",
                     "users.position AS position",
                     "users.profile_image AS profile_image",
