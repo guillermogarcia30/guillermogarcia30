@@ -54,7 +54,7 @@ export const Profile = () => {
     fields: {
       'Correo Electronico': userData.email,
       Telefono: userData.phone,
-      'País': userData.pais,
+      'País': userData.country,
       'Estado': userData.state,
       'Ciudad': userData.ciudad,
       'Dirección': userData.address,
