@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 import { useEffect } from 'react';
 
 
-
 import { getUser } from './helpers/getUser'
 
 import { useDispatch } from 'react-redux'
@@ -17,6 +16,7 @@ import { Header } from './components/Header'
 import { ModalPetitionOk } from './components/modalPetitionOk'
 import { ModalPetitionWrong } from './components/modalPetitionWrong'
 import { ChangeOk } from './components/ChangeOk'
+import { Spinner } from './components/Spinner'
 
 function App() {
   const appTheme = () => {
@@ -99,6 +99,7 @@ function App() {
       <ModalPetitionOk  />
       <ModalPetitionWrong/>
       <ChangeOk/>
+      <Spinner/>
     </div>
   );
 }
