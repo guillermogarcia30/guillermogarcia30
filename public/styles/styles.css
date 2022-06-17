@@ -171,32 +171,10 @@ img{
     display: none;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
     width: 100vw;
 }
-.modal__card{
-    display: flex;
-    flex-direction: column;
-    height: 25rem;
-    width: 25rem;
-    box-shadow: 0px 1px 20px 0px var(--light-gray)
-}
 
-.top-side,
-.bottom-side{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    padding: 2rem;
-}
-.bottom-side{
-    flex-direction: column;
-}
-.bottom-side > *{
-    margin: .5rem 0;
-}
 .msg{
     font-weight: 500;
 }
@@ -219,15 +197,6 @@ img{
     height: 3rem;
     margin-right: .2rem;
 
-}
-.btn__modal{
-    cursor: pointer;
-    padding: .4rem 1rem;
-    border: none;
-    border-radius: 5px;
-    margin: .8rem 0;
-    color: var(--theme-color);
-    background-color: var(--main-color);
 }
 
 .dont__worry{
@@ -272,7 +241,6 @@ input[class="password__recovery"]{
 @media screen and (max-width: 1500px) {
     .synapse {
         margin-top: 3rem;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -282,7 +250,6 @@ input[class="password__recovery"]{
 @media screen and (max-width: 1285px) {
     .synapse {
         margin-top: 3rem;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -291,7 +258,7 @@ input[class="password__recovery"]{
 }
 @media screen and (max-width: 1170px) {
     .synapse {
-        height: 100vh;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -303,7 +270,7 @@ input[class="password__recovery"]{
     .synapse {
         margin-top: 3rem;
         width: 55vw;
-        height: 100vh;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
