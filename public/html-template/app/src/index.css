@@ -12,6 +12,6 @@
 
   @layer utilities {
     :root{
-      @apply font-robot
+      @apply font-inter
     }
   }

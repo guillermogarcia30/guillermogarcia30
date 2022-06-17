@@ -84,7 +84,7 @@ export const Header = () => {
       >
         {({ open, ...props }) => (
           <>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 ">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
               <div className="relative flex justify-between lg:gap-8 xl:flex">
                 <div className="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
                   <div className="flex-shrink-0 relative flex items-center">
@@ -92,7 +92,7 @@ export const Header = () => {
                       <Logo/>
                     </Link>
                     <div ref={menu}>
-                      <button  onClick={ ()=> setMenuView( !menuView ) } ><MenuAppIcon/></button>
+                      <button className='block m-auto'  onClick={ ()=> setMenuView( !menuView ) } ><MenuAppIcon/></button>
                       <div  style={menuView ? { display: 'block' } : { display: 'none' }} className='origin-top-right fixed lg:absolute p-8 h-screen bg-white-b  left-[-24px]  lg:left-[80px] top-[55px] lg:h-auto lg:w-128 z-10 right-0 mt-2 rounded-md shadow-lg lg:bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transform opacity-100 scale-100' >
                         <h4 className='font-bold mb-4 text-2xl' >Aplicaciones</h4>
                         <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4' >
@@ -127,8 +127,8 @@ export const Header = () => {
                     </div>
                   </div>
                 </div>
-                <div className="min-w-0 flex-1 md:px-8 lg:px-0">
-                  <div className="flex items-center px-6 py-4 md:max-w-md md:mx-auto lg:max-w-none lg:mx-0 xl:px-0">
+                <div className="min-w-0 flex items-center justify-end flex-1 md:px-8 lg:px-0">
+                  <div className="flex items-center flex-grow-1/2 lg:flex-grow px-6 py-4 md:max-w-md lg:max-w-none lg:mx-0 xl:px-0">
                     <div className="w-full">
                       <label htmlFor="search" className="sr-only">
                         Search
@@ -150,7 +150,7 @@ export const Header = () => {
                 </div>
                 <div className="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
                   {/* Mobile menu button */}
-                  <Popover.Button className="-mx-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="m-auto rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="sr-only">Open menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />

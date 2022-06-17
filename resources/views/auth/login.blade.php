@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="synapse__introduce" style="text-align: center;" >
-        <p>Bienvenido</p>
         <h2>Iniciar Sesión</h2>
     </div>
     <form class="synapse__form" action="{{ route('login') }}" method="POST">
@@ -35,12 +34,12 @@
                 <label for="check">Recordar contraseña</label>
             </div>
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}">¿Olvidó su contraseña?</a>
+                <a href="{{ route('password.request') }}">Recuperar contraseña</a>
             @endif
         </div>
         <button class="btn" >Iniciar sesion</button>
     </form>
     <footer class="synapse__footer" >
-        <p>¿No posee una cuenta? <a href="{{ route('register') }}">Registrese aquí</a></p>
+        <p>¿Aún no tienes una cuenta? <a href="{{ route('register') }}">Registrate aquí</a></p>
     </footer>
 @endsection
