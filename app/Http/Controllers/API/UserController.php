@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Validator;
 use Auth;
 use DB;
 use Carbon\Carbon;
@@ -19,6 +20,18 @@ class UserController extends Controller
     public function validate_token(){
         return ['data' => 'Token is valid'];
     }
+
+    //validar fecha en formato yyyy-mm-dd
+    public function validate_date($date)
+    {
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date))
+        {
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    //fin
 
     public function signup(Request $request)
     {
@@ -211,6 +224,18 @@ class UserController extends Controller
                     'description' => 'Field profile_image is required',
                 ],500);
             }else{
+
+                $validator = Validator::make($request->all(), [
+                    'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+                ]);
+
+                if ($validator->fails()) {
+                    return response([
+                        'error' => true,
+                        'description' => "La imagen de perfil debe tener formato jpeg,png,jpg,gif o svg con peso máximo de 1MB",
+                    ],500);
+                }
+
                 $image = $request->file('profile_image');
                 $format = $image->getClientOriginalExtension();
                 $path = env('APP_URL').'/images-profile/'.$id.'_'.Str::random(6).'.'.$format;
@@ -267,7 +292,58 @@ class UserController extends Controller
 
         $error_array = array();
         if (!isset($decode->email)) {
-            array_push($error_array,"Parameter email required");
+            array_push($error_array,"El Correo electrónico es requerido");
+        }
+
+        if (isset($decode->name)) {
+            if (strlen($decode->name) > 255) {
+                array_push($error_array,"El Nombre debe ser de un máximo de 255 caracteres");
+            }
+        }
+
+        if (isset($decode->email)) {
+            if (strlen($decode->email) > 255) {
+                array_push($error_array,"El Correo electrónico debe ser de un máximo de 255 caracteres");
+            }
+            if (!filter_var($decode->email, FILTER_VALIDATE_EMAIL)) {
+                array_push($error_array,"El Correo electrónico debe tener el siguiente formato: example@example.com");
+            }
+        }
+
+        if (isset($decode->address)) {
+            if (strlen($decode->address) > 100) {
+                array_push($error_array,"La Dirección debe ser de un máximo de 100 caracteres");
+            }
+        }
+        
+        if(isset($decode->birth_date)){
+            if($this->validate_date($decode->birth_date)==0){
+                array_push($error_array,"La Fecha debe tener formato AAAA-MM-DD");
+            }
+        }
+
+        if (isset($decode->state)) {
+            if (strlen($decode->state) > 20) {
+                array_push($error_array,"El Estado máximo de 20 caracteres");
+            }
+        }
+
+        if (isset($decode->city)) {
+            if (strlen($decode->city) > 20) {
+                array_push($error_array,"La Ciudad debe ser de un máximo de 20 caracteres");
+            }
+        }
+
+        if (isset($decode->phone)) {
+            if (strlen($decode->phone) > 15) {
+                array_push($error_array,"El Teléfono debe ser de un máximo de 15 caracteres");
+            }
+        }
+
+        if (isset($decode->position)) {
+            if (strlen($decode->position) > 30) {
+                array_push($error_array,"El Cargo debe ser de un máximo de 30 caracteres");
+            }
         }
 
         if (count($error_array) > 0) {
@@ -302,7 +378,7 @@ class UserController extends Controller
                 $response = [
                     'type' => 'already_email',
                     'error' => true,
-                    'description' => "There is already another user with email ".$email.", try another",
+                    'description' => "Ya existe un usuario con el email ".$email.", intente con otro",
                 ];
                 return response($response,500);
             } else {
