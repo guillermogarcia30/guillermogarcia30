@@ -6,7 +6,6 @@ import { useDropzone } from 'react-dropzone'
 
 import { onProfilePicClose } from '../store/modals/modalEditSlice'
 import { changeProfilePicture } from '../store/user/thunks'
-import { useEffect } from 'react'
 
 
 export const ModalImg = () => {
@@ -32,7 +31,6 @@ export const ModalImg = () => {
                   dispatch(setMsg({ msg: 'La imagen no debe exceder 1mb de tamaño' }))
                 return dispatch(onErrorOpen())
               } else if(file.type !== "image/png" && file.type !== "image/jpeg"){
-                console.log(file.type)
                 dispatch(setMsg({ msg: 'La imagen debe ser de formato JPG o PNG' }))
                 return dispatch(onErrorOpen())
               }

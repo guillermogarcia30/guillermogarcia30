@@ -13,7 +13,7 @@ export const changeProfilePicture = (token, image) => {
         dispatch( onProfilePicClose() )
         if(image)
         {
-            let formData = new FormData()
+        let formData = new FormData()
         formData.append("profile_image", image)
         await fetch(imgUpdateUrl, {
             method: 'POST',
@@ -76,7 +76,6 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
                 birth_date: birth_date? birth_date : null
             }
 
-            console.log(body)
             dispatch(setChangeLoading({ ok: true }))
             await fetch(updateUrl, {
                 method: 'PUT',

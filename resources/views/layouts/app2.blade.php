@@ -14,7 +14,7 @@
         <!--  -->
         <link rel="manifest" href="/manifest.json"/>
         <title>Synapse</title>
-        <script defer="defer" src="/static/js/main.c07ca1f5.js"></script>
+        <script defer="defer" src="/static/js/main.40e1c8fd.js"></script>
         <link href="/static/css/main.c91cf7fe.css" rel="stylesheet">
     </head>
     <body>
