@@ -13,8 +13,8 @@
         <!--  -->
         <link rel="manifest" href="/manifest.json"/>
         <title>Synapse</title>
-        <script defer="defer" src="/static/js/main.706c46aa.js"></script>
-        <link href="/static/css/main.4dd2f1cc.css" rel="stylesheet">
+        <script defer="defer" src="/static/js/main.36b7fe3c.js"></script>
+        <link href="/static/css/main.c91cf7fe.css" rel="stylesheet">
     </head>
     <body>
         @yield('content')

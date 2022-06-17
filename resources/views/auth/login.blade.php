@@ -37,7 +37,7 @@
                 <a href="{{ route('password.request') }}">Recuperar contraseña</a>
             @endif
         </div>
-        <button class="btn" >Iniciar sesion</button>
+        <button class="btn" >Iniciar Sesión</button>
     </form>
     <footer class="synapse__footer" >
         <p>¿Aún no tienes una cuenta? <a href="{{ route('register') }}">Registrate aquí</a></p>
