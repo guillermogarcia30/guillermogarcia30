@@ -51,9 +51,8 @@ img{
 
 }
 /* synapse */
-.synapse{
+.synapse {
     width: 40rem;
-    height: 100vh;
     margin: 0 auto;
     margin-top: 3rem;
     display: flex;
@@ -63,12 +62,10 @@ img{
     padding: 2.5rem 8rem;
 }
 .synapse__logo{
-    min-height: 3rem;
     height: var(--logo-size);
     margin-bottom: var(--logo-margin-bottom);
 }
 .synapse__logo-password{
-    min-height: 3rem;
     height: var(--logo-size);
     margin-bottom: 3rem;
 }
@@ -174,32 +171,10 @@ img{
     display: none;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
     width: 100vw;
 }
-.modal__card{
-    display: flex;
-    flex-direction: column;
-    height: 25rem;
-    width: 25rem;
-    box-shadow: 0px 1px 20px 0px var(--light-gray)
-}
 
-.top-side,
-.bottom-side{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    padding: 2rem;
-}
-.bottom-side{
-    flex-direction: column;
-}
-.bottom-side > *{
-    margin: .5rem 0;
-}
 .msg{
     font-weight: 500;
 }
@@ -222,15 +197,6 @@ img{
     height: 3rem;
     margin-right: .2rem;
 
-}
-.btn__modal{
-    cursor: pointer;
-    padding: .4rem 1rem;
-    border: none;
-    border-radius: 5px;
-    margin: .8rem 0;
-    color: var(--theme-color);
-    background-color: var(--main-color);
 }
 
 .dont__worry{
@@ -272,10 +238,9 @@ input[class="password__recovery"]{
     color: var(--blue);
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (min-width: 1500px) {
     .synapse {
         margin-top: 3rem;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -285,16 +250,15 @@ input[class="password__recovery"]{
 @media screen and (max-width: 1285px) {
     .synapse {
         margin-top: 3rem;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 5rem 3rem;
+        padding: 2rem 3rem;
     }
 }
 @media screen and (max-width: 1170px) {
     .synapse {
-        height: 100vh;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -306,7 +270,7 @@ input[class="password__recovery"]{
     .synapse {
         margin-top: 3rem;
         width: 55vw;
-        height: 100vh;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -321,7 +285,6 @@ input[class="password__recovery"]{
         align-items: center;
         position: absolute;
         background-color: var(--theme-color);
-        top: 0;
         bottom: 0;
         left: 0;
         right: 0;
