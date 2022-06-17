@@ -31,6 +31,9 @@ export const changeProfilePicture = (token, image) => {
                 dispatch(setUserImg({image: res.image }))
             }else {
                 console.log(res)
+                if(res.errors){
+                    dispatch( setMsg({msg: res.errors[0] }) )
+                }
                 dispatch(onErrorOpen())                
             }
         } )
@@ -43,7 +46,7 @@ export const changeProfilePicture = (token, image) => {
 }
 
 
-export const updateProfileData = ({country, city, address, phoneNumber, email, token, backup_email, state, position}) => {
+export const updateProfileData = ({country, city, address, phoneNumber, email, token, backup_email, state, position, birth_date}) => {
 
     return async(dispatch) => {
 
@@ -60,7 +63,8 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
                 city,
                 country_id: country,
                 state,
-                position
+                position,
+                birth_date: birth_date? birth_date : null
             } : {
                 email: backup_email,
                 phone: phoneNumber,
@@ -68,7 +72,8 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
                 city,
                 country_id: country,
                 state,
-                position
+                position,
+                birth_date: birth_date? birth_date : null
             }
 
             console.log(body)
@@ -91,10 +96,14 @@ export const updateProfileData = ({country, city, address, phoneNumber, email, t
                     
                 }else {
                     console.log(res)
-                    dispatch(onErrorOpen())
                     if(res.type === 'already_email'){
                         dispatch(setMsg({ msg: 'Ya existe un correo con esa direccion, por favor intente otro' }))
-                    }           
+                    }else if(res.errors){
+                        dispatch( setMsg({msg: res.errors[0] }) )
+                    }       
+                     
+                    dispatch(onErrorOpen())
+                    
                 }
             } )
             .catch( (err) => { 

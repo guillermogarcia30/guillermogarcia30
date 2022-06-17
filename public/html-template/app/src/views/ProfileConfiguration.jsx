@@ -27,7 +27,7 @@ export const ProfileConfiguration = () => {
     <div className='mt-11 min-h-[100vh] relative lg:static max-w-7xl items-center mx-auto px-4 sm:px-6 flex flex-col' >
         
         {/* Container */}
-        <Formik initialValues={{ email: '', phoneNumber: '', country: '', state: '', city: '', position: '', address: '' }}
+        <Formik initialValues={{ email: '', phoneNumber: '', country: '', state: '', city: '', position: '', address: '', birth_date: '' }}
         onSubmit={(values)=> {
             dispatch(updateProfileData({token: userData.token, backup_email: userData.email , ...values }))
         }}>
@@ -65,6 +65,7 @@ export const ProfileConfiguration = () => {
                             Correo electrónico
                         </label>
                         <Field
+                            maxLength="255"
                             type="text"
                             name="email"
                             id="email"
@@ -78,6 +79,7 @@ export const ProfileConfiguration = () => {
                             Teléfono
                         </label>
                         <Field
+                            maxLength="15"
                             type="number"
                             name="phoneNumber"
                             id="phoneNumber"
@@ -110,6 +112,7 @@ export const ProfileConfiguration = () => {
                             Estado
                         </label>
                         <Field
+                            maxLength="20"
                             type="text"
                             name="state"
                             id="state"
@@ -122,6 +125,7 @@ export const ProfileConfiguration = () => {
                             Ciudad
                         </label>
                         <Field
+                            maxLength="20"
                             type="text"
                             name="city"
                             id="city"
@@ -134,6 +138,7 @@ export const ProfileConfiguration = () => {
                             Posición
                         </label>
                         <Field
+                            maxLength="30"
                             type="text"
                             name="position"
                             id="position"
@@ -142,6 +147,17 @@ export const ProfileConfiguration = () => {
                         />
                         </div>
                     </div>
+                    <div className="flex flex-col mt-4 mb-4">
+                        <label htmlFor="birth_date" className="text-sm font-medium text-gray-[#111827]">
+                            Fecha de nacimiénto
+                        </label>
+                        <Field
+                            type="date"
+                            name="birth_date"
+                            id="birth_date"
+                            className="sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                        />
+                        </div>
                     <div className="col-span-3">
                   <label htmlFor="addres" className="block text-sm font-medium text-gray-700">
                     Dirección
@@ -149,6 +165,7 @@ export const ProfileConfiguration = () => {
                   <Field className="hidden" name='address' />
                     <div className="mt-1">
                         <textarea
+                        maxLength="100"
                         onChange={(e)=> props.setFieldValue("address", e.target.value)}
                         id="addres"
                         name="addres"
