@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="Pragma" content="no-cache">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
