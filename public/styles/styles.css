@@ -253,7 +253,7 @@ input[class="password__recovery"]{
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 5rem 3rem;
+        padding: 3rem 3rem;
     }
 }
 @media screen and (max-width: 1170px) {
