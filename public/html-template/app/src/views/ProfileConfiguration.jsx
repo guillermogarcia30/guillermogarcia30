@@ -24,7 +24,7 @@ export const ProfileConfiguration = () => {
 
 
   return (
-    <div className='mt-11 min-h-[100vh] relative lg:static max-w-7xl items-center mx-auto px-4 sm:px-6 flex flex-col' >
+    <div className='mt-11 relative lg:static max-w-7xl items-center mx-auto px-4 sm:px-6 flex flex-col' >
         
         {/* Container */}
         <Formik initialValues={{ email: '', phoneNumber: '', country: '', state: '', city: '', position: '', address: '', birth_date: '' }}
@@ -194,14 +194,6 @@ export const ProfileConfiguration = () => {
                         </button>
                         </div>
                     </div>
-                    </div>
-                    <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button
-                        type="submit"
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Save
-                    </button>
                     </div>
                 </div>
 
