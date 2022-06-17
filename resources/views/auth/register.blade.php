@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="synapse__introduce" style="text-align: center;" >
-    <p>Bienvenido</p>
+     
     <h2>Registro</h2>
 </div>
 <form class="synapse__form-register-a" method="POST" action="{{ route('register') }}">

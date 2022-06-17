@@ -24,7 +24,7 @@ export const ProfileConfiguration = () => {
 
 
   return (
-    <div className='mt-11 min-h-[100vh] relative lg:static items-center mx-auto px-4 sm:px-6 lg:px-20 flex flex-col' >
+    <div className='mt-11 min-h-[100vh] relative lg:static max-w-7xl items-center mx-auto px-4 sm:px-6 flex flex-col' >
         
         {/* Container */}
         <Formik initialValues={{ email: '', phoneNumber: '', country: '', state: '', city: '', position: '', address: '' }}
@@ -34,7 +34,7 @@ export const ProfileConfiguration = () => {
             {({values, ...props}) => (
                 <Form className='w-full' >
         <div>
-        <div className='flex w-full justify-between items-center mb-8' >
+        <div className='flex w-full justify-between items-center  mb-8' >
             <div className='flex flex-col justify-start w-full ' >
                 <div className='hidden sm:flex items-center' >
                     <p className='hidden sm:inline-flex text-sm font-medium text-[#6B7280]' >Cuenta</p>
@@ -67,7 +67,7 @@ export const ProfileConfiguration = () => {
                             name="email"
                             id="email"
                             autoComplete="email"
-                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
                         />
                         </div>
 
@@ -97,7 +97,7 @@ export const ProfileConfiguration = () => {
                             id="country"
                             name="country"
                             autoComplete="country-name"
-                            className="mt-1 block w-full lg:w-4/5 py-2 px-3 border border-[#D1D5DB] bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="mt-1 block w-full sm:w-4/5 py-2 px-3 border border-[#D1D5DB] bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
                             <option value={''} >Seleccione un país</option>
                                     { data.map( el => { return( <option  key={el.id} value={el.id} >{el.name}</option>) }) }
@@ -112,7 +112,7 @@ export const ProfileConfiguration = () => {
                             name="state"
                             id="state"
                             autoComplete=""
-                            className="sm:w-4/5 sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                            className=" sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
                         />
                         </div>
                         <div className="flex flex-col">
@@ -124,7 +124,7 @@ export const ProfileConfiguration = () => {
                             name="city"
                             id="city"
                             autoComplete=""
-                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
                         />
                         </div>
                         <div className="flex flex-col">
@@ -136,7 +136,7 @@ export const ProfileConfiguration = () => {
                             name="position"
                             id="position"
                             autoComplete=""
-                            className="sm:w-4/5 sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full lg:w-4/5 shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                            className="sm:w-4/5 sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
                         />
                         </div>
                     </div>
@@ -151,7 +151,7 @@ export const ProfileConfiguration = () => {
                         id="addres"
                         name="addres"
                         rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        className="resize-none shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         defaultValue={''}
                         />
                     </div>

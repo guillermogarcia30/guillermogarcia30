@@ -19,10 +19,11 @@
 
     /* Sizes */
     --logo-size: 6rem;
+    --logo-margin-bottom: 3rem;
     --icon-size: 6rem;
 
     /* Font */
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 label{
@@ -33,26 +34,36 @@ a{
     color: var(--dark-blue);
 }
 input[type="checkbox"]{
+    margin-right: .3rem;
     cursor: pointer;
 }
 img{
     height: 100%;
 }
 
+.separador{
+    display: flex;
+    align-items: center;
+}
+.separador a {
+    margin: 0;
+    text-align: center;
+
+}
 /* synapse */
-.synapse{
+.synapse {
     width: 40rem;
-    height: 100vh;
     margin: 0 auto;
     margin-top: 3rem;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     padding: 2.5rem 8rem;
 }
 .synapse__logo{
     height: var(--logo-size);
-    margin-bottom: 4rem;
+    margin-bottom: var(--logo-margin-bottom);
 }
 .synapse__logo-password{
     height: var(--logo-size);
@@ -98,6 +109,7 @@ img{
 .form__options-container{
     margin: 1rem 0;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -159,32 +171,10 @@ img{
     display: none;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
     width: 100vw;
 }
-.modal__card{
-    display: flex;
-    flex-direction: column;
-    height: 25rem;
-    width: 25rem;
-    box-shadow: 0px 1px 20px 0px var(--light-gray)
-}
 
-.top-side,
-.bottom-side{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    padding: 2rem;
-}
-.bottom-side{
-    flex-direction: column;
-}
-.bottom-side > *{
-    margin: .5rem 0;
-}
 .msg{
     font-weight: 500;
 }
@@ -207,15 +197,6 @@ img{
     height: 3rem;
     margin-right: .2rem;
 
-}
-.btn__modal{
-    cursor: pointer;
-    padding: .4rem 1rem;
-    border: none;
-    border-radius: 5px;
-    margin: .8rem 0;
-    color: var(--theme-color);
-    background-color: var(--main-color);
 }
 
 .dont__worry{
@@ -257,29 +238,27 @@ input[class="password__recovery"]{
     color: var(--blue);
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (min-width: 1500px) {
     .synapse {
         margin-top: 3rem;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 5rem 5rem;
+        padding: 2rem 5rem;
     }
 }
 @media screen and (max-width: 1285px) {
     .synapse {
         margin-top: 3rem;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 5rem 3rem;
+        padding: 2rem 3rem;
     }
 }
 @media screen and (max-width: 1170px) {
     .synapse {
-        height: 100vh;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -291,7 +270,7 @@ input[class="password__recovery"]{
     .synapse {
         margin-top: 3rem;
         width: 55vw;
-        height: 100vh;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -306,15 +285,11 @@ input[class="password__recovery"]{
         align-items: center;
         position: absolute;
         background-color: var(--theme-color);
-        top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         margin: auto;
         margin-top: 3rem;
-    }
-    .form__options-container{
-        flex-direction: column;
     }
     .form__options-container *{
         margin: .6rem 0;
@@ -328,17 +303,17 @@ input[class="password__recovery"]{
         display: flex;
         flex-direction: column;
         margin: 1rem 0;
-        width: 20rem; 
+        width: 22rem; 
     }
     .synapse__form{
-        width: 20rem;
+        width: 22rem;
     }
     .synapse__footer{
-        width: 20rem;
+        width: 22rem;
     }
     .synapse__introduce{
         text-align: center;
-        width: 20rem;
+        width: 22rem;
         margin-bottom: 1rem; 
     }
 }

@@ -45,7 +45,7 @@ module.exports = {
       'custom': '0px 4px 24px rgba(0, 0, 0, 0.07)'
     },
     fontFamily: {
-      robot: ['"Roboto"', 'sans-serif']
+      inter: ['"Inter"', 'sans-serif']
     },
     extend: {
       keyframes: {

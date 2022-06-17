@@ -1,6 +1,6 @@
 import { removeApp } from "./appsSlice"
 import { onSuccesOpen, onErrorOpen } from '../modals/modalEditSlice'
-import { addApp, clearApps } from '../apps/appsSlice'
+import { addApp } from '../apps/appsSlice'
 
 
 const urlDelete = 'https://auth.synapse-crm.com/api/apps/'
@@ -68,7 +68,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
                 
                 if(!res.error){
                     if(!image){
-                        dispatch( clearApps() )
+                        
                         res.data.map( el => {
                             
                             dispatch( addApp({
@@ -107,7 +107,7 @@ export const updateAppAsync = ({applicationName, appurls, fabricanteEdit, secret
               .then(res => { 
                    console.log(res)
                   if(!res.error){
-                      dispatch( clearApps() )
+                      
                     res.data.map( el => {
                         dispatch( addApp({
                           logo: el.image || 'https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png',
@@ -171,7 +171,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
                 
                 if(!res.error){
                     if(!image){
-                        dispatch( clearApps() )
+                        
                         res.data.map( el => {
                             
                             dispatch( addApp({
@@ -214,7 +214,7 @@ export const createAppAsync = ({applicationName, appurls, fabricante, secret, we
               .then(res => { 
                 console.log(res)
                 if(!res.error){
-                    dispatch( clearApps() )
+                    
                     res.data.map( el => {
                         
                         dispatch( addApp({
