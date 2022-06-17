@@ -63,12 +63,10 @@ img{
     padding: 2.5rem 8rem;
 }
 .synapse__logo{
-    min-height: 3rem;
     height: var(--logo-size);
     margin-bottom: var(--logo-margin-bottom);
 }
 .synapse__logo-password{
-    min-height: 3rem;
     height: var(--logo-size);
     margin-bottom: 3rem;
 }
