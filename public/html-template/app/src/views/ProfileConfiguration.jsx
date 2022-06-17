@@ -54,8 +54,8 @@ export const ProfileConfiguration = () => {
         </div>
             <div className="md:grid md:grid-cols-1 md:gap-6">
             <div className="mt-5 md:mt-0 md:col-span-2">
-                <div className="shadow sm:rounded-md sm:overflow-hidden">
-                    <div className="px-4 py-5 bg-white sm:p-6 shadow-custom ">
+                <div className="shadow-custom sm:rounded-md">
+                    <div className="px-4 py-5 bg-white sm:p-6 ">
                         <h2 className="text-lg font-medium">Información personal</h2>
                         <p className='text-sm text-[#808080] mb-4' >Información personal del usuario</p>
                     <div className="grid sm:grid-cols-2 gap-6">
@@ -146,18 +146,19 @@ export const ProfileConfiguration = () => {
                             className="sm:w-4/5 sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
                         />
                         </div>
-                    </div>
-                    <div className="flex flex-col mt-4 mb-4">
-                        <label htmlFor="birth_date" className="text-sm font-medium text-gray-[#111827]">
+                        <div className="flex flex-col mt-4 mb-4">
+                        <label htmlFor="birth_date" className="text-sm sm:w-4/5 font-medium text-gray-[#111827]">
                             Fecha de nacimiénto
                         </label>
                         <Field
                             type="date"
                             name="birth_date"
                             id="birth_date"
-                            className="sm:self-end mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
+                            className="mt-1 sm:w-4/5 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-[#D1D5DB] rounded-md"
                         />
-                        </div>
+                    </div>
+                    </div>
+                    
                     <div className="col-span-3">
                   <label htmlFor="addres" className="block text-sm font-medium text-gray-700">
                     Dirección

@@ -10,7 +10,7 @@ export const TeamList = ( { team } ) => {
   
   return (
     <>
-            <div className="mt-16 max-w-7xl mx-auto  pb-12">
+            <div className="mt-16 max-w-7xl mx-4 sm:mx-6 lg:px-8 lg:mx-8  pb-12">
                   <h2 className="text-sm font-medium text-gray-500">Equipo</h2>
                   <p className='text-[#808080] mb-4' >Miembros de mi equipo</p>
                   <div className="mt-1 grid md:grid-cols-3 lg:grid-cols-4 gap-4 sm:grid-cols-2">

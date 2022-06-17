@@ -171,7 +171,7 @@ export const Header = () => {
                   {/* Profile dropdown */}
                   <Menu as="div" className="flex-shrink-0 relative ml-5">
                     <div>
-                      <Menu.Button className="bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                      <Menu.Button className="bg-white rounded-full flex active:outline-none active:ring-2 active:ring-offset-2 active:ring-indigo-500">
                         <div className='hidden lg:flex flex-col mr-4' >
                           <h4 className='text-[1.0625rem] text-right' >{user.name}</h4>
                           <p className='text-[#6A6A6A] uppercase text-[0.5625rem] text-left' >{user.position}</p>

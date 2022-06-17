@@ -8,7 +8,7 @@ export const ProfileHeader = ({ profile }) => {
 
   return (
     <>
-        <div className="mt-11 max-w-7xl   mx-auto px-4">
+        <div className="mt-11 max-w-7xl   mx-4 px-4 sm:px-6 sm:mx-6 lg:px-8 lg:mx-8">
                     <div  className='flex items-center justify-between mb-10' >
                       <div className='flex flex-col justify-center' >
                         <div className='hidden sm:flex items-center' >
