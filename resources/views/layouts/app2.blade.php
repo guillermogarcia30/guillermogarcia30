@@ -13,7 +13,7 @@
         <!--  -->
         <link rel="manifest" href="/manifest.json"/>
         <title>Synapse</title>
-        <script defer="defer" src="/static/js/main.8cee797a.js"></script>
+        <script defer="defer" src="/static/js/main.706c46aa.js"></script>
         <link href="/static/css/main.4dd2f1cc.css" rel="stylesheet">
     </head>
     <body>
