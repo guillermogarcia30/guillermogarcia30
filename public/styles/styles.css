@@ -51,7 +51,7 @@ img{
 
 }
 /* synapse */
-.synapse{
+.synapse {
     width: 40rem;
     margin: 0 auto;
     margin-top: 3rem;
@@ -318,7 +318,6 @@ input[class="password__recovery"]{
         align-items: center;
         position: absolute;
         background-color: var(--theme-color);
-        top: 0;
         bottom: 0;
         left: 0;
         right: 0;
