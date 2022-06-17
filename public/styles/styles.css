@@ -238,7 +238,7 @@ input[class="password__recovery"]{
     color: var(--blue);
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (min-width: 1500px) {
     .synapse {
         margin-top: 3rem;
         display: flex;
